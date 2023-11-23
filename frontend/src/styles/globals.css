@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import './animate.min.css';
 
 :root {
-  --heading-font: 'Inter', sans-serif;
-  --body-font: 'Inter', sans-serif;
+  --font-family: Inter, sans-serif;
   --section-spacing: 64px;
   --primary-color: #7F56D9;
   --text-color: #475467;
@@ -22,6 +22,7 @@
 
 body {
   margin: 0;
+  font-family: var(--font-family);
 }
 
 #__next {

@@ -9,7 +9,7 @@ function Login() {
 
   const heading = 'Welcome back'
   const subTitle = 'Welcome back! Please enter your details.'
-  const imageLink = 'https://images.unsplash.com/photo-1543269865-0a740d43b90c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  const imageLink = 'https://img.freepik.com/free-photo/medium-shot-kid-with-smartphone-indoors_23-2150909768.jpg?t=st=1700732007~exp=1700735607~hmac=9ade99f23d8d38277b5bb4ecf2e144b010ba617e498072b26ceca513fcbbbb36&w=740'
 
 
   return (
@@ -34,7 +34,7 @@ function Login() {
 
         {/* Sign up Link*/}
         <Box className='center' gap={0.5}>
-          <Typography variant='body2'>Don’t have an account? </Typography>
+          <Typography variant='body2'>Don't have an account? </Typography>
           <Typography variant='body3'><Link href='/auth/register'>Sign up</Link></Typography>
         </Box>
 

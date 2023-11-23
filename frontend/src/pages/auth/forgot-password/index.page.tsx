@@ -9,7 +9,7 @@ function ForgotPassword() {
 
   const heading = 'Forgot Password'
   const subTitle = `Enter your email address and we'll send you an email with instructions to reset your password.`
-  const imageLink = 'https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  const imageLink = 'https://img.freepik.com/free-photo/medium-shot-kid-with-smartphone-indoors_23-2150909531.jpg?t=st=1700733317~exp=1700736917~hmac=cc1e96808f983fcaf1c46b8d20d7dab47b5eacb86bfd73169dfabe1857eacde7&w=740'
 
   return (
     <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink} isHeadingCenter={true}>
