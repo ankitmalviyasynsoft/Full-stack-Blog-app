@@ -39,4 +39,12 @@ function ResetPassword() {
   )
 }
 
+
+ResetPassword.layoutProps = {
+  isProtectedPage: false,
+  title: 'Reset Password',
+  header:false
+}
+
+
 export default ResetPassword

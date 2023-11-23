@@ -42,4 +42,12 @@ function Login() {
   )
 }
 
+
+Login.layoutProps = {
+  isProtectedPage: false,
+  title: 'Login',
+  header:false
+}
+
+
 export default Login

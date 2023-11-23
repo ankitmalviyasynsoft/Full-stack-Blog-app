@@ -2,6 +2,6 @@ import {  PageLayoutProps } from "@/pages/_app.type"
 
 
 
-export type AuthLayoutProps = {
+export type LayoutProps = {
   children: React.ReactNode
 } & PageLayoutProps

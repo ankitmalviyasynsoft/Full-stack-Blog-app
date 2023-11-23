@@ -35,4 +35,12 @@ function ForgotPassword() {
   )
 }
 
+
+ForgotPassword.layoutProps = {
+  isProtectedPage: false,
+  title: 'Forgot Password',
+  header:false
+}
+
+
 export default ForgotPassword
