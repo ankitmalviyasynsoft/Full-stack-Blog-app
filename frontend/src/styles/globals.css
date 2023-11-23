@@ -1,7 +1,7 @@
 @import './animate.min.css';
 
 :root {
-  --heading-font: 'Inter', serif;
+  --heading-font: 'Inter', sans-serif;
   --body-font: 'Inter', sans-serif;
   --section-spacing: 64px;
 }
@@ -18,9 +18,13 @@
   tap-highlight-color: transparent;
 }
 
+body{
+  margin: 0;
+}
+
 #__next {
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* min-height: 100vh;
+  min-height: 100dvh; */
   display: flex;
   flex-flow: column;
 }
@@ -58,9 +62,16 @@ input[type="file" i]::-webkit-file-upload-button {
 }
 
 
+img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 
 /* Utility Classes
 ======================== */
+
 .line-1,
 .line-2,
 .line-3,
@@ -94,6 +105,18 @@ input[type="file" i]::-webkit-file-upload-button {
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.content-right {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.content-left {
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
 .section-padding {

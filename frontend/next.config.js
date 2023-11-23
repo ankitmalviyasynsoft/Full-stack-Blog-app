@@ -8,7 +8,7 @@ const nextConfig = {
   basePath: config.basePath,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js'],
   images: {
-    domains: ['storage.googleapis.com']
+    domains: ['unsplash.com', 'images.unsplash.com']
   },
   async redirects() {
     return [
