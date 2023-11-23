@@ -1,51 +1,44 @@
-import { Button, Stack, TextField, Typography, InputLabel } from '@mui/material'
+import { Button, Stack, TextField, Typography, InputLabel, Box } from '@mui/material'
 import React from 'react'
-import { style } from './login.style'
+import Link from 'next/link'
+import AuthLayout from '@/layout/auth/AuthLayout.layout'
 
 
 
 function Login() {
+
+  const heading = 'Welcome back'
+  const subTitle = 'Welcome back! Please enter your details.'
+  const imageLink = 'https://images.unsplash.com/photo-1543269865-0a740d43b90c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+
+
   return (
-    <Stack direction='row'>
-      <Stack flex={1}>
-        <Stack direction='row' justifyContent='center' alignItems='center' height={1}>
-          <Stack gap={2} sx={style.formRoot}>
-
-            {/* Heading */}
-            <Stack gap={1} className='center'>
-              <Typography variant='h3'>Welcome back</Typography>
-              <Typography variant='body1'>Welcome back! Please enter your details.</Typography>
-            </Stack>
-
-            {/* Form */}
-            <Stack gap={2} component='form'>
-              <Stack spacing={0.5}>
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <TextField id="email" placeholder='Enter your email' type='text' variant='outlined' />
-              </Stack>
-
-              <Stack spacing={0.5}>
-                <InputLabel htmlFor="email">Password</InputLabel>
-                <TextField placeholder='Enter your email' type='text' variant='outlined' />
-              </Stack>
-
-              <Typography className='content-right' variant='body1'>Forgot password</Typography>
-              <Button variant='contained' fullWidth>Sign in</Button>
-
-            </Stack>
-
-            {/* Sign up Link*/}
-            <Typography className='center' variant='body1'>Don’t have an account? Sign up</Typography>
+    <AuthLayout sideImage={imageLink} heading={heading} subTitle={subTitle} isHeadingCenter>
+     
+        {/* Form */}
+        <Stack gap={2} component='form'>
+          <Stack spacing={0.5}>
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <TextField id="email" placeholder='Enter your email' type='text' variant='outlined' />
           </Stack>
+
+          <Stack spacing={0.5}>
+            <InputLabel htmlFor="email">Password</InputLabel>
+            <TextField placeholder='Enter your email' type='text' variant='outlined' />
+          </Stack>
+
+          <Typography className='content-right' variant='body3'><Link href='/auth/forgot-password'>Forgot password</Link></Typography>
+          <Button variant='contained' fullWidth>Sign in</Button>
+
         </Stack>
-      </Stack>
 
+        {/* Sign up Link*/}
+        <Box className='center' gap={0.5}>
+          <Typography variant='body2'>Don’t have an account? </Typography>
+          <Typography variant='body3'><Link href='/auth/register'>Sign up</Link></Typography>
+        </Box>
 
-      {/* ==Image==  */}
-      <Stack sx={style.image} flex={1}>
-        <img src="https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " alt="" />
-      </Stack>
-    </Stack >
+    </AuthLayout>
   )
 }
 

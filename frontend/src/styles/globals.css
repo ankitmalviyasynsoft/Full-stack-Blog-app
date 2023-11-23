@@ -4,6 +4,8 @@
   --heading-font: 'Inter', sans-serif;
   --body-font: 'Inter', sans-serif;
   --section-spacing: 64px;
+  --primary-color: #7F56D9;
+  --text-color: #475467;
 }
 
 @media (max-width: 599px) {
@@ -18,7 +20,7 @@
   tap-highlight-color: transparent;
 }
 
-body{
+body {
   margin: 0;
 }
 
@@ -30,7 +32,7 @@ body{
 }
 
 a {
-  color: inherit;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -62,7 +64,7 @@ input[type="file" i]::-webkit-file-upload-button {
 }
 
 
-img{
+img {
   height: 100%;
   width: 100%;
   object-fit: cover;
