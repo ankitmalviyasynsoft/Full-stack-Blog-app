@@ -9,7 +9,7 @@ function Login() {
 
   const heading = 'Welcome back'
   const subTitle = 'Welcome back! Please enter your details.'
-  const imageLink = 'https://img.freepik.com/free-photo/medium-shot-kid-with-smartphone-indoors_23-2150909768.jpg?t=st=1700732007~exp=1700735607~hmac=9ade99f23d8d38277b5bb4ecf2e144b010ba617e498072b26ceca513fcbbbb36&w=740'
+  const imageLink = '/images/login.jpg'
 
 
   return (

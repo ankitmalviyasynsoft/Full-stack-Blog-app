@@ -9,7 +9,7 @@ function ResetPassword() {
 
   const heading = 'Create new password'
   const subTitle = `Your new password must be different from previous used passwords`
-  const imageLink = 'https://images.unsplash.com/photo-1524508762098-fd966ffb6ef9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  const imageLink = '/images/reset.jpg'
 
 
   return (
