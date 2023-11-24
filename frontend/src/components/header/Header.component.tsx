@@ -10,7 +10,7 @@ export default function Header() {
 const router = useRouter()
 
   return (
-    <Stack direction='row' justifyContent='space-between' alignItems='center' p={2}>
+    <Stack direction='row' justifyContent='space-between' alignItems='center' py={2} height={80}>
       <Stack flex={1}>LOGO</Stack>
 
       <Stack flex={2}>

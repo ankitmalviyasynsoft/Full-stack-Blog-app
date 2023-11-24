@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { LayoutProps } from './Layout.type'
 import React from 'react'
 import Header from '@/components/header/Header.component'
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 
 
