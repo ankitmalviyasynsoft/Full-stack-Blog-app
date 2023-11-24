@@ -27,7 +27,7 @@ export default function AuthLayout({ children, sideImage = '', heading = '', sub
 
       {/* ==Image==  */}
       <Stack sx={style.image} flex={1}>
-        <img src={sideImage} alt='side image' />
+        <img src={sideImage} alt='side image' style={{ objectFit: 'cover' }} />
       </Stack>
     </Stack>
 

@@ -14,31 +14,18 @@ export default function Header() {
     <Container>
       <Stack direction='row' justifyContent='space-between' alignItems='center' py={2} height={80}>
         <Stack flex={1} >
-          <Box height={50} width={50}>
+          <Box height={40} width={140}>
             <img src={config.logo} />
           </Box>
         </Stack>
 
-        <Stack flex={2}>
-          <Autocomplete
-            sx={style.autoCompleteSearch}
-            disableClearable
-            options={[]}
-            loading={false}
-            disabled={false}
+        <Stack flex={2} display={{xs:'none', sm:'block'}}>
+          <Autocomplete sx={style.autoCompleteSearch} disableClearable options={[]} loading={false} disabled={false}
+            renderInput={(params) => <TextField  {...params} variant='outlined' placeholder='Search blog eg. category, tag and blog title'
+              InputProps={{ endAdornment: (<InputAdornment position="start"><IconButton><MdOutlineSearch /></IconButton></InputAdornment>) }}
+            />}
             // getOptionLabel={(option) => option?.name}
             // isOptionEqualToValue={(option, value) => option.name === value.name}
-            renderInput={(params) => <TextField  {...params} variant='outlined'
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton>
-                      <MdOutlineSearch />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />}
             onChange={(_, data) => {
               // field.onChange(data)
               // setValue('categoryId', data._id)
@@ -47,7 +34,7 @@ export default function Header() {
           />
         </Stack>
 
-        <Stack flex={1} direction='row' justifyContent='end' alignItems='center' gap={2}>
+        <Stack flex={1} direction={{xs:'column', sm:'row'}} justifyContent='end' alignItems='center' gap={2}>
           <Button variant='outlined' onClick={() => router.push('/auth/login')}>Login</Button>
           <Button variant='contained' onClick={() => router.push('/auth/register')}> Sign Up</Button>
         </Stack>

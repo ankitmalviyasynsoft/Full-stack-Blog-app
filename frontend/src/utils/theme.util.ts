@@ -14,7 +14,7 @@ let theme = createTheme({
     h4: { fontSize: '1.75rem' },
     h5: { fontSize: '1.50rem', fontWeight: 400 },
     h6: { fontSize: '1.38rem', },
-    body1: { fontSize: '1rem', fontWeight: 100 },
+    body1: { fontSize: '1rem'},
     body2: { fontSize: '1rem', color: 'var(--text-color)' },
     body3: { fontSize: '1rem', fontWeight: 600, color: '#6941C6' },
     body4: { fontSize: '0.7rem', color: 'var(--text-color)' },

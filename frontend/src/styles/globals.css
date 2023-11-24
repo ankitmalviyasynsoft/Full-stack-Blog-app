@@ -4,6 +4,7 @@
 :root {
   --font-family: Inter, sans-serif;
   --section-spacing: 64px;
+  --heading-spacing: 32px;
   --primary-color: #7F56D9;
   --text-color: #475467;
 }
@@ -11,6 +12,7 @@
 @media (max-width: 599px) {
   :root {
     --section-spacing: 50px;
+    --heading-spacing: 22px;
   }
 }
 
@@ -37,11 +39,7 @@ a {
   text-decoration: none;
 }
 
-img,
-video {
-  object-fit: contain;
-  max-width: 100%;
-}
+
 
 button,
 input {
@@ -64,11 +62,15 @@ input[type="file" i]::-webkit-file-upload-button {
   font-family: inherit;
 }
 
-
 img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+}
+
+img,
+video {
+  object-fit: contain;
+  max-width: 100%;
 }
 
 
@@ -148,6 +150,40 @@ img {
   margin-bottom: var(--section-spacing);
 }
 
+
+/* === heading section === */
+.heading-padding {
+  padding-top: var(--heading-spacing);
+  padding-bottom: var(--heading-spacing);
+}
+
+.heading-padding-top {
+  padding-top: var(--heading-spacing);
+}
+
+.heading-padding-bottom {
+  padding-bottom: var(--heading-spacing);
+}
+
+.heading-margin {
+  margin-top: var(--heading-spacing);
+  margin-bottom: var(--heading-spacing);
+}
+
+.heading-margin-top {
+  margin-top: var(--heading-spacing);
+}
+
+.heading-margin-bottom {
+  margin-bottom: var(--heading-spacing);
+}
+
+/* === blur css===*/
+.blurred-content {
+  backdrop-filter: blur(3px); /* Adjust the blur intensity as needed */
+  background-color: rgba(255, 255, 255, 0.6); /* Adjust the background color and transparency as needed */
+  border-radius: 0px 0px 20px 20px;
+}
 
 
 /* Swiper Slider
