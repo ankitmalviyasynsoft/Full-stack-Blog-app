@@ -5,8 +5,7 @@
   --font-family: Inter, sans-serif;
   --section-spacing: 64px;
   --heading-spacing: 32px;
-  --primary-color: #7F56D9;
-  --text-color: #475467;
+  --text-white: #FFF;
 }
 
 @media (max-width: 599px) {
@@ -181,7 +180,7 @@ video {
 /* === blur css===*/
 .blurred-content {
   backdrop-filter: blur(3px); /* Adjust the blur intensity as needed */
-  background-color: rgba(255, 255, 255, 0.6); /* Adjust the background color and transparency as needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and transparency as needed */
   border-radius: 0px 0px 20px 20px;
 }
 

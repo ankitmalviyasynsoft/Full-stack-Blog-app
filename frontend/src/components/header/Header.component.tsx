@@ -35,7 +35,7 @@ export default function Header() {
         </Stack>
 
         <Stack flex={1} direction={{xs:'column', sm:'row'}} justifyContent='end' alignItems='center' gap={2}>
-          <Button variant='outlined' onClick={() => router.push('/auth/login')}>Login</Button>
+          <Button variant='text' onClick={() => router.push('/auth/login')}>Login</Button>
           <Button variant='contained' onClick={() => router.push('/auth/register')}> Sign Up</Button>
         </Stack>
       </Stack>
