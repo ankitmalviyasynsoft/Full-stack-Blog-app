@@ -39,8 +39,6 @@ export default function HeroSection() {
 
                 <Stack ml='auto'>
                   <Typography variant='body4' color='var(--text-white)' mb={1}>File under</Typography>
-                 
-
                   <Chip label="Small" size="medium" variant="outlined" color='warning'/>
                 </Stack>
               </Stack>

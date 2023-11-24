@@ -7,12 +7,17 @@ export default function RecentlyBlogTopThree() {
     <Stack className='section-padding'>
       <Typography variant='h4' fontWeight={600} className='heading-padding-bottom'>Recently Blog</Typography>
 
-      <Grid container>
+      <Grid container spacing={4}>
+
         <Grid item xs={12} sm={12} md={6}>
-          <BlogCard/>
+          <BlogCard style={{ direction: 'column', imageHeight: 248 }} />
         </Grid>
+
         <Grid item xs={12} sm={12} md={6}>
-          asdasda
+          <Stack spacing={4}>
+          <BlogCard style={{ direction: 'row', imageHeight: 200 }} />
+          <BlogCard style={{ direction: 'row', imageHeight: 200 }} />
+          </Stack>
         </Grid>
       </Grid>
     </Stack>
