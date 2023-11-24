@@ -1,4 +1,5 @@
 {
   "basePath": "",
-  "apiBaseUrl": "http://45.59.167.43:5001/api"
+  "apiBaseUrl": "http://45.59.167.43:5001/api",
+  "logo": "/images/logo.png"
 }

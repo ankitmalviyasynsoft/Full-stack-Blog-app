@@ -103,11 +103,11 @@ theme = createTheme(theme, {
         })
       }
     },
-    // MuiContainer: {
-    //   styleOverrides: {
-    //     root: { maxWidth: '1340px !important'},
-    //   }
-    // },
+    MuiContainer: {
+      styleOverrides: {
+        root: { maxWidth: 'min(100%, 1414px) !important' },
+      }
+    },
     // MuiDataGrid: {
     //   defaultProps: { autoHeight: true, disableRowSelectionOnClick: true, disableColumnMenu: true, paginationMode: 'server' },
     //   styleOverrides: {
