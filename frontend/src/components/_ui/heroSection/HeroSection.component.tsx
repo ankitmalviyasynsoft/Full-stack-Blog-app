@@ -26,7 +26,7 @@ export default function HeroSection() {
           {/* == blur section == */}
           <Box className={isSmallScreenUp ? 'blurred-content' : ''} position={{ xs: 'relative', md: 'absolute' }} bottom={0} width={1} color={isSmallScreenUp ? 'var(--text-white)}' : ''} >
             <Stack width={1} p={{md: 4}} mt={{xs:2, md:0}} spacing={2}>
-              <Typography variant='h4' fontWeight={600}>Improve your design skills: Develop an &aposeye&apos for design</Typography>
+              <Typography variant='h4' fontWeight={600}>Improve your design skills: Develop an &apos eye &apos for design</Typography>
               <Typography variant='subtitle' >Tools and trends change, but good design is timeless. Learn how to quickly develop an &aposeye&apos for design.</Typography>
 
 
@@ -59,7 +59,7 @@ export default function HeroSection() {
 
 
       {/*  == Category Section == */}
-      <Grid item xs={12} md={3}>
+      <Grid item xs={12} md={3} order={{xs:-1, md:0}}>
         <Typography variant='body3' className='heading-padding'>Blog categories</Typography>
         <Stack direction={{ xs: 'row', md: 'column' }} className={!isSmallScreenUp ? 'scroll-X' : '' }spacing={2} ml={{md:2}} pb={{xs:2, md:0}}>
           {
@@ -69,7 +69,6 @@ export default function HeroSection() {
           }
         </Stack>
       </Grid>
-
     </Grid >
   )
 }
