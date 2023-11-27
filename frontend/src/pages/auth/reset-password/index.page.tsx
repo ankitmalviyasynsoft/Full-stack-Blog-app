@@ -32,7 +32,7 @@ function ResetPassword() {
 
       {/* Sign up Link*/}
       <Box className='center' gap={0.5}>
-        <Typography variant='body2'>If you won't to change password</Typography>
+        <Typography variant='body2'>If you won&apost to change password</Typography>
         <Typography variant='body3'><Link href='/auth/login'>Click Here</Link></Typography>
       </Box>
     </AuthLayout>

@@ -22,8 +22,8 @@ export default function HeroSection() {
           {/* blur section */}
           <Box className='blurred-content' position='absolute' bottom={0} width={1} color='var(--text-white)' >
             <Stack width={1} p={4} spacing={2}>
-              <Typography variant='h4'  fontWeight={600}>Improve your design skills: Develop an "eye" for design</Typography>
-              <Typography variant='subtitle' >Tools and trends change, but good design is timeless. Learn how to quickly develop an "eye" for design.</Typography>
+              <Typography variant='h4'  fontWeight={600}>Improve your design skills: Develop an &aposeye&apos for design</Typography>
+              <Typography variant='subtitle' >Tools and trends change, but good design is timeless. Learn how to quickly develop an &aposeye&apos for design.</Typography>
 
 
               <Stack direction='row' gap={8}>
@@ -55,7 +55,7 @@ export default function HeroSection() {
         <Typography variant='body3' className='heading-padding'>Blog categories</Typography>
         {
           dataCategoies.map((item, index) => (
-            <Typography variant='body2' mb={2} ml={2}>{item}</Typography>
+            <Typography variant='body2' mb={2} ml={2} key={index}>{item}</Typography>
           ))
         }
       </Grid>

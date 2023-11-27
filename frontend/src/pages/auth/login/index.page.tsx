@@ -34,7 +34,7 @@ function Login() {
 
         {/* Sign up Link*/}
         <Box className='center' gap={0.5}>
-          <Typography variant='body2'>Don't have an account? </Typography>
+          <Typography variant='body2'>Don&apost have an account? </Typography>
           <Typography variant='body3'><Link href='/auth/register'>Sign up</Link></Typography>
         </Box>
 
