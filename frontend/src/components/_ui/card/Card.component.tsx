@@ -9,7 +9,7 @@ export default function BlogCard(props:CardProps) {
 
   return (
     <Card>
-      <Stack spacing={1} direction={style.direction}>
+      <Stack spacing={1} direction={{xs:'column' , md:style.direction}}>
         <Stack height={style.imageHeight} width={1}>
           <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover' }} />
         </Stack>

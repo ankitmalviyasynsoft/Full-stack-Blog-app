@@ -177,10 +177,22 @@ video {
   margin-bottom: var(--heading-spacing);
 }
 
+/*  == text wrap ==  */
+
+.text-nowrap{
+  text-wrap: nowrap;
+}
+
+/* == scroll == */
+.scroll-X{
+  overflow-x: scroll;
+}
+
+
 /* === blur css===*/
 .blurred-content {
   backdrop-filter: blur(3px); /* Adjust the blur intensity as needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and transparency as needed */
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust the background color and transparency as needed */
   border-radius: 0px 0px 20px 20px;
 }
 
