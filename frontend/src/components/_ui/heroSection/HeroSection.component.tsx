@@ -13,7 +13,7 @@ export default function HeroSection() {
   return (
     <Grid container spacing={4}>
 
-      <Grid item xs={12} md={9}>
+      <Grid item xs>
 
         {/* == hero section Image == */}
         <Stack position='relative' className='heading-padding-top'>
@@ -59,7 +59,7 @@ export default function HeroSection() {
 
 
       {/*  == Category Section == */}
-      <Grid item xs={12} md={3} order={{xs:-1, md:0}}>
+      {/* <Grid item xs={12} md={3} order={{xs:-1, md:0}}>
         <Typography variant='body3' className='heading-padding'>Blog categories</Typography>
         <Stack direction={{ xs: 'row', md: 'column' }} className={!isSmallScreenUp ? 'scroll-X' : '' }spacing={2} ml={{md:2}} pb={{xs:2, md:0}}>
           {
@@ -68,7 +68,7 @@ export default function HeroSection() {
             ))
           }
         </Stack>
-      </Grid>
+      </Grid> */}
     </Grid >
   )
 }
