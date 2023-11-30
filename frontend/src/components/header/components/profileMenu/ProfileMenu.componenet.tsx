@@ -23,7 +23,7 @@ export default function ProfileMenu() {
 
         {
           menuItems.map((item, index) => (
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleClose} key={index}>
               <Button color='inherit' startIcon={item.icon} onClick={() => router.push(item.link)}>{item.name}</Button>
             </MenuItem>
           ))
