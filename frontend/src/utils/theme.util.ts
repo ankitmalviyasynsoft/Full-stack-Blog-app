@@ -24,7 +24,7 @@ let theme = createTheme({
   },
   palette: {
     mode: 'light',
-    divider: 'rgba(255, 255, 255, 0.25)',
+    divider: 'rgba(0, 0, 0, 0.1)',
     text: { primary: '#101828', secondary: '#344054', disabled: '#667085' },
     primary: { main: '#7F56D9' },
     secondary: { main: '#6941C6' },

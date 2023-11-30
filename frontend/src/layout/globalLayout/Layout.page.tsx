@@ -3,10 +3,11 @@ import { LayoutProps } from './Layout.type'
 import React from 'react'
 import Header from '@/components/header/Header.component'
 import { Box, Container } from '@mui/material'
+import Footer from '@/components/footer/footer.component'
 
 
 
-export default function Layout({ children, title, header }: LayoutProps) {
+export default function Layout({ children, title, header, footer }: LayoutProps) {
   return (
     <>
       <Head>
@@ -16,6 +17,7 @@ export default function Layout({ children, title, header }: LayoutProps) {
       <Box className='animate__animated animate__fadeIn animate__faster' >
         {children}
       </Box>
+      {footer !== false && <Footer />}
     </>
   )
 }
