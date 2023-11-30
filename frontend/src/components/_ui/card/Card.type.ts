@@ -1,7 +1,8 @@
 export interface CardProps {
   style: {
     direction: 'row' | 'column'
-    imageHeight: number
+    imageHeight?: number
+    imageWidth?: number
     linkIcon?: boolean
   }
   imageLink?: string

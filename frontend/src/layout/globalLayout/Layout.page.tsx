@@ -14,7 +14,7 @@ export default function Layout({ children, title, header, footer }: LayoutProps)
         <title>{title ? `${title} | Blog` : 'Blog - App'}</title>
       </Head>
       {header !== false && <Header />}
-      <Box className='animate__animated animate__fadeIn animate__faster' my={{xs:3, md:7}}>
+      <Box className='animate__animated animate__fadeIn animate__faster' >
         {children}
       </Box>
       {footer !== false && <Footer />}

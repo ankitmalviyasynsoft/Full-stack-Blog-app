@@ -36,7 +36,7 @@ export default function Footer(props: PageFooterProps) {
         </Stack>
       </Container>
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={{ my: 4 }} />
 
       <Container>
         <Stack px={{ xs: 1, md: 4 }} my={3} spacing={3} direction={{ xs: 'column', sm: 'row' }} justifyContent='space-between' alignItems='center'>

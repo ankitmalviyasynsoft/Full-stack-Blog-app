@@ -195,3 +195,5 @@ declare module '@mui/material/Button' {
 
 
 export { theme }
+
+export const stylePageSection = {xs:3, md:7}

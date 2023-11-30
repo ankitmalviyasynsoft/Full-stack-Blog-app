@@ -1,47 +1,49 @@
 import React from 'react'
 import { Box, Chip, Container, Stack, Typography } from '@mui/material'
 import { Page } from '@/types/Page.type'
+import { stylePageSection } from '@/utils'
 
 
 
 const BlogDetail: Page = () => {
 
 
-  return (
-    <Container>
+    return (
+        <Container>
+            <Stack my={stylePageSection}>
+                {/* == Heading == */}
+                <Stack alignItems='center' justifyContent='center'>
+                    <Stack maxWidth={700} alignItems='center' justifyContent='center' spacing={2}>
+                        <Typography variant='body3'>Published 20 Jan 2024</Typography>
+                        <Typography variant='h1'>UX review presentations</Typography>
+                        <Typography variant='body2'>How do you create compelling presentations that wow your colleagues and impress your managers? Find out with our in-depth guide on UX presentations.</Typography>
 
-      {/* == Heading == */}
-      <Stack alignItems='center' justifyContent='center'>
-        <Stack maxWidth={700} alignItems='center' justifyContent='center' spacing={2}>
-          <Typography variant='body3'>Published 20 Jan 2024</Typography>
-          <Typography variant='h1'>UX review presentations</Typography>
-          <Typography variant='body2'>How do you create compelling presentations that wow your colleagues and impress your managers? Find out with our in-depth guide on UX presentations.</Typography>
+                        <Stack direction='row' gap={2}>
+                            <Chip label="Design" size="medium" variant="outlined" color='error' />
+                            <Chip label="Research" size="medium" variant="outlined" color='info' />
+                            <Chip label="Presentation" size="medium" variant="outlined" color='warning' />
+                        </Stack>
+                    </Stack>
+                </Stack>
 
-          <Stack direction='row' gap={2}>
-            <Chip label="Design" size="medium" variant="outlined" color='error' />
-            <Chip label="Research" size="medium" variant="outlined" color='info' />
-            <Chip label="Presentation" size="medium" variant="outlined" color='warning' />
-          </Stack>
-        </Stack>
-      </Stack>
+                <Box height={{ xs: 1, md: 600 }} width={1} className='section-padding'>
+                    <img src='/images/reset.jpg' alt='blog detail' style={{ objectFit: 'cover' }} />
+                </Box>
 
-      <Box height={{ xs: 1, md: 600 }} width={1} className='section-padding'>
-        <img src='/images/reset.jpg' alt='blog detail' style={{ objectFit: 'cover' }} />
-      </Box>
-
-      <Stack direction='row' justifyContent='center'>
-        <Stack maxWidth={800}>
-          <Box component='div' dangerouslySetInnerHTML={{ __html: data }} />
-        </Stack>
-      </Stack>
-    </Container>
-  )
+                <Stack direction='row' justifyContent='center'>
+                    <Stack maxWidth={800}>
+                        <Box component='div' dangerouslySetInnerHTML={{ __html: data }} />
+                    </Stack>
+                </Stack>
+            </Stack>
+        </Container>
+    )
 }
 
 
 BlogDetail.layoutProps = {
-  isProtectedPage: false,
-  title: 'Detail'
+    isProtectedPage: false,
+    title: 'Detail'
 }
 
 

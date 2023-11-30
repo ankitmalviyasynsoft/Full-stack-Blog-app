@@ -46,7 +46,8 @@ function Login() {
 Login.layoutProps = {
   isProtectedPage: false,
   title: 'Login',
-  header:false
+  header:false,
+  footer:false
 }
 
 

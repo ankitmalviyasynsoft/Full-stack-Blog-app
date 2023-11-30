@@ -14,8 +14,11 @@ export default function BlogCard(props: CardProps) {
   return (
     <Card>
       <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
-        <Stack height={style.imageHeight} width={1}  className='cursor-pointer' onClick={() => router.push('/blog/detail/1')}>
-          <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover' }} />
+
+        <Stack className='cursor-pointer' onClick={() => router.push('/blog/detail/1')}>
+          <Box height={style.imageHeight || 1} width={style.imageWidth || 1} >
+            <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover', borderRadius:8 }} />
+          </Box>
         </Stack>
 
         <Stack spacing={1}>
@@ -26,7 +29,7 @@ export default function BlogCard(props: CardProps) {
             <Box fontSize={24}><MdArrowOutward /></Box>
           </Stack>
 
-          <Typography variant='body1'>How do you create compelling presentations that wow your colleagues and impress your managers?</Typography>
+          <Typography variant='body1'>How do you create compelling presentations that wow your colleagues? How do you create compelling presentations that wow your colleagues and impress your managers?</Typography>
 
           <Stack direction='row' gap={2}>
             <Chip label="Design" size="medium" variant="outlined" color='error' />
