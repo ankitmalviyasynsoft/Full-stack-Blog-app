@@ -1,6 +1,6 @@
+import React from 'react'
 import { Box, Chip, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
-import React from 'react'
 
 
 
@@ -16,7 +16,7 @@ export default function HeroSection() {
       <Grid item xs>
 
         {/* == hero section Image == */}
-        <Stack position='relative' className='heading-padding-top'>
+        <Stack position='relative'>
 
           <Box height={{ xs: 200, sm: 350, md: 500 }} width={1}>
             <img src='/images/hero.jpg' alt='image' style={{ objectFit: 'cover', borderRadius: '20px' }} />

@@ -23,7 +23,7 @@ export default function Header() {
     <Container>
       <Stack direction='row' justifyContent='space-between' alignItems='center' py={2} height={80} gap={1}>
         <Stack flex={1} >
-          <Box height={40} width={140}>
+          <Box height={40} width={140} onClick={() => router.push('/')} className='cursor-pointer'>
             <img src={config.logo} />
           </Box>
         </Stack>

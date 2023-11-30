@@ -1,22 +1,31 @@
-import { Box, Card, Chip, Grid, Stack, Typography } from '@mui/material'
-import { CardProps } from './Card.type'
 import React from 'react'
+import { Box, Card, Chip, Stack, Typography } from '@mui/material'
+import { CardProps } from './Card.type'
+import { MdArrowOutward } from "react-icons/md";
+import { useRouter } from 'next/router';
 
 
 
-export default function BlogCard(props:CardProps) {
-  const {style } = props
+export default function BlogCard(props: CardProps) {
+  const { style } = props
+  const router = useRouter()
+
 
   return (
     <Card>
-      <Stack spacing={1} direction={{xs:'column' , md:style.direction}}>
-        <Stack height={style.imageHeight} width={1}>
+      <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
+        <Stack height={style.imageHeight} width={1}  className='cursor-pointer' onClick={() => router.push('/blog/detail/1')}>
           <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover' }} />
         </Stack>
 
         <Stack spacing={1}>
           <Typography variant='body3' fontWeight={600}>Olivia Rhye • 20 Jan 2024</Typography>
-          <Typography variant='h5' fontWeight={600}>UX review presentations</Typography>
+
+          <Stack direction='row' justifyContent='space-between' className='cursor-pointer' onClick={() => router.push('/blog/detail/1')}>
+            <Typography variant='h5' fontWeight={600}>UX review presentations</Typography>
+            <Box fontSize={24}><MdArrowOutward /></Box>
+          </Stack>
+
           <Typography variant='body1'>How do you create compelling presentations that wow your colleagues and impress your managers?</Typography>
 
           <Stack direction='row' gap={2}>

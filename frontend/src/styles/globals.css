@@ -188,6 +188,11 @@ video {
   overflow-x: scroll;
 }
 
+/* == cursor-pointer == */
+.cursor-pointer{
+  cursor: pointer;
+}
+
 
 /* === blur css===*/
 .blurred-content {
