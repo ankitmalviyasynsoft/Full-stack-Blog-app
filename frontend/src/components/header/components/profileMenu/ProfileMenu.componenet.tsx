@@ -41,7 +41,7 @@ let menuItems = [
   {
     name: 'My Profile',
     icon: <MdAccountCircle />,
-    link:'/'
+    link:'/profile'
   },
   {
     name: 'Create Post',
