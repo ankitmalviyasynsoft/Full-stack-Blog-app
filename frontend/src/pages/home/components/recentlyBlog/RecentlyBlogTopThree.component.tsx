@@ -15,8 +15,8 @@ export default function RecentlyBlogTopThree() {
 
         <Grid item xs={12} sm={12} md={6}>
           <Stack spacing={4}>
-            <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth:200 }} />
-            <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth:200  }} />
+            <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth: 200 }} />
+            <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth: 200 }} />
           </Stack>
         </Grid>
       </Grid>

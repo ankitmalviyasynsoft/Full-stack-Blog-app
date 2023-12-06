@@ -2,7 +2,7 @@ import { Button, Stack, TextField, InputLabel, Box, Container, Grid, Avatar } fr
 import React from 'react'
 
 
-function Register() {
+function Profile() {
 
   return (
     <Container className='section-padding'>
@@ -71,7 +71,7 @@ function Register() {
 }
 
 
-Register.layoutProps = {
+Profile.layoutProps = {
   isProtectedPage: false,
   title: 'Profile',
   header: true,
@@ -79,4 +79,4 @@ Register.layoutProps = {
 }
 
 
-export default Register
+export default Profile

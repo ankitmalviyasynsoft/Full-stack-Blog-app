@@ -8,8 +8,8 @@ export default function HeroSection() {
   const dataCategoies = ['View all', 'Management', 'Leadership', 'Customer Success', ' Software Development', 'Product', 'Design']
   const theme = useTheme()
   const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('md'))
-  
-  
+
+
   return (
     <Grid container spacing={4}>
 
@@ -25,7 +25,7 @@ export default function HeroSection() {
 
           {/* == blur section == */}
           <Box className={isSmallScreenUp ? 'blurred-content' : ''} position={{ xs: 'relative', md: 'absolute' }} bottom={0} width={1} color={isSmallScreenUp ? 'var(--text-white)}' : ''} >
-            <Stack width={1} p={{md: 4}} mt={{xs:2, md:0}} spacing={2}>
+            <Stack width={1} p={{ md: 4 }} mt={{ xs: 2, md: 0 }} spacing={2}>
               <Typography variant='h4' fontWeight={600}>Improve your design skills: Develop an &apos eye &apos for design</Typography>
               <Typography variant='subtitle' >Tools and trends change, but good design is timeless. Learn how to quickly develop an &aposeye&apos for design.</Typography>
 

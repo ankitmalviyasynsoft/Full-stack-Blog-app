@@ -14,7 +14,7 @@ let theme = createTheme({
     h4: { fontSize: '1.75rem' },
     h5: { fontSize: '1.50rem', fontWeight: 400 },
     h6: { fontSize: '1.38rem' },
-    body1: { fontSize: '1rem'},
+    body1: { fontSize: '1rem' },
     body2: { fontSize: '1rem', color: '#475467' },
     body3: { fontSize: '1rem', fontWeight: 600, color: '#6941C6' },
     body4: { fontSize: '0.875rem', color: '#475467' },
@@ -105,7 +105,7 @@ theme = createTheme(theme, {
     },
     MuiContainer: {
       styleOverrides: {
-        root: { maxWidth: 'min(100%, 1414px) !important' },
+        root: { maxWidth: 'min(100%, 1266px) !important' },
       }
     },
     // MuiDataGrid: {
@@ -196,4 +196,4 @@ declare module '@mui/material/Button' {
 
 export { theme }
 
-export const stylePageSection = {xs:3, md:7}
+export const stylePageSection = { xs: 2 }

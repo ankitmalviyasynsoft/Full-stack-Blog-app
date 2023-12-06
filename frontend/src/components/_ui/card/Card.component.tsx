@@ -16,8 +16,8 @@ export default function BlogCard(props: CardProps) {
       <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
 
         <Stack className='cursor-pointer' onClick={() => router.push('/blog/detail/1')}>
-          <Box height={style.imageHeight || 1} width={style.imageWidth || 1} >
-            <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover', borderRadius:8 }} />
+          <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} >
+            <img src='/images/login.jpg' alt='images' style={{ objectFit: 'cover', borderRadius: 8 }} />
           </Box>
         </Stack>
 
