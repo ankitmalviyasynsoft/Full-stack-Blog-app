@@ -8,7 +8,7 @@ export const createCategories = async (req, res) => {
     const { title } = req.body;
 
     // Create a new post
-    const newcategory = new Category({ title, status:false});
+    const newcategory = new Category({ title, status: false });
 
     // Save the post to the database
     await newcategory.save();
@@ -26,7 +26,7 @@ export const createCategories = async (req, res) => {
 export const getAllCategories = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // Current page, default to 1
-    const perPage = parseInt(req.query.perPage) || 10; // Number of posts per page, default to 10
+    const perPage = parseInt(req.query.perPage) || 100; // Number of posts per page, default to 10
 
     const totalCategories = await Category.countDocuments();
     const totalPages = Math.ceil(totalCategories / perPage);
@@ -34,10 +34,7 @@ export const getAllCategories = async (req, res) => {
     // Skip records to implement pagination
     const skip = (page - 1) * perPage;
 
-    const categories = await Category.find()
-      .skip(skip)
-      .limit(perPage)
-      .exec();
+    const categories = await Category.find().skip(skip).limit(perPage).exec();
 
     res.status(200).json({
       page,
@@ -56,11 +53,12 @@ export const getAllCategories = async (req, res) => {
 // Update a post by ID
 export const updateCategory = async (req, res) => {
   try {
-    const id = req.query.id;
+    const id = req.params.id;
+    console.log("=>>>>>>", id)
     const { title, status } = req.body;
-    const updateCategory = await Category.findByIdAndUpdate(id,{ title, status },
+    const updateCategory = await Category.findByIdAndUpdate(id, { title, status },
       { new: true } // Return the updated Category
-      );
+    );
 
     if (!updateCategory) {
       return res.status(404).json({ message: 'Category not found' });
@@ -72,3 +70,22 @@ export const updateCategory = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+
+export const deleteCategory = async (req, res) => {
+  const categoryId = req.params.id;
+
+  try {
+    // Find the category by ID and delete it
+    const deletedCategory = await Category.findByIdAndDelete(categoryId);
+
+    if (deletedCategory) {
+      res.status(200).json({ success: true, message: 'Category deleted successfully.' });
+    } else {
+      res.status(404).json({ success: false, message: 'Category not found.' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Internal Server Error.' });
+  }
+}

@@ -1,5 +1,5 @@
 import express from 'express';
-import {createCategories, getAllCategories, updateCategory} from '../controllers/categoriesController.js';
+import { createCategories, getAllCategories, updateCategory, deleteCategory } from '../controllers/categoriesController.js';
 
 
 
@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.post('/create', createCategories);
 router.get('/getAllCategories', getAllCategories);
-router.put('/:id', updateCategory);
+router.put('/update/:id', updateCategory);
+router.delete('/delete/:id', deleteCategory);
 
 
 
