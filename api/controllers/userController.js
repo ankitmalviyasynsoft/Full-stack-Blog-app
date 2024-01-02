@@ -34,7 +34,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    console.log(email, password)
     // Find the user by email
     const user = await User.findOne({ email });
 
@@ -50,11 +50,29 @@ export const login = async (req, res) => {
     }
 
     // Create and send a JWT token for authentication
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
     res.status(200).json({ token });
+
   } catch (error) {
     console.error('Error in user login:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+// User by token logic
+export const getUserByToken = async (req, res) => {
+  try {
+
+    const user = await User.findOne({ token: req.user.token });
+    if (!user) return res.status(404).send('User not found.');
+    res.json(user);
+    res.status(200);
+  } catch (error) {
+    console.error('Error in user login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
