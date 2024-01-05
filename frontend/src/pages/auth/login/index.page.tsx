@@ -2,7 +2,9 @@ import { Button, Stack, TextField, Typography, InputLabel, Box } from '@mui/mate
 import React from 'react'
 import Link from 'next/link'
 import AuthLayout from '@/layout/auth/AuthLayout.layout'
-
+import { FormData, schema } from './login.config'
+import { useForm, Controller } from "react-hook-form"
+import { yupResolver } from '@hookform/resolvers/yup'
 
 
 function Login() {
@@ -11,32 +13,44 @@ function Login() {
   const subTitle = 'Welcome back! Please enter your details.'
   const imageLink = '/images/login.jpg'
 
+  const { handleSubmit, control, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
 
   return (
     <AuthLayout sideImage={imageLink} heading={heading} subTitle={subTitle} isHeadingCenter>
-     
-        {/* Form */}
-        <Stack gap={2} component='form'>
-          <Stack spacing={0.5}>
-            <InputLabel htmlFor="email">Email</InputLabel>
-            <TextField id="email" placeholder='Enter your email' type='text' variant='outlined' />
-          </Stack>
 
-          <Stack spacing={0.5}>
-            <InputLabel htmlFor="email">Password</InputLabel>
-            <TextField placeholder='Enter your email' type='text' variant='outlined' />
-          </Stack>
-
-          <Typography className='content-right' variant='body3'><Link href='/auth/forgot-password'>Forgot password</Link></Typography>
-          <Button variant='contained' fullWidth>Sign in</Button>
-
+      {/* Form */}
+      <Stack gap={2} component='form' onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={0.5}>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <Controller control={control} name="email"
+            render={({ field }) => (
+              <TextField  {...field} id="email" placeholder='Enter your email' type='text' variant='outlined' />
+            )} />
         </Stack>
 
-        {/* Sign up Link*/}
-        <Box className='center' gap={0.5}>
-          <Typography variant='body2'>Don&apost have an account? </Typography>
-          <Typography variant='body3'><Link href='/auth/register'>Sign up</Link></Typography>
-        </Box>
+        <Stack spacing={0.5}>
+          <InputLabel htmlFor="email">Password</InputLabel>
+          <Controller control={control} name="password"
+            render={({ field }) => (
+              <TextField {...field} placeholder='Enter your password' type='password' variant='outlined' />
+            )} />
+        </Stack>
+
+        <Typography className='content-right' variant='body3'><Link href='/auth/forgot-password'>Forgot password</Link></Typography>
+        <Button variant='contained' type='submit' fullWidth>Sign in</Button>
+
+      </Stack>
+
+      {/* Sign up Link*/}
+      <Box className='center' gap={0.5}>
+        <Typography variant='body2'>Don&apost have an account? </Typography>
+        <Typography variant='body3'><Link href='/auth/register'>Sign up</Link></Typography>
+      </Box>
 
     </AuthLayout>
   )
@@ -46,8 +60,8 @@ function Login() {
 Login.layoutProps = {
   isProtectedPage: false,
   title: 'Login',
-  header:false,
-  footer:false
+  header: false,
+  footer: false
 }
 
 

@@ -2,7 +2,9 @@ import { Button, Stack, TextField, Typography, InputLabel, Box } from '@mui/mate
 import React from 'react'
 import Link from 'next/link'
 import AuthLayout from '@/layout/auth/AuthLayout.layout'
-
+import { FormData, schema } from './register.config'
+import { useForm, Controller } from "react-hook-form"
+import { yupResolver } from '@hookform/resolvers/yup'
 
 
 function Register() {
@@ -10,29 +12,44 @@ function Register() {
   const heading = 'Sign Up'
   const subTitle = `Enter your detail below to create your account and get started`
   const imageLink = '/images/register.jpg'
-  
+
+  const { handleSubmit, control } = useForm<FormData>({ resolver: yupResolver(schema) })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
 
   return (
-    <AuthLayout  heading={heading} subTitle={subTitle} sideImage={imageLink}>
+    <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink}>
 
       {/* Form */}
-      <Stack gap={2} component='form'>
+      <Stack gap={2} component='form' onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={0.5}>
           <InputLabel htmlFor='name'>Name</InputLabel>
-          <TextField id='name' placeholder='Enter your name' type='text' variant='outlined' />
+          <Controller control={control} name="name"
+            render={({ field }) => (
+              <TextField {...field} id='name' placeholder='Enter your name' type='text' variant='outlined' />
+            )} />
         </Stack>
 
         <Stack spacing={0.5}>
           <InputLabel htmlFor='email'>Email</InputLabel>
-          <TextField id='email' placeholder='Enter your email' type='text' variant='outlined' />
+          <Controller control={control} name="email"
+            render={({ field }) => (
+              <TextField {...field} id='email' placeholder='Enter your email' type='text' variant='outlined' />
+            )} />
         </Stack>
 
         <Stack spacing={0.5}>
           <InputLabel htmlFor='password'>Password</InputLabel>
-          <TextField id='password' placeholder='Create a password' type='text' variant='outlined' />
+          <Controller control={control} name="password"
+            render={({ field }) => (
+              <TextField {...field} id='password' placeholder='Create a password' type='text' variant='outlined' />
+            )} />
         </Stack>
 
-        <Button variant='contained' fullWidth>Get started</Button>
+        <Button variant='contained' type='submit' fullWidth>Get started</Button>
       </Stack>
 
       {/* Sign In Link*/}
@@ -49,8 +66,8 @@ function Register() {
 Register.layoutProps = {
   isProtectedPage: false,
   title: 'Sign Up',
-  header:false,
-  footer:false
+  header: false,
+  footer: false
 }
 
 

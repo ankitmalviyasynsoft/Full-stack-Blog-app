@@ -13,8 +13,9 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY);
+    console.log(decoded)
     // You can attach user information to the request for later use
-    req.user = decoded.user;
+    req.user = decoded;
     next();
   } catch (error) {
     res.status(401).json({ msg: 'Token is not valid' });

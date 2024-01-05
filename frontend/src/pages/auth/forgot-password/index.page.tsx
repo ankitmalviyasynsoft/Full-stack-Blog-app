@@ -2,7 +2,9 @@ import { Button, Stack, TextField, Typography, InputLabel, Box } from '@mui/mate
 import React from 'react'
 import Link from 'next/link'
 import AuthLayout from '@/layout/auth/AuthLayout.layout'
-
+import { FormData, schema } from './forgotPassword.config'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, Controller } from 'react-hook-form'
 
 
 function ForgotPassword() {
@@ -11,17 +13,29 @@ function ForgotPassword() {
   const subTitle = `Enter your email address and we'll send you an email with instructions to reset your password.`
   const imageLink = '/images/forgot-password.jpg'
 
+  const { handleSubmit, control, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
+
+
   return (
     <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink} isHeadingCenter={true}>
 
       {/* Form */}
-      <Stack gap={3} component='form'>
+      <Stack gap={3} component='form' onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={0.5}>
           <InputLabel htmlFor="email">Email</InputLabel>
-          <TextField id="email" placeholder='Enter your email' type='text' variant='outlined' />
+          <Controller control={control} name='email'
+            render={({ field }) => (
+              <TextField id="email" {...field} placeholder='Enter your email' type='text' variant='outlined' />
+            )}
+          />
         </Stack>
 
-        <Button variant='contained' fullWidth>Send Link</Button>
+        <Button variant='contained' type='submit' fullWidth>Send Link</Button>
       </Stack>
 
 
@@ -39,8 +53,8 @@ function ForgotPassword() {
 ForgotPassword.layoutProps = {
   isProtectedPage: false,
   title: 'Forgot Password',
-  header:false,
-  footer:false
+  header: false,
+  footer: false
 }
 
 

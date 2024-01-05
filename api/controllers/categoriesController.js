@@ -8,6 +8,9 @@ export const createCategories = async (req, res) => {
     const { title } = req.body;
 
     // Create a new post
+    const isTitleAvaiable = await Category.find({ title: title })
+
+    if (!!isTitleAvaiable.length) return res.status(404).json({ message: 'Category already exist' });
     const newcategory = new Category({ title, status: false });
 
     // Save the post to the database
@@ -54,7 +57,6 @@ export const getAllCategories = async (req, res) => {
 export const updateCategory = async (req, res) => {
   try {
     const id = req.params.id;
-    console.log("=>>>>>>", id)
     const { title, status } = req.body;
     const updateCategory = await Category.findByIdAndUpdate(id, { title, status },
       { new: true } // Return the updated Category

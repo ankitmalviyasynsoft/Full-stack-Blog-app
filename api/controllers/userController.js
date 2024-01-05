@@ -24,6 +24,7 @@ export const signup = async (req, res) => {
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+
     console.error('Error in user registration:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -64,7 +65,8 @@ export const login = async (req, res) => {
 export const getUserByToken = async (req, res) => {
   try {
 
-    const user = await User.findOne({ token: req.user.token });
+    console.log(req)
+    const user = await User.findOne({ _id: req.user.userId });
     if (!user) return res.status(404).send('User not found.');
     res.json(user);
     res.status(200);

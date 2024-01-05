@@ -2,6 +2,9 @@ import { Button, Stack, TextField, Typography, InputLabel, Box } from '@mui/mate
 import React from 'react'
 import AuthLayout from '@/layout/auth/AuthLayout.layout'
 import Link from 'next/link'
+import { FormData, schema } from './resetPassword.config'
+import { useForm, Controller } from "react-hook-form"
+import { yupResolver } from '@hookform/resolvers/yup'
 
 
 
@@ -12,21 +15,35 @@ function ResetPassword() {
   const imageLink = '/images/reset.jpg'
 
 
+  const { handleSubmit, control, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) })
+
+  const onSubmit = (data: FormData) => {
+    console.log(data)
+  }
+
   return (
     <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink} isHeadingCenter={true}>
       {/* Form */}
-      <Stack gap={3} component='form'>
+      <Stack gap={3} component='form' onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={0.5}>
           <InputLabel htmlFor="password">Password</InputLabel>
-          <TextField id="password" placeholder='Enter password' type='password' variant='outlined' />
+          <Controller control={control} name="password"
+            render={({ field }) => (
+              <TextField {...field} id="password" placeholder='Enter password' type='password' variant='outlined'
+                error={!!errors.password} helperText={errors.password?.message || ''} />
+            )} />
         </Stack>
 
         <Stack spacing={0.5}>
           <InputLabel htmlFor="confirmPassword">Confirm password</InputLabel>
-          <TextField id="confirmPassword" placeholder='Enter confirm password' type='password' variant='outlined' />
+          <Controller control={control} name="confirmPassword"
+            render={({ field }) => (
+              <TextField {...field} id="confirmPassword" placeholder='Enter confirm password' type='password' variant='outlined'
+                error={!!errors.confirmPassword} helperText={errors.confirmPassword?.message || ''} />
+            )} />
         </Stack>
 
-        <Button variant='contained' fullWidth>Reset Password</Button>
+        <Button variant='contained' type='submit' fullWidth>Reset Password</Button>
 
       </Stack>
 
@@ -43,8 +60,8 @@ function ResetPassword() {
 ResetPassword.layoutProps = {
   isProtectedPage: false,
   title: 'Reset Password',
-  header:false,
-  footer:false
+  header: false,
+  footer: false
 }
 
 
