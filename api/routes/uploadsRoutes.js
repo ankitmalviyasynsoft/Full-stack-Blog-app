@@ -1,11 +1,10 @@
 import path from 'path';
 import multer from 'multer';
 import express from 'express';
-import { createPost, getAllPosts, updatePost } from '../controllers/postController.js';
+import { uploadFiles } from '../controllers/uploadsController.js';
 
 
 const router = express.Router();
-
 
 
 // Multer configuration
@@ -22,10 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-router.post('/create', upload.single('image'), createPost);
-router.get('/getAllPost', getAllPosts);
-router.put('/update/:id', updatePost);
-
+router.post('/uploads', upload.single('image'), uploadFiles);
 
 
 export default router;

@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  profileURL:String,
-  categories:Array,
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  profileURL: { type: String, required: true },
+  categories: { type: Array, required: true },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
