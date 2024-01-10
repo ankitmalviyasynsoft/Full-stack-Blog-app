@@ -1,5 +1,5 @@
 
-import Category from '../models/Categories.js';
+import Category from '../../models/categories/Categories.js';
 
 
 // create Category 

@@ -1,7 +1,7 @@
 import path from 'path';
 import multer from 'multer';
 import express from 'express';
-import { uploadFiles } from '../controllers/uploadsController.js';
+import { uploadFiles } from '../../controllers/uploadFiles/uploadsController.js';
 
 
 const router = express.Router();

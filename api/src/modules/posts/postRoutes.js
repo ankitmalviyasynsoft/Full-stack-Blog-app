@@ -1,7 +1,7 @@
 import path from 'path';
 import multer from 'multer';
 import express from 'express';
-import { createPost, getAllPosts, updatePost } from '../controllers/postController.js';
+import { createPost, getAllPosts, updatePost } from '../../controllers/posts/postController.js';
 
 
 const router = express.Router();

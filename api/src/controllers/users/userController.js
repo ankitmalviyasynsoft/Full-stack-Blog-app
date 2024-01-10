@@ -1,6 +1,7 @@
-import User from '../models/User.js';
+import User from '../../models/users/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
 
 
 // Register (signup) logic

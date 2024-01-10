@@ -1,8 +1,8 @@
 import express from 'express';
-import postRoutes from './postRoutes.js';
-import usersRoutes from './userRoutes.js';
-import categoriesRoutes from './categoriesRoutes.js';
-import uploadsRoutes from './uploadsRoutes.js'
+import postRoutes from './posts/postRoutes.js';
+import usersRoutes from './users/userRoutes.js';
+import categoriesRoutes from './categories/categoriesRoutes.js';
+import uploadsRoutes from './uploadFiles/uploadsRoutes.js'
 
 
 

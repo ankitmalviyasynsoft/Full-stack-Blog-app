@@ -4,8 +4,8 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
 // Import the database connection function
-import { connectToDatabase } from './config/db.js';
-import routes from './routes/index.js';
+import { connectToDatabase } from './src/config/db.js';
+import routes from './src/modules/index.js';
 
 
 const app = express();
