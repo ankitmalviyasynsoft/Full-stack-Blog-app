@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
@@ -12,6 +13,10 @@ const app = express();
 dotenv.config();
 
 app.use(express.json());
+
+// Use the cors middleware
+app.use(cors());
+
 
 // Get the directory name using import.meta.url
 const __filename = fileURLToPath(import.meta.url);

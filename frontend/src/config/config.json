@@ -1,5 +1,5 @@
 {
   "basePath": "",
-  "apiBaseUrl": "http://localhost:5001/api",
+  "apiBaseUrl": "http://localhost:5000/api/v1",
   "logo": "/images/logo.svg"
 }
