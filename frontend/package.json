@@ -4,10 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_APP_ENV=development node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=development NODE_OPTIONS='--inspect' next dev -p 3000",
+    "dev:qa": "cross-env NEXT_PUBLIC_APP_ENV=staging node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=staging NODE_OPTIONS='--inspect' next dev -p 3000",
     "dev:prod": "cross-env NEXT_PUBLIC_APP_ENV=production node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=production NODE_OPTIONS='--inspect' next dev -p 3000",
     "build:dev": "cross-env NEXT_PUBLIC_APP_ENV=development node src/scripts/generateConfig.ts && next build",
+    "build:qa": "cross-env NEXT_PUBLIC_APP_ENV=staging node src/scripts/generateConfig.ts && next build",
     "build:prod": "cross-env NEXT_PUBLIC_APP_ENV=production node src/scripts/generateConfig.ts && next build",
-    "start": "next start -p 5050",
+    "start:dev": "next start -p 5050",
+    "start:qa": "next test -p 5050",
+    "start:prod": "next start -p 5050",
     "lint": "next lint"
   },
   "dependencies": {

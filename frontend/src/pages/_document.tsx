@@ -9,7 +9,7 @@ export default function Document() {
       <Head>
         <link rel='shortcut icon' type='image/x-icon' href={`${config.basePath}/favicon.ico`} />
         <link rel='apple-touch-icon' sizes='180x180' href={`${config.basePath}/apple-touch-icon.png`} />
-       </Head>
+      </Head>
       <body>
         <Main />
         <NextScript />
