@@ -15,7 +15,7 @@ export const extendedApi = api.injectEndpoints({
       invalidatesTags: (result, error) => error ? [] : ['profile'],
     }),
 
-    authRegister: builder.mutation<any, { userId: string }>({
+    authRegister: builder.mutation<any, IRegister>({
       query: (data) => ({
         url: '/users/signup',
         method: 'POST',
@@ -31,3 +31,11 @@ export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
 } = extendedApi
+
+
+export interface IRegister {
+  email: string
+  password: string
+  role: string
+  username: string
+}

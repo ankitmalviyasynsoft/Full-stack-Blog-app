@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   address: String,
   mobile: Number,
   profile: String,
-  role: String,
+  role: [String],
 });
 
 const User = mongoose.model('User', userSchema);

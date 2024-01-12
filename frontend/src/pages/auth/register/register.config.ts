@@ -3,7 +3,7 @@ import * as yup from 'yup'
 
 
 export const schema = yup.object({
-  name: yup.string().trim().required().min(3, 'Name must be atleast 3 character').max(100),
+  username: yup.string().trim().required().min(3, 'Name must be atleast 3 character').max(100),
   email: yup.string().trim().email().required(),
   password: yup.string().trim().min(8, 'Password must be eight digit').required()
 })
