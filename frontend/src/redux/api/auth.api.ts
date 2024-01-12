@@ -1,18 +1,21 @@
 import { api } from './api.config'
 import { ProfileDTO } from '@/dtos/Profile.dto'
-import { Roles } from '@/types/Roles.type'
+import { updateProfile } from '../slices/user.slice'
+import { setCookie } from '@/utils'
 
 
 
 export const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    authLogin: builder.mutation<ProfileDTO, { email: String, password: String }>({
+    authLogin: builder.mutation<any, { email: String, password: String }>({
       query: (data) => ({
         url: '/users/login',
         method: 'POST',
         body: data
       }),
-      invalidatesTags: (result, error) => error ? [] : ['profile'],
+      transformResponse: (res: any) => {
+        saveUser(res.token)
+      },
     }),
 
     authRegister: builder.mutation<any, IRegister>({
@@ -20,16 +23,38 @@ export const extendedApi = api.injectEndpoints({
         url: '/users/signup',
         method: 'POST',
         body: data
-      })
+      }),
+      transformResponse: (res: any) => {
+        saveUser(res.token)
+      },
+    }),
+
+    getuserByToken: builder.query<ProfileDTO, string>({
+      query: (id) => `/users/getuserByToken`,
+      transformResponse: (res: any) => res.data,
+      providesTags: ['profile'],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        await queryFulfilled.then(({ data }) => dispatch(updateProfile(data)))
+      }
     }),
 
   })
 })
 
 
+const saveUser = (token: string) => {
+  if (!!token) {
+    setCookie('token', token, 30)
+    window.location.href = '/'
+  }
+}
+
+
+
 export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
+  useGetuserByTokenQuery,
 } = extendedApi
 
 

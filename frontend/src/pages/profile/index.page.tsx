@@ -7,15 +7,16 @@ function Profile() {
   return (
     <Container className='section-padding'>
       <Grid container spacing={4} >
-        <Grid item xs={12} md={3} >
+        <Grid item xs={12} md={4} >
           <img src='/images/login.jpg' style={{ objectFit: 'cover' }} />
         </Grid>
 
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} md={8}>
           {/* Form */}
           <Grid container spacing={3} >
             <Grid item xs={12} md={6} >
               <InputLabel htmlFor='name'>Name</InputLabel>
+
               <TextField id='name' placeholder='Enter your name' type='text' variant='outlined' />
             </Grid>
 

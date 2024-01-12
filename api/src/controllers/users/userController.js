@@ -23,7 +23,8 @@ export const signup = async (req, res) => {
     const newUser = new User({ username, email, password: hashedPassword, role });
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully' });
+    const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '1d' });
+    res.status(201).json({ message: 'User registered successfully', token });
   } catch (error) {
 
     console.error('Error in user registration:', error);
@@ -52,7 +53,7 @@ export const login = async (req, res) => {
     }
 
     // Create and send a JWT token for authentication
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
+    const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY, { expiresIn: '1d' });
     res.status(200).json({ token });
 
   } catch (error) {
@@ -65,11 +66,37 @@ export const login = async (req, res) => {
 // User by token logic
 export const getUserByToken = async (req, res) => {
   try {
+    const user = await User.findOne({ email: req.user.email });
 
-    console.log(req)
-    const user = await User.findOne({ _id: req.user.userId });
     if (!user) return res.status(404).send('User not found.');
-    res.json(user);
+
+    const userObject = user.toObject();
+    delete userObject.password;
+
+    res.json({ message: 'success', data: userObject });
+    res.status(200);
+  } catch (error) {
+    console.error('Error in user login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+//  get All Users
+export const getAllUsers = async (req, res) => {
+  try {
+    console.log(req)
+    const users = await User.find();
+
+    // Modify the response structure to exclude the password field
+    const modifiedUsers = users.map(user => {
+      const userObject = user.toObject();
+      delete userObject.password; // Remove the password field
+      return userObject;
+    });
+
+    res.json({ message: 'success', data: modifiedUsers });
+
     res.status(200);
   } catch (error) {
     console.error('Error in user login:', error);
