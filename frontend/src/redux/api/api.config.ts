@@ -14,7 +14,7 @@ export const api = createApi({
     baseUrl: config.apiBaseUrl,
     prepareHeaders: (headers, { }) => {
       if (headers.get('Authorization') === 'false') headers.delete('Authorization')
-      else headers.set('Authorization', `Bearer ${getCookie('accessToken')}`)
+      else headers.set('Authorization', `Bearer ${getCookie('token')}`)
       return headers
     }
   }),

@@ -14,7 +14,7 @@ export const userSlice = createSlice({
   reducers: {
 
     updateProfile: (state, action: PayloadAction<ProfileDTO>) => {
-      state.roles = action.payload.userRoles.map((item: any) => item.slug)
+      state.roles = action.payload.role.map((item: any) => item)
       state.profile = action.payload
       state.isLoggedIn = true
     },

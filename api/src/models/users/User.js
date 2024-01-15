@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   address: String,
   mobile: Number,
   profile: String,
+  dob: String,
   role: [String],
 });
 

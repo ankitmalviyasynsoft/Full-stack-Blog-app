@@ -33,6 +33,32 @@ export const signup = async (req, res) => {
 };
 
 
+
+// update user 
+export const updateUser = async (req, res) => {
+  console.log('>>>>>>>>>>>>>>>>>>')
+  try {
+    const { _id, ...updatedUserData } = req.body;
+
+    // Find the user by ID and update the data
+    const updatedUser = await User.findByIdAndUpdate(_id, updatedUserData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    // Modify the response structure to exclude the password field
+    const userObject = updatedUser.toObject();
+    delete userObject.password;
+
+    // Send the updated user as a response
+    res.json({ message: 'success', data: userObject });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
 // Login logic
 export const login = async (req, res) => {
   try {

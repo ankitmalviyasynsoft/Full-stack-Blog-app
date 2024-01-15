@@ -4,9 +4,8 @@ import { Roles } from "@/types/Roles.type"
 export type ProfileDTO = {
   _id: string
   email: string
-  firstName?: string
-  lastName?: string
-  phone?: string
+  username: string
+  mobile?: string
   address?: string
   country?: string
   state?: string
@@ -15,7 +14,7 @@ export type ProfileDTO = {
   dob?: string
   profileUrl?: string
   isVerified?: boolean
-  userRoles: {
+  role: {
     name?: string
     slug?: Roles
   }[]

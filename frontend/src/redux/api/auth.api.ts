@@ -29,6 +29,19 @@ export const extendedApi = api.injectEndpoints({
       },
     }),
 
+    updateUser: builder.mutation<any, any>({
+      query: (data) => ({
+        url: '/users/updateUser',
+        method: 'PUT',
+        body: data
+      }),
+      transformResponse: (res: any) => res.data,
+      invalidatesTags: ['profile'],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        await queryFulfilled.then(({ data }) => dispatch(updateProfile(data)))
+      }
+    }),
+
     getuserByToken: builder.query<ProfileDTO, string>({
       query: (id) => `/users/getuserByToken`,
       transformResponse: (res: any) => res.data,
@@ -54,6 +67,7 @@ const saveUser = (token: string) => {
 export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
+  useUpdateUserMutation,
   useGetuserByTokenQuery,
 } = extendedApi
 
