@@ -43,6 +43,7 @@ const BlogDetail: Page = () => {
 
 BlogDetail.layoutProps = {
     isProtectedPage: false,
+    pageTypes: 'public',
     title: 'Detail'
 }
 

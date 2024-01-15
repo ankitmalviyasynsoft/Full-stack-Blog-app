@@ -1,6 +1,6 @@
 export interface ErrorBoundaryProps {
   children: React.ReactNode,
-  isError: boolean
+  isError?: boolean
 }
 
 export interface ErrorBoundaryState {

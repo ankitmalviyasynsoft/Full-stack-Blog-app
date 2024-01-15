@@ -16,3 +16,11 @@ export default function page() {
     </Container>
   )
 }
+
+
+
+page.layoutProps = {
+  title: 'Home',
+  pageTypes: 'public',
+  isProtectedPage: false
+}

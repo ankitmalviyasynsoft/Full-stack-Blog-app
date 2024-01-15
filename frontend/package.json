@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NEXT_PUBLIC_APP_ENV=development node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=development NODE_OPTIONS='--inspect' next dev -p 3000",
+    "dev": "cross-env NEXT_PUBLIC_APP_ENV=development node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=development NODE_OPTIONS='--inspect' next dev -p 3010",
     "dev:qa": "cross-env NEXT_PUBLIC_APP_ENV=staging node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=staging NODE_OPTIONS='--inspect' next dev -p 3000",
     "dev:prod": "cross-env NEXT_PUBLIC_APP_ENV=production node src/scripts/generateConfig.ts && cross-env NEXT_PUBLIC_APP_ENV=production NODE_OPTIONS='--inspect' next dev -p 3000",
     "build:dev": "cross-env NEXT_PUBLIC_APP_ENV=development node src/scripts/generateConfig.ts && next build",

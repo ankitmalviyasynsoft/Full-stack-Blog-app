@@ -26,7 +26,7 @@ const BlogCreate: Page = () => {
         </Stack>
 
         <Stack spacing={1}>
-        <InputLabel>Description</InputLabel>
+          <InputLabel>Description</InputLabel>
           <TextEditor onChange={() => console.log('event')} placeholder='write your post content here' />
         </Stack>
 
@@ -45,6 +45,7 @@ const BlogCreate: Page = () => {
 
 BlogCreate.layoutProps = {
   title: 'Create',
+  pageTypes: 'protected',
   isProtectedPage: true
 }
 

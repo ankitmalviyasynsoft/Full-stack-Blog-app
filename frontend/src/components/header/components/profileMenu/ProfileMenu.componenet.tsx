@@ -11,8 +11,8 @@ export default function ProfileMenu() {
   const open = Boolean(anchorEl)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
-
   const handleClose = () => setAnchorEl(null);
+
 
   return (
     <>
@@ -20,7 +20,6 @@ export default function ProfileMenu() {
         <Avatar sx={{ width: 52, height: 52 }} alt="Remy Sharp" src="/images/login.jpg">N</Avatar>
       </IconButton>
       <Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose} MenuListProps={{ 'aria-labelledby': 'basic-button' }}>
-
         {
           menuItems.map((item, index) => (
             <MenuItem onClick={handleClose} key={index}>
@@ -28,7 +27,6 @@ export default function ProfileMenu() {
             </MenuItem>
           ))
         }
-
       </Menu>
     </>
   )
@@ -41,26 +39,26 @@ let menuItems = [
   {
     name: 'My Profile',
     icon: <MdAccountCircle />,
-    link:'/profile'
+    link: '/profile'
   },
   {
     name: 'Create Post',
     icon: <MdCreate />,
-    link:'/blog/create'
+    link: '/blog/create'
   },
   {
     name: 'Library',
     icon: <MdLibraryAddCheck />,
-    link:'/'
+    link: '/'
   },
   {
     name: 'Help',
     icon: <MdOutlineHelp />,
-    link:'/'
+    link: '/'
   },
   {
     name: 'Logout',
     icon: <MdLogout />,
-    link:'/auth/login'
+    link: '/auth/login'
   },
 ]

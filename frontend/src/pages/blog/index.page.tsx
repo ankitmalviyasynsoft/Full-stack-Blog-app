@@ -3,7 +3,7 @@ import { Page } from '@/types/Page.type'
 
 
 
-const Blog:Page = () => {
+const Blog: Page = () => {
   return (
     <div>Blog</div>
   )
@@ -13,6 +13,7 @@ const Blog:Page = () => {
 
 Blog.layoutProps = {
   title: 'Blog',
+  pageTypes: 'public',
   isProtectedPage: false
 }
 

@@ -59,6 +59,7 @@ function ResetPassword() {
 
 ResetPassword.layoutProps = {
   isProtectedPage: false,
+  pageTypes: 'auth',
   title: 'Reset Password',
   header: false,
   footer: false

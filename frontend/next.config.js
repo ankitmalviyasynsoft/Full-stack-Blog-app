@@ -4,7 +4,7 @@ const config = require('./src/config/config.json')
 
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   basePath: config.basePath,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js'],
   images: {

@@ -1,6 +1,5 @@
-import React from 'react'
 import { AuthLayoutProps } from './AuthLayout.type'
-import { Stack, Typography, useMediaQuery } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { style } from './AuthLayout.style'
 import { useTheme } from '@mui/material'
 
@@ -8,11 +7,10 @@ import { useTheme } from '@mui/material'
 
 export default function AuthLayout({ children, sideImage = '', heading = '', subTitle = '', isHeadingCenter = false }: AuthLayoutProps) {
   const theme = useTheme()
-  const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('md'))
-  
+
 
   return (
-    <Stack direction='row' mt={{xs:3, md:0}}>
+    <Stack direction='row' mt={{ xs: 3, md: 0 }}>
       <Stack flex={1}>
         <Stack direction='row' justifyContent='center' alignItems='center' height={1}>
 
@@ -31,7 +29,7 @@ export default function AuthLayout({ children, sideImage = '', heading = '', sub
       </Stack>
 
       {/* ==Image==  */}
-      <Stack display={{xs:'none', md:'flex'}} sx={style.image} flex={1}>
+      <Stack display={{ xs: 'none', md: 'flex' }} sx={style.image} flex={1}>
         <img src={sideImage} alt='side image' style={{ objectFit: 'cover' }} />
       </Stack>
     </Stack>

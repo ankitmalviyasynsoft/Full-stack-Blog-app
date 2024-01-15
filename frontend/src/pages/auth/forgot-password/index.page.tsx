@@ -52,6 +52,7 @@ function ForgotPassword() {
 
 ForgotPassword.layoutProps = {
   isProtectedPage: false,
+  pageTypes: 'auth',
   title: 'Forgot Password',
   header: false,
   footer: false

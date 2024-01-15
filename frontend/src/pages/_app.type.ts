@@ -18,6 +18,7 @@ export type PageLayoutProps = {
   footer?: boolean
   sidebar?: boolean
   isProtectedPage: boolean,
+  pageTypes: string,
   roles?: Roles[],
   title: string | null
 }
@@ -27,5 +28,5 @@ export type PageAuthLayoutProps = {
   sideImage?: string
   heading?: string
   subTitle?: string
-  isHeadingCenter?:boolean
+  isHeadingCenter?: boolean
 }

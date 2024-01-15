@@ -7,15 +7,16 @@ import config from "@/config/config.json"
 import { MdNoteAdd } from "react-icons/md";
 import { theme } from '@/utils';
 import ProfileMenu from './components/profileMenu/ProfileMenu.componenet';
+import { useReduxSelector } from '@/hooks/redux.hook';
 
 
 
 export default function Header() {
   const router = useRouter()
+  const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const { isLoggedIn, profile } = useReduxSelector(state => state.user)
 
   const [openDrawer, setOpenDrawer] = useState(false)
-  const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('sm'))
-
   const toggleDrawer = () => { setOpenDrawer(!openDrawer) }
 
 
@@ -28,32 +29,26 @@ export default function Header() {
           </Box>
         </Stack>
 
-        <Stack flex={{xs:1, md:2}} display={{xs:'none', sm:'block'}}>
+        <Stack flex={{ xs: 1, md: 2 }} display={{ xs: 'none', sm: 'block' }}>
           <Autocomplete sx={style.autoCompleteSearch} disableClearable options={[]} loading={false} disabled={false}
             renderInput={(params) => <TextField  {...params} variant='outlined' placeholder='Search blog eg. category, tag and blog title'
               InputProps={{ endAdornment: (<InputAdornment position="start"><IconButton><MdOutlineSearch /></IconButton></InputAdornment>) }}
             />}
-            // getOptionLabel={(option) => option?.name}
-            // isOptionEqualToValue={(option, value) => option.name === value.name}
-            onChange={(_, data) => {
-              // field.onChange(data)
-              // setValue('categoryId', data._id)
-              // trigger('categoryId')
-            }}
+            onChange={(_, data) => { console.log('hello') }}
           />
         </Stack>
 
-        <Stack flex={{xs:0.5, md:1}} direction='row' justifyContent='end' alignItems='center' gap={2}>
+        <Stack flex={{ xs: 0.5, md: 1 }} direction='row' justifyContent='end' alignItems='center' gap={2}>
           {
-            true ? isSmallScreenUp && <ProfileMenu /> :
-              <>
-                <Button variant='text' onClick={() => router.push('/auth/login')}>Login</Button>
-                <Button variant='contained' onClick={() => router.push('/auth/register')}> Sign Up</Button>
-              </>
-          }
-          
+            isLoggedIn ? <ProfileMenu /> : <>
+              <Button variant='text' onClick={() => router.push('/auth/login')}>Login</Button>
+              <Button variant='contained' onClick={() => router.push('/auth/register')}> Sign Up</Button>
+            </>
 
-          {!isSmallScreenUp && <>
+          }
+
+
+          {/* {!isSmallScreenUp && <>
             <IconButton onClick={() => toggleDrawer()} aria-label="fingerprint" color="secondary">
               <Stack justifyContent='center' alignItems='center' fontSize={32}><MdMenu /></Stack>
             </IconButton>
@@ -75,7 +70,7 @@ export default function Header() {
               </Box>
             </SwipeableDrawer>
           </>
-          }
+          } */}
         </Stack>
 
 

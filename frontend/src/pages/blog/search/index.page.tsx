@@ -13,8 +13,8 @@ const Search: Page = () => {
     <Stack my={stylePageSection}>
       <Container>
         <Stack spacing={4}>
-          <BlogCard style={{ direction: 'row', imageHeight: 200}} />
-          <BlogCard style={{ direction: 'row', imageHeight: 200}} />
+          <BlogCard style={{ direction: 'row', imageHeight: 200 }} />
+          <BlogCard style={{ direction: 'row', imageHeight: 200 }} />
         </Stack>
       </Container>
     </Stack >
@@ -23,6 +23,7 @@ const Search: Page = () => {
 
 Search.layoutProps = {
   isProtectedPage: false,
+  pageTypes: 'public',
   title: 'Search'
 }
 

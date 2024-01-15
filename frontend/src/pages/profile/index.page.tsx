@@ -1,22 +1,19 @@
 import { Controller, useForm } from 'react-hook-form'
 import { FormData, schema } from './profile.config'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, Stack, TextField, InputLabel, Box, Container, Grid, Avatar } from '@mui/material'
-import React from 'react'
+import { Button, TextField, InputLabel, Container, Grid } from '@mui/material'
 import { useUpdateUserMutation } from '@/redux/api/auth.api'
 
 
 function Profile() {
-  const [updateUser, { isLoading }] = useUpdateUserMutation()
+  const [updateUser] = useUpdateUserMutation()
   const { handleSubmit, control, formState: { errors } } = useForm<FormData>({ resolver: yupResolver(schema) })
 
 
   const onSubmit = async (data: FormData) => {
-
     await updateUser({ _id: "65a28f8dead280dba87e32be", ...data })
     console.log(data)
   }
-
 
 
   return (
@@ -107,23 +104,17 @@ function Profile() {
             <Grid item xs={12}>
               <Button variant='contained' type='submit' fullWidth>Update</Button>
             </Grid>
-
           </Grid>
-
-
         </Grid>
       </Grid>
-
-
-
     </Container>
-
   )
 }
 
 
 Profile.layoutProps = {
   isProtectedPage: false,
+  pageTypes: 'protected',
   title: 'Profile',
   header: true,
   footer: true
