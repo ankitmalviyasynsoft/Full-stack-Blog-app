@@ -179,25 +179,27 @@ video {
 
 /*  == text wrap ==  */
 
-.text-nowrap{
+.text-nowrap {
   text-wrap: nowrap;
 }
 
 /* == scroll == */
-.scroll-X{
+.scroll-X {
   overflow-x: scroll;
 }
 
 /* == cursor-pointer == */
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
 
 /* === blur css===*/
 .blurred-content {
-  backdrop-filter: blur(3px); /* Adjust the blur intensity as needed */
-  background-color: rgba(0, 0, 0, 0.3); /* Adjust the background color and transparency as needed */
+  backdrop-filter: blur(3px);
+  /* Adjust the blur intensity as needed */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Adjust the background color and transparency as needed */
   border-radius: 0px 0px 20px 20px;
 }
 

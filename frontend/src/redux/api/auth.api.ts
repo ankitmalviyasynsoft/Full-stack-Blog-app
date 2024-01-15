@@ -42,8 +42,8 @@ export const extendedApi = api.injectEndpoints({
       }
     }),
 
-    getuserByToken: builder.query<ProfileDTO, string>({
-      query: (id) => `/users/getuserByToken`,
+    getUserByToken: builder.query<any, any>({
+      query: (token) => `/users/getuserByToken`,
       transformResponse: (res: any) => res.data,
       providesTags: ['profile'],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -68,7 +68,7 @@ export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
   useUpdateUserMutation,
-  useGetuserByTokenQuery,
+  useLazyGetUserByTokenQuery,
 } = extendedApi
 
 
