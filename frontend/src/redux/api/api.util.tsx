@@ -1,3 +1,4 @@
+import { removeCookie } from '@/utils'
 import { isRejectedWithValue, isFulfilled } from '@reduxjs/toolkit'
 import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast'
@@ -8,7 +9,13 @@ export const rtkQueryLogger: Middleware = (api: MiddlewareAPI) => (next) => (act
   if (isRejectedWithValue(action)) {
     const status = action.meta.baseQueryMeta.response?.status
     const errorMessage = getErrorMessage(status, action.payload)
-    toast.error(<div dangerouslySetInnerHTML={{ __html: errorMessage || 'Sorry! Something went wrong' }} />)
+    if (status === 401) {
+      window.location.reload()
+      removeCookie('token')
+    }
+    else {
+      toast.error(<div dangerouslySetInnerHTML={{ __html: errorMessage || 'Sorry! Something went wrong' }} />)
+    }
     console.error(`😲 OMG Api Failed - Details: `, action.meta.baseQueryMeta.response)
   }
 
@@ -34,9 +41,9 @@ const getErrorMessage = (status: number, payload: any) => {
       return 'Service temporarily unavailable: Please try again later.'
     default:
       if (status >= 400 && status <= 499) {
-        return payload?.data?.message
+        return payload?.data?.message || payload?.data?.msg
       } else if (status >= 500) {
-        return payload?.data?.message || 'Sorry! something went wrong with server'
+        return payload?.data?.message || payload?.data?.msg || 'Sorry! something went wrong with server'
       }
       return 'Sorry! Something went wrong'
   }

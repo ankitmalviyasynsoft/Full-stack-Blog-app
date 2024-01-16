@@ -1,6 +1,6 @@
 import { AuthLayoutProps } from './AuthLayout.type'
 import { Stack, Typography } from '@mui/material'
-import { style } from './AuthLayout.style'
+import { style } from './AuthLayout.config'
 import { useTheme } from '@mui/material'
 
 

@@ -26,7 +26,7 @@ export const createPost = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // Current page, default to 1
-    const perPage = parseInt(req.query.perPage) || 10; // Number of posts per page, default to 10
+    const perPage = parseInt(req.query.perPage) || 50; // Number of posts per page, default to 10
 
     const totalPosts = await Post.countDocuments();
     const totalPages = Math.ceil(totalPosts / perPage);

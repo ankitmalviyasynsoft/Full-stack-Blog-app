@@ -1,5 +1,6 @@
 import { ProfileDTO } from '@/dtos/Profile.dto'
 import { Roles } from '@/types/Roles.type'
+import { removeCookie } from '@/utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
@@ -19,8 +20,13 @@ export const userSlice = createSlice({
       state.isLoggedIn = true
     },
 
+    handleLogout: () => {
+      removeCookie('token')
+      window.location.href = '/'
+    },
+
   }
 })
 
 
-export const { updateProfile } = userSlice.actions
+export const { updateProfile, handleLogout } = userSlice.actions

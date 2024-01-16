@@ -24,7 +24,10 @@ export type ProfileDTO = {
 }
 
 
-interface profileDocument {
-  imageURL?: string
-  name?: string
+export type CategoryDTO = {
+  _id: string;
+  name: string;
+  status: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

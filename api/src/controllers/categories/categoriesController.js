@@ -44,7 +44,7 @@ export const getAllCategories = async (req, res) => {
       perPage,
       totalPages,
       totalCategories,
-      categories,
+      data: categories,
     });
   } catch (error) {
     console.error('Error in fetching Categories:', error);

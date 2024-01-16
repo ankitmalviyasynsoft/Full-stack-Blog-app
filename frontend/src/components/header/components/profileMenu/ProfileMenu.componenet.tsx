@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import { Avatar, Button, IconButton, Menu, MenuItem } from '@mui/material'
 import { MdAccountCircle, MdCreate, MdLibraryAddCheck, MdOutlineHelp, MdLogout } from "react-icons/md";
+import { handleLogout } from '@/redux/slices/user.slice';
+import { useReduxDispatch } from '@/hooks/redux.hook';
 
 
 
 export default function ProfileMenu() {
   const router = useRouter()
+  const dispatch = useReduxDispatch()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -23,7 +26,17 @@ export default function ProfileMenu() {
         {
           menuItems.map((item, index) => (
             <MenuItem onClick={handleClose} key={index}>
-              <Button color='inherit' startIcon={item.icon} onClick={() => router.push(item.link)}>{item.name}</Button>
+              <Button color='inherit' startIcon={item.icon}
+                onClick={() => {
+                  if (item.name === 'Logout') dispatch(handleLogout());
+                  else {
+                    router.push(item.link)
+
+                  }
+
+                }}>
+
+                {item.name}</Button>
             </MenuItem>
           ))
         }
