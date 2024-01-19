@@ -1,4 +1,4 @@
-import BlogCard from '@/components/_ui/card/Card.component'
+import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import { Container, Grid, Stack, Typography } from '@mui/material'
 import React from 'react'
 

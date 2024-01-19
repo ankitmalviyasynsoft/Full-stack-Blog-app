@@ -1,4 +1,5 @@
-import { CategoryDTO } from '@/dtos/Profile.dto'
+
+import { CategoryDTO } from '@/dtos/Category.dto'
 import { api } from './api.config'
 
 

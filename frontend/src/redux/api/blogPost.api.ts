@@ -13,11 +13,16 @@ export const extendedApi = api.injectEndpoints({
       invalidatesTags: (result, error) => error ? [] : ['postblog'],
     }),
 
+    getAllBlogsData: builder.query<any, number>({
+      query: (page) => `/post/getAllPost?page=${page}&perPage=${3}`,
+    }),
+
   })
 })
 
 
 export const {
   useCreateBlogPostMutation,
+  useGetAllBlogsDataQuery,
 } = extendedApi
 

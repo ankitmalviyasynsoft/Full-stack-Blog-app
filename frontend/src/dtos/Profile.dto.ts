@@ -22,12 +22,3 @@ export type ProfileDTO = {
   createdAt: string
   updatedAt: string
 }
-
-
-export type CategoryDTO = {
-  _id: string;
-  name: string;
-  status: boolean;
-  createdAt: string;
-  updatedAt: string;
-}

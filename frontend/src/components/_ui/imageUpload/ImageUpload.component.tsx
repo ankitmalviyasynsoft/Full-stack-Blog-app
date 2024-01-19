@@ -1,4 +1,4 @@
-import { CSSProperties, ChangeEvent, DragEvent, useRef, useState } from 'react'
+import { CSSProperties, ChangeEvent, DragEvent, useEffect, useRef, useState } from 'react'
 import { Stack, TextField, Theme, Typography, useMediaQuery } from '@mui/material'
 import { ImageUploadProps } from './ImageUpload.type'
 import { MdOutlineFileDownload } from 'react-icons/md'
@@ -14,6 +14,11 @@ export default function ImageUpload(props: ImageUploadProps) {
   const fileRef = useRef<HTMLInputElement>()
   const [dragOver, setDragOver] = useState(false)
   const isMdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
+
+
+  useEffect(() => {
+    setFile(defaultImage)
+  }, [defaultImage])
 
 
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {

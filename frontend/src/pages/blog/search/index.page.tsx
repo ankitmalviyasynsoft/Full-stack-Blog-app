@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page } from '@/types/Page.type'
-import BlogCard from '@/components/_ui/card/Card.component'
+import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import { Container, Stack } from '@mui/material'
 import { stylePageSection } from '@/utils'
 

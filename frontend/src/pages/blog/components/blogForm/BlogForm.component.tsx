@@ -4,13 +4,13 @@ import { stylePageSection } from '@/utils'
 import { BlogFormProps } from './BlogForm.type'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormSchemaType, formSchema } from './BlogForm.config'
-import { Autocomplete, Box, Button, Grid, InputLabel, Stack, TextField } from '@mui/material'
+import { Autocomplete, Box, Button, FormHelperText, Grid, InputLabel, Stack, TextField } from '@mui/material'
 import ImageUpload from '@/components/_ui/imageUpload/ImageUpload.component'
 import TextEditor from '@/components/textEditor/TextEditor.component'
 import { useGetAllCategoriesQuery } from '@/redux/api/category.api'
-import { CategoryDTO } from '@/dtos/Profile.dto'
-import { useCreateBlogPostMutation } from '@/redux/api/post.api'
+import { useCreateBlogPostMutation } from '@/redux/api/blogPost.api'
 import { useReduxSelector } from '@/hooks/redux.hook'
+import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
 
 
 
@@ -19,37 +19,44 @@ export default function BlogForm(props: BlogFormProps) {
   const categories = useGetAllCategoriesQuery('')
   const { profile } = useReduxSelector(state => state.user)
   const [createBlogPost] = useCreateBlogPostMutation()
+  const [uploadFile] = useUploadFileMutation()
 
-  const { control, handleSubmit, setValue, trigger, formState: { isSubmitting, errors } } = useForm<FormSchemaType>({
+  const { control, handleSubmit, setValue, watch, reset, trigger, formState: { errors } } = useForm<FormSchemaType>({
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      title: '',
+      content: '',
+      image: undefined,
+      category: [],
+    }
   })
 
 
   const onSubmit = async (data: FormSchemaType) => {
     try {
-
-      // const formData = new FormData()
-      // formData.append('image', data.image)
-      // await uploadImage(formData as any).unwrap()
-      //   .then((res) => {
-      //     const FormData = {
-      //       title: data.title,
-      //       content: data.content,
-      //       categories: data.category || [],
-      //       userId: profile._id,
-      //       profileURL: res.data
-      //     }
-      //     console.log(FormData)
-      //     // createBlogPost(FormData)
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
-
-
+      const formData = new FormData()
+      formData.append('image', data.image)
+      await uploadFile(formData as any).unwrap()
+        .then((res: any) => {
+          if (!!res?.imageUrl) {
+            const FormData = {
+              title: data.title,
+              content: data.content,
+              categories: data.category || [],
+              userId: profile._id,
+              profileURL: res.imageUrl
+            }
+            createBlogPost(FormData).unwrap()
+          }
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
     }
     catch (error) { console.error(error) }
+    reset()
   }
+
 
   return (
     <Stack component='form' onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +65,7 @@ export default function BlogForm(props: BlogFormProps) {
           {/* === Thumbnail Upload === */}
           <Grid item xs={12}>
             <ImageUpload
-              defaultImage={data?.image}
+              defaultImage={watch('image') || data?.image}
               helperText={errors.image?.message}
               onChange={(file) => {
                 setValue('image', file)
@@ -102,14 +109,17 @@ export default function BlogForm(props: BlogFormProps) {
         <Stack spacing={1}>
           <InputLabel>Description</InputLabel>
           <Controller name='content' control={control}
-            render={({ field }) =>
-              <TextEditor {...field} placeholder='write your post content here' />
+            render={({ fieldState: { error }, field }) =>
+              <>
+                <TextEditor {...field} placeholder='write your post content here' />
+                {error?.message && <FormHelperText error>{error?.message}</FormHelperText>}
+              </>
             }
           />
         </Stack>
 
         <Stack direction='row' justifyContent='end'>
-          <Button variant='outlined' type='submit' sx={{ minWidth: '20%' }}>Save</Button>
+          <Button variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</Button>
         </Stack>
       </Stack>
     </Stack>

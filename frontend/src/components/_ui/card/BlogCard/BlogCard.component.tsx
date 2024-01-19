@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Card, Chip, Stack, Typography } from '@mui/material'
-import { CardProps } from './Card.type'
+import { CardProps } from './BlogCard.type'
 import { MdArrowOutward } from "react-icons/md";
 import { useRouter } from 'next/router';
 
