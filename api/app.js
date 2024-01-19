@@ -27,6 +27,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Connect to your MongoDB database Call the database connection function
 connectToDatabase();
 
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
+
+
 // Routes
 app.use('/api/v1', routes);
 
