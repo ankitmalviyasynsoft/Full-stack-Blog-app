@@ -1,5 +1,5 @@
 import { Container, Stack } from '@mui/material'
-import RecentlyBlogTopThree from './components/recentlyBlog/RecentlyBlogTopThree.component'
+import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
 import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
 import AllBlogs from './components/allBlogs/AllBlogs.component'
 import { stylePageSection } from '@/utils'
@@ -13,7 +13,7 @@ export default function page({ allBlogPostResult }: any) {
     <Container>
       <Stack my={stylePageSection}>
         <HeroSection />
-        {/* <RecentlyBlogTopThree /> */}
+        <RecentlyBlogTopThree initialData={allBlogPostResult} />
         <AllBlogs initialData={allBlogPostResult} />
       </Stack>
     </Container>

@@ -75,8 +75,7 @@ video {
 
 /* Utility Classes
 ======================== */
-
-.line-1,
+/* Line Overflow */
 .line-2,
 .line-3,
 .line-4,
@@ -84,8 +83,15 @@ video {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+.line-1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
 }
 
 .line-2 {
@@ -103,6 +109,8 @@ video {
 .line-5 {
   -webkit-line-clamp: 5
 }
+
+
 
 .center {
   display: flex;

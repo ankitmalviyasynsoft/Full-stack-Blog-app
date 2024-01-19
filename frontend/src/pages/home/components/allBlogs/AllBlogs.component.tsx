@@ -4,7 +4,7 @@ import { useReduxDispatch } from '@/hooks/redux.hook';
 import { useLazyGetAllBlogsDataQuery } from '@/redux/api/blogPost.api';
 import { Grid, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import { AllBlogProps } from './AllBlogs.config';
+import { AllBlogProps } from './AllBlogs.type';
 
 
 

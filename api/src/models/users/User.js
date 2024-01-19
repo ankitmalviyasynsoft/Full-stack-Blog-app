@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   profile: String,
   dob: String,
   role: [String],
-});
+}, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 

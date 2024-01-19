@@ -40,6 +40,7 @@ export default function BlogForm(props: BlogFormProps) {
         .then((res: any) => {
           if (!!res?.imageUrl) {
             const FormData = {
+              _id: profile._id,
               title: data.title,
               content: data.content,
               categories: data.category || [],

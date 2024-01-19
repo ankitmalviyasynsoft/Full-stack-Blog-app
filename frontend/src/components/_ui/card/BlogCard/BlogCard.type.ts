@@ -1,6 +1,8 @@
 import { BlogPostDTO } from "@/dtos/BlogPost.dto"
 import { CategoryDTO } from "@/dtos/Category.dto"
 
+
+
 export type BlogCardProps = {
   style: {
     direction: 'row' | 'column'
@@ -13,6 +15,7 @@ export type BlogCardProps = {
     profileURL?: string
     content?: string
     title?: string
+    createdAt?: string
     categories: CategoryDTO[]
   }
 }

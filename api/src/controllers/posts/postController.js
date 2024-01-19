@@ -26,7 +26,7 @@ export const createPost = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // Current page, default to 1
-    const perPage = parseInt(req.query.perPage) || 50; // Number of posts per page, default to 10
+    const perPage = parseInt(req.query.perPage) || 10; // Number of posts per page, default to 10
 
     const totalPosts = await Post.countDocuments();
     const totalPages = Math.ceil(totalPosts / perPage);
@@ -34,20 +34,32 @@ export const getAllPosts = async (req, res) => {
     // Skip records to implement pagination
     const skip = (page - 1) * perPage;
 
-    const posts = await Post.find()
-      .skip(skip)
-      .limit(perPage)
-      .exec();
+    const posts = await Post.find().skip(skip).limit(perPage).exec();
 
-    res.status(200).json({
-      page,
-      perPage,
-      totalPages,
-      totalPosts,
-      posts,
-    });
+    res.status(200).json({ page, perPage, totalPages, totalPosts, posts });
   } catch (error) {
     console.error('Error in fetching posts:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+// Get a single post by ID
+export const getPostById = async (req, res) => {
+  try {
+    const postId = req.params.id; // Assuming the post ID is passed as a route parameter
+
+    // Find the post by ID
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.status(200).json({ message: 'success', data: post });
+  } catch (error) {
+    console.error('Error in fetching post:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
