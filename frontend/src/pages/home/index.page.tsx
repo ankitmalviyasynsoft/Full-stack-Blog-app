@@ -1,13 +1,14 @@
 import { Container, Stack } from '@mui/material'
-// import RecentlyBlogTopThree from './components/recentlyBlog/RecentlyBlogTopThree.component'
+import RecentlyBlogTopThree from './components/recentlyBlog/RecentlyBlogTopThree.component'
 import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
 import AllBlogs from './components/allBlogs/AllBlogs.component'
 import { stylePageSection } from '@/utils'
-import { ApiResponseDTO } from '@/dtos/BlogPost.dto'
+import { ApiBlogPostResponseDTO } from '@/dtos/BlogPost.dto'
+import config from '@/config/config.json'
 
 
 export default function page({ allBlogPostResult }: any) {
-  console.log('hello ', allBlogPostResult)
+  console.log('allBlogPostResult => ', allBlogPostResult)
   return (
     <Container>
       <Stack my={stylePageSection}>
@@ -22,9 +23,8 @@ export default function page({ allBlogPostResult }: any) {
 
 
 export const getServerSideProps = (async () => {
-  const response: any = await fetch(`http://localhost:5000/api/v1/post/getAllPost?page=${1}&perPage=${3}`);
-  const allBlogPostResult: ApiResponseDTO = await response.json();
-  console.log(allBlogPostResult)
+  const response: any = await fetch(`${config.apiBaseUrl}/post/getAllPost?page=${1}&perPage=${3}`);
+  const allBlogPostResult: ApiBlogPostResponseDTO = await response.json();
   // Pass data to the page via props
   return { props: { allBlogPostResult } }
 })

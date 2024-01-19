@@ -1,4 +1,4 @@
-import { BlogPostDTO } from '@/dtos/BlogPost.dto'
+import { ApiBlogPostResponseDTO, BlogPostDTO } from '@/dtos/BlogPost.dto'
 import { api } from './api.config'
 
 
@@ -13,8 +13,10 @@ export const extendedApi = api.injectEndpoints({
       invalidatesTags: (result, error) => error ? [] : ['postblog'],
     }),
 
-    getAllBlogsData: builder.query<any, number>({
-      query: (page) => `/post/getAllPost?page=${page}&perPage=${3}`,
+
+    getAllBlogsData: builder.query<ApiBlogPostResponseDTO, { page: number, perPage: number }>({
+      query: (data) => `/post/getAllPost?page=${data.page}&perPage=${data.perPage}`,
+      transformResponse: (res: any) => res,
     }),
 
   })
@@ -23,6 +25,6 @@ export const extendedApi = api.injectEndpoints({
 
 export const {
   useCreateBlogPostMutation,
-  useGetAllBlogsDataQuery,
+  useLazyGetAllBlogsDataQuery,
 } = extendedApi
 

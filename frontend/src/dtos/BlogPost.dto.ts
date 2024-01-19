@@ -12,7 +12,7 @@ export type BlogPostDTO = {
 }
 
 
-export type ApiResponseDTO = {
+export type ApiBlogPostResponseDTO = {
   page: number;
   perPage: number;
   totalPages: number;

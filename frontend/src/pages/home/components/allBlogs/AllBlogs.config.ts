@@ -1,5 +1,5 @@
-import { ApiResponseDTO } from "@/dtos/BlogPost.dto"
+import { ApiBlogPostResponseDTO } from "@/dtos/BlogPost.dto"
 
 export type AllBlogProps = {
-  initialData: ApiResponseDTO
+  initialData: ApiBlogPostResponseDTO
 }

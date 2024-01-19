@@ -1,13 +1,18 @@
-export interface CardProps {
+import { BlogPostDTO } from "@/dtos/BlogPost.dto"
+import { CategoryDTO } from "@/dtos/Category.dto"
+
+export type BlogCardProps = {
   style: {
     direction: 'row' | 'column'
     imageHeight?: number
     imageWidth?: number
     linkIcon?: boolean
+  },
+  data: {
+    _id: string
+    profileURL?: string
+    content?: string
+    title?: string
+    categories: CategoryDTO[]
   }
-  imageLink?: string
-  title?: string
-  description?: string
-  publishDate?: string
-
 }

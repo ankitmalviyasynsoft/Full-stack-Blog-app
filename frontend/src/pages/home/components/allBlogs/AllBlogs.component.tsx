@@ -1,8 +1,7 @@
 import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import InfiniteLoader from '@/components/_ui/infiniteLoader/InfiniteLoader.component';
 import { useReduxDispatch } from '@/hooks/redux.hook';
-import { useGetAllBlogsDataQuery } from '@/redux/api/blogPost.api';
-import { fetchData } from '@/redux/slices/blogPost.slice';
+import { useLazyGetAllBlogsDataQuery } from '@/redux/api/blogPost.api';
 import { Grid, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { AllBlogProps } from './AllBlogs.config';
@@ -11,20 +10,31 @@ import { AllBlogProps } from './AllBlogs.config';
 
 export default function AllBlogs(props: AllBlogProps) {
   const { initialData } = props
-  const [page, setPage] = useState<number>(2);
+  console.log(initialData)
+  const [page, setPage] = useState<number>(1);
+  const [hasLoad, setHasLoad] = useState<boolean>(true);
   const [postsData, setPostsData] = useState<any>(initialData.posts);
-  const dispatch = useReduxDispatch();
 
   // Fetch initial data using RTK Query on the client
-  const { data, isLoading, isError, isSuccess, isFetching, isUninitialized } = useLazyGetAllBlogsDataQuery(page);
+  const [getAllBlogsData, { isFetching, isError, isLoading, isSuccess, }] = useLazyGetAllBlogsDataQuery();
+
 
   const onLoadMore = async () => {
+    if (!hasLoad) return
     const nextPage = page + 1;
-    // const newData = await fetchData(nextPage);
-    // setPostsData([...data.post]);
-    setPage(nextPage);
+    let paylod = { page: nextPage, perPage: 3 }
+    const newData = await getAllBlogsData(paylod);
+
+    if (newData.data?.posts?.length) {
+      setPostsData([...postsData, ...newData.data?.posts]);
+      setPage(nextPage);
+    }
+    else {
+      setHasLoad(false)
+    }
   };
-  console.log("hello", postsData,)
+
+  console.log("post data", postsData)
 
 
   return (
@@ -35,14 +45,21 @@ export default function AllBlogs(props: AllBlogProps) {
 
         {postsData && postsData.map((item: any, index: number) => (
           <Grid item xs={12} sm={12} md={4} key={index}>
-            <BlogCard style={{ direction: 'column', imageHeight: 248 }} />
+            <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} />
           </Grid>
         ))}
 
         {/* Infinite Loader */}
+        {!initialData.posts.length &&
+          <Grid item xs={12} sm={12} md={12}>
+            <div>No Blogs Found</div>
+          </Grid>
+        }
+
+
         {isLoading && <div>Loading...</div>}
         {isError && <div>Error loading data</div>}
-        {/* {isSuccess && <InfiniteLoader onLoadMore={onLoadMore} />} */}
+        {hasLoad && <InfiniteLoader onLoadMore={onLoadMore} />}
 
       </Grid>
     </Stack>
