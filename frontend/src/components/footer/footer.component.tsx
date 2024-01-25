@@ -11,11 +11,11 @@ export default function Footer(props: PageFooterProps) {
   return (
     <Box bgcolor='primary'>
       <Container>
-        <Stack px={{ xs: 1, md: 4 }} direction={{ xs: 'column', sm: 'row' }} gap={6} flexWrap='wrap'>
+        <Stack direction={{ xs: 'column', sm: 'row' }} gap={6} flexWrap='wrap'>
 
           <Stack maxWidth={{ xs: 1, md: 300 }}>
             <Box height={100} width={150}>
-              <img src='/images/black-logo.png' alt='footer image' />
+              <img src='/images/logo-svg/logo-no-background.svg' alt='footer image' />
             </Box>
 
             <Typography variant='body2' fontWeight={400}>Design amazing digital experiences that create more happy in the world.</Typography>

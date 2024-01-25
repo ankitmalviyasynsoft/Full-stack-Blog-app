@@ -49,22 +49,32 @@ let menuItems = [
   {
     name: 'My Profile',
     icon: <MdAccountCircle />,
-    link: '/profile'
+    link: '/profile',
+    role: ['user', 'admin']
   },
   {
     name: 'Create Post',
     icon: <MdCreate />,
-    link: '/blog/create'
+    link: '/blog/create',
+    role: ['user', 'admin']
+  },
+  {
+    name: 'Category',
+    icon: <MdLibraryAddCheck />,
+    link: '/category',
+    role: ['user', 'admin']
   },
   {
     name: 'Library',
     icon: <MdLibraryAddCheck />,
-    link: '/'
+    link: '/',
+    role: ['user', 'admin']
   },
   {
     name: 'Help',
     icon: <MdOutlineHelp />,
-    link: '/'
+    link: '/',
+    role: ['user', 'admin']
   },
   {
     name: 'Logout',

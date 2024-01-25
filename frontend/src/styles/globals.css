@@ -5,7 +5,7 @@
   --font-family: Inter, sans-serif;
   --section-spacing: 64px;
   --heading-spacing: 32px;
-  --text-white: #FFF;
+  --text-white: #FFFFFF;
 }
 
 @media (max-width: 599px) {

@@ -24,16 +24,17 @@ export default function Header() {
     <Container>
       <Stack direction='row' justifyContent='space-between' alignItems='center' py={2} height={80} gap={1}>
         <Stack flex={1} >
-          <Box height={40} width={140} onClick={() => router.push('/')} className='cursor-pointer'>
+          <Box width={130} onClick={() => router.push('/')} className='cursor-pointer'>
             <img src={config.logo} />
           </Box>
         </Stack>
 
         <Stack flex={{ xs: 1, md: 2 }} display={{ xs: 'none', sm: 'block' }}>
           <Autocomplete sx={style.autoCompleteSearch} disableClearable options={[]} loading={false} disabled={false}
-            renderInput={(params) => <TextField  {...params} variant='outlined' placeholder='Search blog eg. category, tag and blog title'
-              InputProps={{ endAdornment: (<InputAdornment position="start"><IconButton><MdOutlineSearch /></IconButton></InputAdornment>) }}
-            />}
+            renderInput={(params) =>
+              <TextField  {...params} variant='outlined' type='text' placeholder='Search blog eg. category, tag and blog title'
+                InputProps={{ endAdornment: (<InputAdornment position="start"><IconButton><MdOutlineSearch /></IconButton></InputAdornment>) }}
+              />}
             onChange={(_, data) => { console.log('hello') }}
           />
         </Stack>

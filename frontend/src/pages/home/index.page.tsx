@@ -1,20 +1,31 @@
-import { Container, Stack } from '@mui/material'
+import { Container, Stack, Typography } from '@mui/material'
 import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
 import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
 import AllBlogs from './components/allBlogs/AllBlogs.component'
 import { stylePageSection } from '@/utils'
-import { ApiBlogPostResponseDTO } from '@/dtos/BlogPost.dto'
+import { ApiBlogPostResponseDTO, BlogPostDTO } from '@/dtos/BlogPost.dto'
 import config from '@/config/config.json'
+import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 
 
-export default function page({ allBlogPostResult }: any) {
-  console.log('allBlogPostResult => ', allBlogPostResult)
+interface IHomeProps {
+  allBlogPostResult: ApiBlogPostResponseDTO
+}
+
+
+export default function page(props: IHomeProps) {
+  const { allBlogPostResult } = props
   return (
     <Container>
       <Stack my={stylePageSection}>
         <HeroSection />
-        <RecentlyBlogTopThree initialData={allBlogPostResult} />
-        <AllBlogs initialData={allBlogPostResult} />
+        {
+          allBlogPostResult !== null ? <>
+            <RecentlyBlogTopThree initialData={allBlogPostResult} />
+            <AllBlogs initialData={allBlogPostResult} />
+          </>
+            : <AlertBox variant='error'>Something went wrong</AlertBox>
+        }
       </Stack>
     </Container>
   )
@@ -22,13 +33,23 @@ export default function page({ allBlogPostResult }: any) {
 
 
 
-export const getServerSideProps = (async () => {
-  const response: any = await fetch(`${config.apiBaseUrl}/post/getAllPost?page=${1}&perPage=${3}`);
-  const allBlogPostResult: ApiBlogPostResponseDTO = await response.json();
-  // Pass data to the page via props
-  return { props: { allBlogPostResult } }
-})
+export const getServerSideProps = async () => {
+  try {
+    const response = await fetch(`${config.apiBaseUrl}/post/getAllPost?page=${1}&perPage=${3}`)
 
+    if (!response.ok) {
+      console.error(`Error: API request failed with status ${response.status}`)
+      return { props: { allBlogPostResult: null } }
+    }
+
+    const allBlogPostResult = await response.json()
+    return { props: { allBlogPostResult } }
+
+  } catch (error) {
+    console.error('Error:', error);
+    return { props: { allBlogPostResult: null } }
+  }
+};
 
 
 page.layoutProps = {
