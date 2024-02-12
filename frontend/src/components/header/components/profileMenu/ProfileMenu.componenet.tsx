@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import { Avatar, Box, Button, IconButton, Menu, MenuItem, Stack, Typography } from '@mui/material'
-import { MdAccountCircle, MdCreate, MdLibraryAddCheck, MdOutlineHelp, MdLogout } from "react-icons/md";
+import { MdAccountCircle, MdCategory, MdCreate, MdLibraryAddCheck, MdOutlineHelp, MdLogout } from "react-icons/md";
 import { handleLogout } from '@/redux/slices/user.slice';
 import { useReduxDispatch } from '@/hooks/redux.hook';
 
@@ -60,7 +60,7 @@ let menuItems = [
   },
   {
     name: 'Category',
-    icon: <MdLibraryAddCheck />,
+    icon: <MdCategory />,
     link: '/category',
     role: ['user', 'admin']
   },

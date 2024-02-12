@@ -5,13 +5,13 @@ import Category from '../../models/categories/Categories.js';
 // create Category 
 export const createCategories = async (req, res) => {
   try {
-    const { title } = req.body;
+    const { title, status } = req.body;
 
     // Create a new post
     const isTitleAvaiable = await Category.find({ title: title })
 
     if (!!isTitleAvaiable.length) return res.status(404).json({ message: 'Category already exist' });
-    const newcategory = new Category({ title, status: false });
+    const newcategory = new Category({ title, status: status || false });
 
     // Save the post to the database
     await newcategory.save();
@@ -48,6 +48,27 @@ export const getAllCategories = async (req, res) => {
     });
   } catch (error) {
     console.error('Error in fetching Categories:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+// get category by id  
+export const getCategoryById = async (req, res) => {
+  const categoryId = req.params.id;
+  try {
+    const category = await Category.findById(categoryId);
+
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    res.status(200).json({
+      data: category,
+    });
+  } catch (error) {
+    console.error('Error in fetching Category by ID:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

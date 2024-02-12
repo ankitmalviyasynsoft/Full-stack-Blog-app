@@ -33,7 +33,7 @@ const Categories: Page = () => {
   return (
     <Container>
       <Stack className='section-padding'>
-        <PageHeader heading='All Categories' isButton buttonText='Add Category' callBack={() => router.push('/')} />
+        <PageHeader heading='All Categories' isButton buttonText='Add Category' callBack={() => router.push('/category/add')} />
 
         <Stack>
           {/* === Table === */}
@@ -42,8 +42,11 @@ const Categories: Page = () => {
             columns={columns}
             rowCount={data?.length || 0}
             loading={isUninitialized || isFetching}
+            disableColumnMenu={true}
+            // disableRowSelectionOnClick={true}
+            rowSelection={false}
             paginationModel={paginationModel}
-            onRowDoubleClick={({ row }) => handleDblClick(row)}
+            // onRowDoubleClick={({ row }) => handleDblClick(row)}
             slots={{
               pagination: () => (
                 <Pagination

@@ -6,7 +6,7 @@ import config from '@/config/config.json'
 
 export const api = createApi({
   reducerPath: 'apis',
-  tagTypes: ['profile', 'postblog', 'uploafFile'],
+  tagTypes: ['profile', 'postblog', 'uploafFile', 'category'],
   refetchOnFocus: true,
   refetchOnReconnect: true,
   refetchOnMountOrArgChange: true,

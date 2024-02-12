@@ -3,6 +3,7 @@ import { CategoryDTO } from '@/dtos/Category.dto'
 import { api } from './api.config'
 
 
+
 export const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllCategories: builder.query<CategoryDTO[], any>({
@@ -10,30 +11,42 @@ export const extendedApi = api.injectEndpoints({
       transformResponse: (res: any) => res.data
     }),
 
-    // authRegister: builder.mutation<any, IRegister>({
-    //   query: (data) => ({
-    //     url: '/users/signup',
-    //     method: 'POST',
-    //     body: data
-    //   })
-    // }),
+    createCategory: builder.mutation<any, ICategory>({
+      query: (data) => ({
+        url: '/category/create',
+        method: 'POST',
+        body: data
+      })
+    }),
 
-    // getuserByToken: builder.query<ProfileDTO, string>({
-    //   query: (id) => `/users/getuserByToken`,
-    //   transformResponse: (res: any) => res.data,
-    //   providesTags: ['profile'],
-    //   async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-    //     await queryFulfilled.then(({ data }) => dispatch(updateProfile(data)))
-    //   }
-    // }),
+    updateCategory: builder.mutation<any, any>({
+      query: ({ id, ...data }) => ({
+        url: `/category/update/${id}`,
+        method: 'PUT',
+        body: data
+      })
+    }),
+
+    getCategoryById: builder.query<CategoryDTO, string>({
+      query: (id) => `/category/getCategoryById/${id}`,
+      transformResponse: (res: any) => res.data,
+      providesTags: ['category'],
+    }),
 
   })
 })
 
 
 export const {
-  // useAuthLoginMutation,
-  // useAuthRegisterMutation,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
   useGetAllCategoriesQuery,
+  useLazyGetCategoryByIdQuery,
 } = extendedApi
 
+
+
+export interface ICategory {
+  title: string
+  status: boolean
+}
