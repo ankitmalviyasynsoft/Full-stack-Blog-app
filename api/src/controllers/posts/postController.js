@@ -65,6 +65,28 @@ export const getPostById = async (req, res) => {
 };
 
 
+
+// Delete post by ID
+export const deletePostById = async (req, res) => {
+  try {
+    const postId = req.params.id; // Assuming the post ID is passed as a route parameter
+
+    // Delete the post by ID
+    const deletedPost = await Post.findByIdAndDelete(postId);
+
+    if (!deletedPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (error) {
+    console.error('Error in deleting post:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
 // Update a post by ID
 export const updatePost = async (req, res) => {
   try {

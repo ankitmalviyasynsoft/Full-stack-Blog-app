@@ -259,7 +259,7 @@ video {
 /* nProgress
 ======================== */
 #nprogress .bar {
-  background: var(--palette-primary-main);
+  background: var(--palette-primary-main) !important;
 }
 
 #nprogress .peg {
