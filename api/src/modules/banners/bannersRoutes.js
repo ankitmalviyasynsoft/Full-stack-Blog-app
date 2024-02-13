@@ -4,7 +4,7 @@ import { createBanners, getAllBanners, getBannerIsTrue, updateBanners } from '..
 
 
 const router = express.Router();
-
+console.log('createBanners')
 router.post('/create', createBanners);
 router.get('/getAllBanners', getAllBanners);
 router.get('/getBannerIsTrue', getBannerIsTrue);
