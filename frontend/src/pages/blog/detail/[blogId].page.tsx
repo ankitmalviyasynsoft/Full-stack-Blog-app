@@ -22,7 +22,7 @@ const BlogDetail: Page = ({ blogDetail }: any) => {
                         <Typography variant='body2'>How do you create compelling presentations that wow your colleagues and impress your managers? Find out with our in-depth guide on UX presentations.</Typography>
 
                         <Stack direction='row' gap={2}>
-                            {data?.categories?.map((item: CategoryDTO) => <Chip label={item.title} size="medium" variant="outlined" color='info' />)}
+                            {data?.categories?.map((item: CategoryDTO) => <Chip key={item.title} label={item.title} size="medium" variant="outlined" color='info' />)}
 
                         </Stack>
                     </Stack>

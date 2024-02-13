@@ -36,7 +36,7 @@ export default function BlogCard(props: BlogCardProps) {
             {convertHtmlToText(data.content as string)}
           </Typography>
           <Stack direction='row' gap={2}>
-            {data.categories.length && data.categories.map((item) => <Chip label={item.title} size="medium" variant="outlined" color='info' />)}
+            {data.categories.length && data.categories.map((item) => <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />)}
           </Stack>
         </Stack>
       </Stack>
