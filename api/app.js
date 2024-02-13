@@ -9,8 +9,8 @@ import { connectToDatabase } from './src/config/db.js';
 import routes from './src/modules/index.js';
 
 
-const app = express();
 dotenv.config();
+const app = express();
 
 app.use(express.json());
 
