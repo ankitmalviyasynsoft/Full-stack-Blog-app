@@ -9,6 +9,7 @@ import uploadsRoutes from './uploadFiles/uploadsRoutes.js';
 
 const router = express.Router();
 
+router.use('/', (req, res) => { res.send('inside route 🥳') });
 router.use('/post', postRoutes);
 router.use('/files', uploadsRoutes);
 router.use('/users', usersRoutes);
