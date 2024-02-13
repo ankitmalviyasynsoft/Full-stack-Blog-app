@@ -90,3 +90,16 @@ export const getAllBanners = async (req, res) => {
   }
 };
 
+
+
+// Get banner is true
+export const getBannerIsTrue = async (req, res) => {
+  try {
+    const banners = await Banners.findOne({ status: true }).exec();
+    res.status(200).json({ data: banners });
+  } catch (error) {
+    console.error('Error in fetching banners:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+

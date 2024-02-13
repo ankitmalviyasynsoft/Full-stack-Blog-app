@@ -4,6 +4,7 @@ const bannersSchema = new mongoose.Schema({
   title: String,
   author: String,
   content: String,
+  bannerImageUrl: String,
   status: Boolean,
   userId: {
     type: mongoose.Schema.Types.ObjectId,

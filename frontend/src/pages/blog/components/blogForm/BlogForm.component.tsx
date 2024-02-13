@@ -1,6 +1,6 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { stylePageSection } from '@/utils'
+import { stylePageSection, uniqueArrayElement } from '@/utils'
 import { BlogFormProps } from './BlogForm.type'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormSchemaType, formSchema } from './BlogForm.config'
@@ -87,8 +87,8 @@ export default function BlogForm(props: BlogFormProps) {
         <Stack spacing={1}>
           <InputLabel>Category</InputLabel>
           <Controller name='category' control={control}
-            render={({ field: { value, onChange } }) =>
-              <Autocomplete
+            render={({ field: { value, onChange } }) => {
+              return <Autocomplete
                 multiple
                 value={value}
                 disableClearable
@@ -98,11 +98,12 @@ export default function BlogForm(props: BlogFormProps) {
                 getOptionLabel={(option) => option.title}
                 renderInput={(params) => <TextField  {...params} placeholder='Select Category' error={!!errors.category} helperText={errors.category?.message || (categories.isError && 'Sorry! Something went wrong')} />}
                 onChange={(_, data: any) => {
-                  onChange(data);
-                  setValue("category", data);
+                  onChange(uniqueArrayElement(data));
+                  setValue("category", uniqueArrayElement(data));
                   trigger("category");
                 }}
               />
+            }
             }
           />
         </Stack>

@@ -1,54 +1,53 @@
 import React from 'react'
-import { Box, Chip, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Chip, CircularProgress, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
+import { useGetBannerIsTrueQuery } from '@/redux/api/banners.api';
+import AlertBox from '../alerts/AlertBox.components';
 
 
 
 export default function HeroSection() {
-  const dataCategoies = ['View all', 'Management', 'Leadership', 'Customer Success', ' Software Development', 'Product', 'Design']
+  const { data, isLoading, isError, isUninitialized } = useGetBannerIsTrueQuery('')
+  console.log(data)
   const theme = useTheme()
   const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('md'))
 
 
+  if (isLoading) return <CircularProgress />;
+  if (isError) return <AlertBox variant='error'>Something went wrong</AlertBox>;
+
+
   return (
     <Grid container spacing={4}>
-
       <Grid item xs>
 
         {/* == hero section Image == */}
         <Stack position='relative'>
 
           <Box height={{ xs: 200, sm: 350, md: 500 }} width={1}>
-            <img src='/images/hero.jpg' alt='image' style={{ objectFit: 'cover', borderRadius: '20px' }} />
+            <img src={data?.bannerImageUrl} alt='image' style={{ objectFit: 'cover', borderRadius: '20px' }} />
           </Box>
 
 
           {/* == blur section == */}
           <Box className={isSmallScreenUp ? 'blurred-content' : ''} position={{ xs: 'relative', md: 'absolute' }} bottom={0} width={1} color={isSmallScreenUp ? 'var(--text-white)}' : ''} >
             <Stack width={1} p={{ md: 4 }} mt={{ xs: 2, md: 0 }} spacing={2}>
-              <Typography variant='h4' fontWeight={600}>Improve your design skills: Develop an &apos eye &apos for design</Typography>
-              <Typography variant='subtitle' >Tools and trends change, but good design is timeless. Learn how to quickly develop an &aposeye&apos for design.</Typography>
+              <Typography variant='h4' fontWeight={600}>{data?.title}</Typography>
+              <Typography variant='subtitle' >{data?.content}</Typography>
 
 
               <Stack direction='row' flexWrap='wrap' gap={{ xs: 4, md: 8 }}>
                 <Stack>
                   <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>Written by</Typography>
-                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>Amélie Laurent</Typography>
+                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>{data?.author}</Typography>
                 </Stack>
 
                 <Stack>
                   <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>Published on</Typography>
-                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>10 April 2024</Typography>
+                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>{data?.createdAt}</Typography>
                 </Stack>
 
-                <Stack ml={{ md: 'auto' }} >
-                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)}' : ''} mb={1}>File under</Typography>
-                  <Stack direction='row' gap={2} flexWrap='wrap'>
-                    <Chip label="Small" size="medium" onClick={() => { console.log('asdkla') }} variant="outlined" sx={{ color: isSmallScreenUp ? 'white' : '' }} />
-                    <Chip label="Small" size="medium" onClick={() => { console.log('asdkla') }} variant="outlined" sx={{ color: isSmallScreenUp ? 'white' : '' }} />
-                    <Chip label="Small" size="medium" onClick={() => { console.log('asdkla') }} variant="outlined" sx={{ color: isSmallScreenUp ? 'white' : '' }} />
-                  </Stack>
-                </Stack>
+
               </Stack>
 
             </Stack>

@@ -42,3 +42,10 @@ export const isElementInViewport = (el: HTMLElement | undefined) => {
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   )
 }
+
+
+export const uniqueArrayElement = (array: any[]): any[] => {
+  return array.filter((obj, index, arr) => {
+    return arr.findIndex(item => item._id === obj._id) === index;
+  });
+};
