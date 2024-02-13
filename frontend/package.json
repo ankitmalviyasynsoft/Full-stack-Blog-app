@@ -11,7 +11,7 @@
     "build:prod": "cross-env NEXT_PUBLIC_APP_ENV=production node src/scripts/generateConfig.ts && next build",
     "start:dev": "next start -p 5050",
     "start:qa": "next test -p 5050",
-    "start:prod": "next start -p 5050",
+    "start": "next start -p 5050",
     "lint": "next lint"
   },
   "dependencies": {

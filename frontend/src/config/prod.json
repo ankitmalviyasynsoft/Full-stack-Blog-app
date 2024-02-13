@@ -1,5 +1,5 @@
 {
   "basePath": "",
-  "apiBaseUrl": "http://45.59.167.43:5001/api",
+  "apiBaseUrl": "http://localhost:3011/api/v1",
   "logo": "/images/logo-svg/logo-no-background.svg"
 }
