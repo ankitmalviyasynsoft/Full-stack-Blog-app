@@ -1,5 +1,8 @@
 node_modules
 log
 srcold
+uploads/
+!uploads/.gitkeep
 writible/
 !writible/.gitkeep
+api/.env
