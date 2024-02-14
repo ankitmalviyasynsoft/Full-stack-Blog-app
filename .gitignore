@@ -1,2 +1,9 @@
 
 api/.env
+api/node_modules
+api/log
+api/srcold
+api/uploads/
+api/!uploads/.gitkeep
+api/writible/
+api/!writible/.gitkeep
