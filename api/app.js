@@ -28,14 +28,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 connectToDatabase();
 
 app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳' + routes)
+  res.send('Hey this is my API running 🥳')
 })
 
 
 // Routes
-app.use('/api/v1', (req, res) => {
-  res.send('Hey this is my API 🥳')
-});
+app.use('/api/v1', routes);
 
 
 
