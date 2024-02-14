@@ -33,7 +33,9 @@ app.get('/', (req, res) => {
 
 
 // Routes
-app.use('/api/v1', routes);
+app.use('/api/v1', (req, res) => {
+  res.send('Hey this is my API 🥳')
+});
 
 
 
