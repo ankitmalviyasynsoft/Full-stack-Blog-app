@@ -5,6 +5,7 @@ import { useLazyGetAllBlogsDataQuery } from '@/redux/api/blogPost.api';
 import { Grid, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { AllBlogProps } from './AllBlogs.type';
+import AlertBox from '@/components/_ui/alerts/AlertBox.components';
 
 
 
@@ -51,8 +52,8 @@ export default function AllBlogs(props: AllBlogProps) {
 
         {/* Infinite Loader */}
         {!initialData.posts.length &&
-          <Grid item xs={12} sm={12} md={12}>
-            <div>No Blogs Found</div>
+          <Grid item xs={12}>
+            <AlertBox variant='info'>No Record Found</AlertBox>
           </Grid>
         }
 

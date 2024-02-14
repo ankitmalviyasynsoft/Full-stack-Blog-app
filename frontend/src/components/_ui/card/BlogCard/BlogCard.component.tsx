@@ -18,7 +18,7 @@ export default function BlogCard(props: BlogCardProps) {
 
         <Stack className='cursor-pointer' onClick={() => console.log('sad')}>
           <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} >
-            <img src={data.profileURL} alt='images' style={{ objectFit: 'cover', borderRadius: 8 }} />
+            <img src={data?.profileURL} alt='images' style={{ objectFit: 'cover', borderRadius: 8 }} />
           </Box>
         </Stack>
 
@@ -33,10 +33,10 @@ export default function BlogCard(props: BlogCardProps) {
           {/* <Typography variant='body1'>How do you create compelling presentations that wow your colleagues? How do you create compelling presentations that wow your colleagues and impress your managers?</Typography> */}
 
           <Typography variant='body1' className='line-3'>
-            {convertHtmlToText(data.content as string)}
+            {convertHtmlToText(data?.content as string)}
           </Typography>
           <Stack direction='row' gap={2}>
-            {data.categories.length && data.categories.map((item) => <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />)}
+            {data?.categories?.length && data?.categories.map((item) => <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />)}
           </Stack>
         </Stack>
       </Stack>
