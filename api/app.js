@@ -28,7 +28,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 connectToDatabase();
 
 app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳')
+  res.send('Hey this is my API running 🥳' + routes)
 })
 
 
