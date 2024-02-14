@@ -4,9 +4,9 @@ import { uploadOnCloudinary } from "../../utils/cloudinary.js";
 
 // Upload Files 
 export const uploadFiles = async (req, res) => {
-
   try {
-    const imageUrl = await uploadOnCloudinary(req.file.path)
+
+    const imageUrl = await uploadOnCloudinary(req)
     res.status(201).json({ message: 'Image created successfully', imageUrl });
 
   } catch (error) {

@@ -1,7 +1,6 @@
-import path from 'path';
-import multer from 'multer';
 import express from 'express';
 import { uploadFiles } from '../../controllers/uploadFiles/uploadsController.js';
+import { upload } from '../../middleware/multerMiddleware.js';
 
 
 const router = express.Router();
@@ -21,18 +20,6 @@ const router = express.Router();
 // const upload = multer({ storage: storage });
 
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/temp")
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-
-export const upload = multer({
-  storage,
-})
 
 router.post('/uploads', upload.single('image'), uploadFiles);
 
