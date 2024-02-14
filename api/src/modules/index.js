@@ -9,7 +9,7 @@ import uploadsRoutes from './uploadFiles/uploadsRoutes.js';
 
 const router = express.Router();
 
-router.use('/', (req, res) => {
+router.use('/dummy', (req, res) => {
   res.send('Hey this is my API running 🥳')
 })
 router.use('/post', postRoutes);
