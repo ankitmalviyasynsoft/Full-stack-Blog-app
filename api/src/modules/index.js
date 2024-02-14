@@ -13,10 +13,7 @@ const router = express.Router();
 router.use('/post', postRoutes);
 router.use('/files', uploadsRoutes);
 router.use('/users', usersRoutes);
-router.use('/banner', function () {
-  console.log('HELLLLLLL')
-  return 'hello'
-});
+router.use('/banner', bannersRoutes);
 router.use('/category', categoriesRoutes);
 
 
