@@ -7,3 +7,4 @@ api/uploads/
 api/!uploads/.gitkeep
 api/writible/
 api/!writible/.gitkeep
+api/.env
