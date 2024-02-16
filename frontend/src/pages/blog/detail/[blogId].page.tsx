@@ -6,6 +6,7 @@ import config from '@/config/config.json'
 import { GetServerSideProps } from 'next'
 import moment from 'moment'
 import { CategoryDTO } from '@/dtos/Category.dto'
+import Image from 'next/image'
 
 
 const BlogDetail: Page = ({ blogDetail }: any) => {
@@ -29,7 +30,7 @@ const BlogDetail: Page = ({ blogDetail }: any) => {
                 </Stack>
 
                 <Box height={{ xs: 1, md: 600 }} width={1} className='section-padding'>
-                    <img src={data?.profileURL} alt='blog detail' style={{ objectFit: 'cover' }} />
+                    <Image src={data?.profileURL} alt='blog detail' sizes="(min-width: 808px) 50vw, 100vw" style={{ objectFit: 'cover' }} />
                 </Box>
 
                 <Stack direction='row' justifyContent='center'>

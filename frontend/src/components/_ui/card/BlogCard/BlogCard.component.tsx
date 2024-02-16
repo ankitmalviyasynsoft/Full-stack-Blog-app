@@ -5,6 +5,8 @@ import { MdArrowOutward } from "react-icons/md";
 import { useRouter } from 'next/router';
 import { convertHtmlToText } from '@/utils';
 import moment from 'moment';
+import Image from 'next/image';
+import ImageNotFound from '../../imageNotFound/ImageNotFound.component';
 
 
 
@@ -18,25 +20,24 @@ export default function BlogCard(props: BlogCardProps) {
 
         <Stack className='cursor-pointer' onClick={() => console.log('sad')}>
           <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} >
-            <img src={data?.profileURL} alt='images' style={{ objectFit: 'cover', borderRadius: 8 }} />
+            {data?.profileURL ? <Image src={data?.profileURL || ''} alt='post' width={500} height={500} style={{ objectFit: 'cover' }} /> : <ImageNotFound />}
           </Box>
         </Stack>
 
         <Stack spacing={1}>
-          <Typography variant='body3' fontWeight={600}>Olivia Rhye • {moment(data?.createdAt).format('DD MMM YYYY')}</Typography>
+          <Typography variant='body3' fontWeight={600}>• {moment(data?.createdAt).format('DD MMM YYYY')}</Typography>
 
           <Stack direction='row' justifyContent='space-between' className='cursor-pointer' onClick={() => router.push(`/blog/detail/${data?._id}`)}>
             <Typography variant='h5' fontWeight={600} className='line-1'>{data?.title}</Typography>
             <Box fontSize={24}><MdArrowOutward /></Box>
           </Stack>
 
-          {/* <Typography variant='body1'>How do you create compelling presentations that wow your colleagues? How do you create compelling presentations that wow your colleagues and impress your managers?</Typography> */}
+          <Typography variant='body1' className='line-3'>{convertHtmlToText(data?.content as string)}</Typography>
 
-          <Typography variant='body1' className='line-3'>
-            {convertHtmlToText(data?.content as string)}
-          </Typography>
           <Stack direction='row' gap={2}>
-            {data?.categories?.length && data?.categories.map((item) => <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />)}
+            {data?.categories?.length && data?.categories.map((item) =>
+              <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />
+            )}
           </Stack>
         </Stack>
       </Stack>

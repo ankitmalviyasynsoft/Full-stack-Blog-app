@@ -17,16 +17,19 @@ export default function page(props: IHomeProps) {
   const { allBlogPostResult } = props
   return (
     <Container>
+
       <Stack my={stylePageSection}>
         <HeroSection />
         {
-          allBlogPostResult !== null ? <>
-            <RecentlyBlogTopThree initialData={allBlogPostResult} />
-            <AllBlogs initialData={allBlogPostResult} />
-          </>
+          allBlogPostResult !== null ?
+            <>
+              <RecentlyBlogTopThree initialData={allBlogPostResult} />
+              <AllBlogs initialData={allBlogPostResult} />
+            </>
             : <AlertBox variant='error'>Something went wrong</AlertBox>
         }
       </Stack>
+
     </Container>
   )
 }

@@ -8,6 +8,7 @@ import { MdNoteAdd } from "react-icons/md";
 import { theme } from '@/utils';
 import ProfileMenu from './components/profileMenu/ProfileMenu.componenet';
 import { useReduxSelector } from '@/hooks/redux.hook';
+import Image from 'next/image';
 
 
 
@@ -23,16 +24,16 @@ export default function Header() {
   return (
     <Container>
       <Stack direction='row' justifyContent='space-between' alignItems='center' py={2} height={80} gap={1}>
-        <Stack flex={1} >
-          <Box width={130} onClick={() => router.push('/')} className='cursor-pointer'>
-            <img src={config.logo} />
+        <Stack flex={1}>
+          <Box width={100} onClick={() => router.push('/')} className='cursor-pointer'>
+            <Image src={config.logo} alt='Logo' height={80} width={80} />
           </Box>
         </Stack>
 
         <Stack flex={{ xs: 1, md: 2 }} display={{ xs: 'none', sm: 'block' }}>
           <Autocomplete sx={style.autoCompleteSearch} disableClearable options={[]} loading={false} disabled={false}
             renderInput={(params) =>
-              <TextField  {...params} variant='outlined' type='text' placeholder='Search blog eg. category, tag and blog title'
+              <TextField  {...params} variant='outlined' placeholder='Search blog eg. category, tag and blog title'
                 InputProps={{ endAdornment: (<InputAdornment position="start"><IconButton><MdOutlineSearch /></IconButton></InputAdornment>) }}
               />}
             onChange={(_, data) => { console.log('hello') }}

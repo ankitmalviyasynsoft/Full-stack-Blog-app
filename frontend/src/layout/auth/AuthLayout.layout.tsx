@@ -2,6 +2,7 @@ import { AuthLayoutProps } from './AuthLayout.type'
 import { Stack, Typography } from '@mui/material'
 import { style } from './AuthLayout.config'
 import { useTheme } from '@mui/material'
+import Image from 'next/image'
 
 
 
@@ -30,7 +31,7 @@ export default function AuthLayout({ children, sideImage = '', heading = '', sub
 
       {/* ==Image==  */}
       <Stack display={{ xs: 'none', md: 'flex' }} sx={style.image} flex={1}>
-        <img src={sideImage} alt='side image' style={{ objectFit: 'cover' }} />
+        <Image src={sideImage} alt='side image' height={1200} width={1200} quality={100} style={{ objectFit: 'cover' }} />
       </Stack>
     </Stack>
 

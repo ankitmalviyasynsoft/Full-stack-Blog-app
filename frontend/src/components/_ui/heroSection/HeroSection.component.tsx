@@ -3,29 +3,32 @@ import { Box, Chip, CircularProgress, Grid, Stack, Typography, useMediaQuery } f
 import { useTheme } from '@mui/material/styles';
 import { useGetBannerIsTrueQuery } from '@/redux/api/banners.api';
 import AlertBox from '../alerts/AlertBox.components';
+import Loader from '../Loader/Loader.components';
+import Image from 'next/image';
 
 
 
 export default function HeroSection() {
-  const { data, isLoading, isError, isUninitialized } = useGetBannerIsTrueQuery('')
-  console.log(data)
+  const { data, isLoading, isError } = useGetBannerIsTrueQuery('')
+
   const theme = useTheme()
   const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('md'))
 
 
-  if (isLoading) return <CircularProgress />;
-  if (isError) return <AlertBox variant='error'>Something went wrong</AlertBox>;
+  if (isLoading) return <Loader />;
 
+  if (isError) return <AlertBox variant='error'>Something went wrong</AlertBox>;
 
   return (
     <Grid container spacing={4}>
       <Grid item xs>
 
         {/* == hero section Image == */}
-        <Stack position='relative'>
+        <Stack position='relative' >
 
-          <Box height={{ xs: 200, sm: 350, md: 500 }} width={1}>
-            <img src={data?.bannerImageUrl} alt='image' style={{ objectFit: 'cover', borderRadius: '20px' }} />
+          <Box height={{ xs: 200, sm: 350, md: 500 }} width={1} borderRadius={3} overflow='hidden'>
+            <Image src={data?.bannerImageUrl} alt='image' width={500} height={500} priority objectFit='cover'
+              sizes="(min-width: 808px) 50vw, 100vw" style={{ objectFit: 'cover' }} quality={100} />
           </Box>
 
 
@@ -55,19 +58,6 @@ export default function HeroSection() {
 
         </Stack>
       </Grid>
-
-
-      {/*  == Category Section == */}
-      {/* <Grid item xs={12} md={3} order={{xs:-1, md:0}}>
-        <Typography variant='body3' className='heading-padding'>Blog categories</Typography>
-        <Stack direction={{ xs: 'row', md: 'column' }} className={!isSmallScreenUp ? 'scroll-X' : '' }spacing={2} ml={{md:2}} pb={{xs:2, md:0}}>
-          {
-            dataCategoies.map((item, index) => (
-              <Typography variant='body2' className='text-nowrap' width={1} key={index}>{item}</Typography>
-            ))
-          }
-        </Stack>
-      </Grid> */}
     </Grid >
   )
 }

@@ -6,6 +6,7 @@ import { useUpdateUserMutation } from '@/redux/api/auth.api'
 import { FormData, schema } from './ProfileForm.config'
 import { ProfileProps } from './ProfileForm.type'
 import { theme } from '@/utils'
+import Image from 'next/image'
 
 
 
@@ -39,7 +40,7 @@ export default function ProfileForm(props: ProfileProps) {
         <Grid item xs={12} md={3} >
           <Stack display='flex' justifyContent='center' alignItems='center' width={1} height={1} >
             <Box borderRadius={100} overflow='hidden' height={200} width={200}>
-              <img src='/images/login.jpg' style={{ objectFit: 'cover' }} />
+              <Image src='/images/login.jpg' style={{ objectFit: 'cover' }} height={400} width={400} alt='Profile image' />
             </Box>
           </Stack>
         </Grid>

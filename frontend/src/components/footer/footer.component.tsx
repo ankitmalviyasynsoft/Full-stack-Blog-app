@@ -2,6 +2,7 @@ import React from 'react'
 import { PageFooterProps } from './footer.type'
 import { Box, Container, Divider, Stack, Typography } from '@mui/material'
 import { FaInstagram, FaFacebook, FaXTwitter, FaGithub } from "react-icons/fa6";
+import Image from 'next/image';
 
 
 
@@ -15,7 +16,7 @@ export default function Footer(props: PageFooterProps) {
 
           <Stack maxWidth={{ xs: 1, md: 300 }}>
             <Box height={100} width={150}>
-              <img src='/images/logo-svg/logo-no-background.svg' alt='footer image' />
+              <Image src='/images/logo-svg/logo-no-background.svg' alt='footer image' width={100} height={100} />
             </Box>
 
             <Typography variant='body2' fontWeight={400}>Design amazing digital experiences that create more happy in the world.</Typography>
