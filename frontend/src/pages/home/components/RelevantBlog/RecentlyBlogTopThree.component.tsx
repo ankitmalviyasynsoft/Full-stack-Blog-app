@@ -6,18 +6,19 @@ import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 
 
 
+type RowStyleType = {
+  direction: 'row' | 'column',
+  imageHeight: number,
+  imageWidth: number
+}
+
+
 export default function RecentlyBlogTopThree({ initialData }: RelevantBlogProps) {
-
-
-
+  let rowStyle: RowStyleType = { direction: 'row', imageHeight: 200, imageWidth: 200 }
 
   return (
     <Stack className='section-padding'>
       <Typography variant='h4' fontWeight={600} className='heading-padding-bottom'>Recently Blog</Typography>
-
-
-
-
 
       <Grid container spacing={4}>
         {!initialData?.posts?.length ?
@@ -27,13 +28,13 @@ export default function RecentlyBlogTopThree({ initialData }: RelevantBlogProps)
           :
           <>
             <Grid item xs={12} sm={12} md={6}>
-              <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={initialData.posts[0]} />
+              {initialData.posts[0] && <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={initialData.posts[0]} />}
             </Grid>
 
             <Grid item xs={12} sm={12} md={6}>
               <Stack spacing={4}>
-                <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth: 200 }} data={initialData.posts[1]} />
-                <BlogCard style={{ direction: 'row', imageHeight: 200, imageWidth: 200 }} data={initialData.posts[2]} />
+                {initialData?.posts[1] && <BlogCard style={rowStyle} data={initialData.posts[1]} />}
+                {initialData?.posts[2] && <BlogCard style={rowStyle} data={initialData.posts[2]} />}
               </Stack>
             </Grid>
           </>

@@ -28,13 +28,17 @@ export default function BlogCard(props: BlogCardProps) {
           <Typography variant='body3' fontWeight={600}>• {moment(data?.createdAt).format('DD MMM YYYY')}</Typography>
 
           <Stack direction='row' justifyContent='space-between' className='cursor-pointer' onClick={() => router.push(`/blog/detail/${data?._id}`)}>
-            <Typography variant='h5' fontWeight={600} className='line-1'>{data?.title}</Typography>
+            <Typography variant='h6' fontWeight={600} className='line-1'>{data?.title}</Typography>
             <Box fontSize={24}><MdArrowOutward /></Box>
           </Stack>
 
-          <Typography variant='body1' className='line-3'>{convertHtmlToText(data?.content as string)}</Typography>
+          <Stack>
+            <Typography variant='body1' className='line-3'>
+              {convertHtmlToText(data?.content as string)}
+            </Typography>
+          </Stack>
 
-          <Stack direction='row' gap={2}>
+          <Stack direction='row' gap={1} flexWrap='wrap'>
             {data?.categories?.length && data?.categories.map((item) =>
               <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />
             )}
