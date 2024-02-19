@@ -6,12 +6,13 @@ import { Grid, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { AllBlogProps } from './AllBlogs.type';
 import AlertBox from '@/components/_ui/alerts/AlertBox.components';
+import Loader from '@/components/_ui/Loader/Loader.components';
 
 
 
 export default function AllBlogs(props: AllBlogProps) {
   const { initialData } = props
-  console.log(initialData)
+
   const [page, setPage] = useState<number>(1);
   const [hasLoad, setHasLoad] = useState<boolean>(true);
   const [postsData, setPostsData] = useState<any>(initialData.posts);
@@ -35,8 +36,6 @@ export default function AllBlogs(props: AllBlogProps) {
     }
   };
 
-  console.log("post data", postsData)
-
 
   return (
     <Stack className='section-padding-bottom' >
@@ -50,17 +49,18 @@ export default function AllBlogs(props: AllBlogProps) {
           </Grid>
         ))}
 
+
+        {isLoading && <Loader minHeight={300} />}
+        {isError && <AlertBox variant='error'>Error loading data</AlertBox>}
+        {hasLoad && <InfiniteLoader onLoadMore={onLoadMore} />}
+
+
         {/* Infinite Loader */}
         {!initialData.posts.length &&
           <Grid item xs={12}>
             <AlertBox variant='info'>No Record Found</AlertBox>
           </Grid>
         }
-
-
-        {isLoading && <div>Loading...</div>}
-        {isError && <div>Error loading data</div>}
-        {hasLoad && <InfiniteLoader onLoadMore={onLoadMore} />}
 
       </Grid>
     </Stack>

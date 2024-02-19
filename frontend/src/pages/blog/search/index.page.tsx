@@ -28,9 +28,9 @@ const Search: Page = () => {
 }
 
 Search.layoutProps = {
-  isProtectedPage: false,
+  title: 'Search',
   pageTypes: 'public',
-  title: 'Search'
+  isProtectedPage: false,
 }
 
 

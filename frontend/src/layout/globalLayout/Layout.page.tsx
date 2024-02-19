@@ -15,9 +15,7 @@ export default function Layout(props: LayoutProps) {
   useNProgress()
   const { isLoading } = useAuthentication(props)
 
-  if (isLoading) {
-    return <WebsiteLoader />
-  }
+  if (isLoading) return <WebsiteLoader />
 
 
   return (

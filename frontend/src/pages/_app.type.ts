@@ -14,13 +14,14 @@ type NextPageWithLayoutProps<P = {}, IP = P> = NextPage<P, IP> & {
 
 
 export type PageLayoutProps = {
+  title: string | null
   header?: boolean
   footer?: boolean
   sidebar?: boolean
-  isProtectedPage: boolean,
-  pageTypes: string,
   roles?: Roles[],
-  title: string | null
+  pageTypes: string,
+  isAuthenticated?: boolean,
+  isProtectedPage?: boolean,
 }
 
 

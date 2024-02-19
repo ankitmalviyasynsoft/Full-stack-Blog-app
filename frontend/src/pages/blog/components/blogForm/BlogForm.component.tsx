@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { stylePageSection, uniqueArrayElement } from '@/utils'
 import { BlogFormProps } from './BlogForm.type'
@@ -7,7 +7,7 @@ import { FormSchemaType, formSchema } from './BlogForm.config'
 import { Autocomplete, Box, Button, FormHelperText, Grid, InputLabel, Stack, TextField } from '@mui/material'
 import ImageUpload from '@/components/_ui/imageUpload/ImageUpload.component'
 import TextEditor from '@/components/textEditor/TextEditor.component'
-import { useGetAllCategoriesQuery } from '@/redux/api/category.api'
+import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
 import { useCreateBlogPostMutation } from '@/redux/api/blogPost.api'
 import { useReduxSelector } from '@/hooks/redux.hook'
 import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
@@ -16,7 +16,7 @@ import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
 
 export default function BlogForm(props: BlogFormProps) {
   const { mode, data } = props
-  const categories = useGetAllCategoriesQuery('')
+  const [getAllCategories, { data: categories, isError, isLoading }] = useLazyGetAllCategoriesQuery()
   const { profile } = useReduxSelector(state => state.user)
   const [createBlogPost] = useCreateBlogPostMutation()
   const [uploadFile] = useUploadFileMutation()
@@ -30,6 +30,11 @@ export default function BlogForm(props: BlogFormProps) {
       category: [],
     }
   })
+
+
+  useEffect(() => {
+    getAllCategories({ page: 1, perPage: 1000 })
+  }, [])
 
 
   const onSubmit = async (data: FormSchemaType) => {
@@ -92,11 +97,11 @@ export default function BlogForm(props: BlogFormProps) {
                 multiple
                 value={value}
                 disableClearable
-                options={categories.data || []}
-                loading={categories.isLoading}
-                disabled={categories.isError}
+                options={categories?.data || []}
+                loading={isLoading}
+                disabled={isError}
                 getOptionLabel={(option) => option.title}
-                renderInput={(params) => <TextField  {...params} placeholder='Select Category' error={!!errors.category} helperText={errors.category?.message || (categories.isError && 'Sorry! Something went wrong')} />}
+                renderInput={(params) => <TextField  {...params} placeholder='Select Category' error={!!errors.category} helperText={errors.category?.message || (isError && 'Sorry! Something went wrong')} />}
                 onChange={(_, data: any) => {
                   onChange(uniqueArrayElement(data));
                   setValue("category", uniqueArrayElement(data));

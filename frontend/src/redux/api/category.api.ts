@@ -28,7 +28,7 @@ export const extendedApi = api.injectEndpoints({
     }),
 
     getCategoryById: builder.query<CategoryDTO, string>({
-      query: (id) => `/ category / getCategoryById / ${id}`,
+      query: (id) => `/category/getCategoryById/${id}`,
       transformResponse: (res: any) => res.data,
       providesTags: ['category'],
     }),

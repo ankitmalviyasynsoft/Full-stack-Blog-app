@@ -1,9 +1,10 @@
 import { Container } from '@mui/material'
 import { useReduxSelector } from '@/hooks/redux.hook'
 import ProfileForm from './components/ProfileForm.component'
+import { Page } from '@/types/Page.type'
 
 
-function Profile() {
+const Profile: Page = () => {
   const { profile } = useReduxSelector(state => state.user)
 
 
@@ -16,11 +17,10 @@ function Profile() {
 
 
 Profile.layoutProps = {
-  isProtectedPage: false,
-  pageTypes: 'protected',
   title: 'Profile',
-  header: true,
-  footer: true
+  pageTypes: 'authenticate',
+  roles: ['admin', 'user'],
+  isProtectedPage: true,
 }
 
 

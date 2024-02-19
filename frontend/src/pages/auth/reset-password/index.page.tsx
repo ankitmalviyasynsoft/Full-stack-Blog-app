@@ -5,10 +5,11 @@ import Link from 'next/link'
 import { FormData, schema } from './resetPassword.config'
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Page } from '@/types/Page.type'
 
 
 
-function ResetPassword() {
+const ResetPassword: Page = () => {
 
   const heading = 'Create new password'
   const subTitle = `Your new password must be different from previous used passwords`
@@ -58,11 +59,11 @@ function ResetPassword() {
 
 
 ResetPassword.layoutProps = {
-  isProtectedPage: false,
-  pageTypes: 'auth',
-  title: 'Reset Password',
   header: false,
-  footer: false
+  footer: false,
+  title: 'Reset Password',
+  pageTypes: 'auth',
+  isProtectedPage: false
 }
 
 

@@ -5,9 +5,11 @@ import AuthLayout from '@/layout/auth/AuthLayout.layout'
 import { FormData, schema } from './forgotPassword.config'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
+import { Page } from '@/types/Page.type'
 
 
-function ForgotPassword() {
+
+const ForgotPassword: Page = () => {
 
   const heading = 'Forgot Password'
   const subTitle = `Enter your email address and we'll send you an email with instructions to reset your password.`
@@ -51,11 +53,11 @@ function ForgotPassword() {
 
 
 ForgotPassword.layoutProps = {
-  isProtectedPage: false,
-  pageTypes: 'auth',
-  title: 'Forgot Password',
   header: false,
-  footer: false
+  footer: false,
+  title: 'Forgot Password',
+  pageTypes: 'auth',
+  isProtectedPage: false,
 }
 
 

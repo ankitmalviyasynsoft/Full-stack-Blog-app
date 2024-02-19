@@ -14,10 +14,7 @@ export type ProfileDTO = {
   dob?: string
   profileUrl?: string
   isVerified?: boolean
-  role: {
-    name?: string
-    slug?: Roles
-  }[]
+  role: Roles[],
   isProfileCompleted?: boolean
   createdAt: string
   updatedAt: string

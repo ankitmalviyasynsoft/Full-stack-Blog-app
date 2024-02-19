@@ -1,12 +1,11 @@
 import { Container, Stack } from '@mui/material'
-import React from 'react'
+import { Page } from '@/types/Page.type'
 import CategoryForm from '../components/CategoryForm.component'
 import PageHeader from '@/components/_ui/pageHeader/PageHeader.components'
-import { stylePageSection } from '@/utils'
 
 
 
-export default function AddPage() {
+const AddPage: Page = () => {
 
 
   return (
@@ -18,3 +17,14 @@ export default function AddPage() {
     </Container>
   )
 }
+
+
+AddPage.layoutProps = {
+  title: 'Add Category',
+  roles: ['admin'],
+  pageTypes: 'authenticate',
+  isProtectedPage: true
+}
+
+
+export default AddPage

@@ -1,11 +1,11 @@
-import { Container, Stack, Typography } from '@mui/material'
-import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
-import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
-import AllBlogs from './components/allBlogs/AllBlogs.component'
+import { Container, Stack } from '@mui/material'
 import { stylePageSection } from '@/utils'
-import { ApiBlogPostResponseDTO, BlogPostDTO } from '@/dtos/BlogPost.dto'
+import { ApiBlogPostResponseDTO } from '@/dtos/BlogPost.dto'
 import config from '@/config/config.json'
+import AllBlogs from './components/allBlogs/AllBlogs.component'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
+import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
+import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
 
 
 interface IHomeProps {
@@ -15,6 +15,8 @@ interface IHomeProps {
 
 export default function page(props: IHomeProps) {
   const { allBlogPostResult } = props
+
+
   return (
     <Container>
 
@@ -29,7 +31,6 @@ export default function page(props: IHomeProps) {
             : <AlertBox variant='error'>Something went wrong</AlertBox>
         }
       </Stack>
-
     </Container>
   )
 }

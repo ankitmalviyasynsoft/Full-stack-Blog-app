@@ -18,7 +18,8 @@ const BlogCreate: Page = () => {
 
 BlogCreate.layoutProps = {
   title: 'Create',
-  pageTypes: 'protected',
+  pageTypes: 'authenticate',
+  roles: ['admin', 'user'],
   isProtectedPage: true
 }
 

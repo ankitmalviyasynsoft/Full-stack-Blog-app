@@ -70,11 +70,11 @@ function Register() {
 
 
 Register.layoutProps = {
-  isProtectedPage: false,
-  pageTypes: 'auth',
-  title: 'Sign Up',
   header: false,
-  footer: false
+  footer: false,
+  title: 'Sign Up',
+  pageTypes: 'auth',
+  isProtectedPage: false,
 }
 
 

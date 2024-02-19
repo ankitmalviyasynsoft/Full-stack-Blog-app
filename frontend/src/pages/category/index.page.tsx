@@ -68,7 +68,8 @@ const Categories: Page = () => {
 
 Categories.layoutProps = {
   title: 'Categories',
-  pageTypes: 'protected',
+  roles: ['admin'],
+  pageTypes: 'authenticate',
   isProtectedPage: true
 }
 

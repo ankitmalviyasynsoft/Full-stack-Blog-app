@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 
 
-export default function TableActions({ data }: { data: any }) {
+export default function TableActions({ data, editUrl }: { data: any, editUrl: string }) {
   const [showMenu, setShowMenu] = useState(false)
   // const [showCancelInvestmentPoup, setShowCancelInvestmentPoup] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -25,7 +25,7 @@ export default function TableActions({ data }: { data: any }) {
     //   setShowCancelInvestmentPoup(true)
     // }
 
-    console.log('hello delete')
+    console.log('hello delete', data)
   }
 
 
@@ -40,7 +40,7 @@ export default function TableActions({ data }: { data: any }) {
 
       {/* === Dropdown Menu === */}
       <Menu anchorEl={anchorEl} open={showMenu} onClose={handleOpen(false)}>
-        <MenuItem onClick={handleOpen(false)} component={Link} href={`/category/edit/${data._id}`}>
+        <MenuItem onClick={handleOpen(false)} component={Link} href={editUrl}>
           <ListItemIcon sx={style.menuIcon}><MdEdit /></ListItemIcon>
           <ListItemText sx={style.menuText} disableTypography>Edit</ListItemText>
         </MenuItem>

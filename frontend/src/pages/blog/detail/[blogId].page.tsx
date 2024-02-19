@@ -52,9 +52,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 
 BlogDetail.layoutProps = {
-    isProtectedPage: false,
+    title: 'Detail',
     pageTypes: 'public',
-    title: 'Detail'
+    isProtectedPage: false
 }
 
 
