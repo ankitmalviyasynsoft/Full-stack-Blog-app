@@ -13,7 +13,7 @@ export const useAuthentication = (props: LayoutProps) => {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [userData, setUserData] = useState<ProfileDTO>()
-  const [getUserByToken, { isError }] = useLazyGetUserByTokenQuery()
+  const [getUserByToken, { isError, isLoading, isFetching }] = useLazyGetUserByTokenQuery()
 
   let token: string | null = null
   if (typeof window !== 'undefined') token = getCookie('token') || null
@@ -26,16 +26,13 @@ export const useAuthentication = (props: LayoutProps) => {
         .then((res) => {
           setUserData(res)
         })
-        .finally(() => {
-          setLoading(false)
-        })
     }
   }, [])
 
 
   {/* === Redirection === */ }
   useEffect(() => {
-    setLoading(true)
+    let timeout: any = null
     if (!token && isProtectedPage) {
       router.replace('/auth/login')
     }
@@ -46,11 +43,17 @@ export const useAuthentication = (props: LayoutProps) => {
       if (!userData?.role.filter(item => roles.includes(item)).length) {
         router.push('/')
       }
-      setLoading(false)
     }
     else {
-      setLoading(false)
+      timeout = setTimeout(() => {
+        setLoading(false)
+      }, 500)
     }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+
   }, [router.pathname, userData?.role])
 
 
