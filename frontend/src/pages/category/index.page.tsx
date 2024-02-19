@@ -1,10 +1,10 @@
 import PageHeader from '@/components/_ui/pageHeader/PageHeader.components'
-import { useGetAllCategoriesQuery } from '@/redux/api/category.api'
+import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
 import { Page } from '@/types/Page.type'
 import { Box, Button, Container, Pagination, PaginationItem, Stack, Typography } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useColumns } from './hooks/categories.hook'
 
 
@@ -13,16 +13,17 @@ const Categories: Page = () => {
   const router = useRouter()
   const { columns } = useColumns()
   const paginationModel = { page: Number(router.query.page || 1) - 1, pageSize: 5 }
-  const { data, isSuccess, isError, isFetching, isUninitialized } = useGetAllCategoriesQuery('')
+  const [getAllCategories, { data, isSuccess, isError, isFetching, isUninitialized }] = useLazyGetAllCategoriesQuery()
 
+  console.log(data)
 
   const setPaginationModel = (page: number) => {
     router.push({ query: { page } }, undefined, { shallow: true })
   }
 
-  // useEffect(() => {
-  //   getTradesByUserId({ userId: profile._id, page: (paginationModel.page + 1), size: paginationModel.pageSize })
-  // }, [paginationModel.page])
+  useEffect(() => {
+    getAllCategories({ page: (paginationModel.page + 1), perPage: paginationModel.pageSize })
+  }, [paginationModel.page])
 
 
   const handleDblClick = (row: any) => {
@@ -38,21 +39,21 @@ const Categories: Page = () => {
         <Stack>
           {/* === Table === */}
           <DataGrid
-            rows={data?.map((item: any) => ({ id: item._id, ...item })) || []}
+            rows={data?.data && data?.data?.map((item: any) => ({ id: item._id, ...item })) || []}
             columns={columns}
-            rowCount={data?.length || 0}
+            rowCount={data?.data?.length || 0}
             loading={isUninitialized || isFetching}
             disableColumnMenu={true}
-            // disableRowSelectionOnClick={true}
             rowSelection={false}
             paginationModel={paginationModel}
+            // disableRowSelectionOnClick={true}
             // onRowDoubleClick={({ row }) => handleDblClick(row)}
             slots={{
               pagination: () => (
                 <Pagination
                   page={paginationModel.page + 1}
                   onChange={(_, newPage) => setPaginationModel(newPage)}
-                  count={1000 ? Math.ceil(Number(1000) / paginationModel.pageSize) : 0}
+                  count={data?.totalPages ? Math.ceil(Number(data?.totalPages)) : 0}
                   renderItem={(item) => <PaginationItem slots={{ previous: () => 'Prev', next: () => 'Next' }} {...item} />}
                 />
               ),

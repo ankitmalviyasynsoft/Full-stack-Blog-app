@@ -6,9 +6,9 @@ import { api } from './api.config'
 
 export const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAllCategories: builder.query<CategoryDTO[], any>({
-      query: (type) => `/category/getAllCategories`,
-      transformResponse: (res: any) => res.data
+    getAllCategories: builder.query<{ data: CategoryDTO[], totalPages: number }, { page: number, perPage: number }>({
+      query: (type) => `/category/getAllCategories?page=${type.page}&perPage=${type.perPage}`,
+      transformResponse: (res: any) => res
     }),
 
     createCategory: builder.mutation<any, ICategory>({
@@ -21,14 +21,14 @@ export const extendedApi = api.injectEndpoints({
 
     updateCategory: builder.mutation<any, any>({
       query: ({ id, ...data }) => ({
-        url: `/category/update/${id}`,
+        url: `/ category / update / ${id}`,
         method: 'PUT',
         body: data
       })
     }),
 
     getCategoryById: builder.query<CategoryDTO, string>({
-      query: (id) => `/category/getCategoryById/${id}`,
+      query: (id) => `/ category / getCategoryById / ${id}`,
       transformResponse: (res: any) => res.data,
       providesTags: ['category'],
     }),
@@ -40,7 +40,7 @@ export const extendedApi = api.injectEndpoints({
 export const {
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
-  useGetAllCategoriesQuery,
+  useLazyGetAllCategoriesQuery,
   useLazyGetCategoryByIdQuery,
 } = extendedApi
 
