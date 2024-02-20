@@ -32,28 +32,25 @@ export const useAuthentication = (props: LayoutProps) => {
 
   {/* === Redirection === */ }
   useEffect(() => {
-    let timeout: any = null
     if (!token && isProtectedPage) {
       router.replace('/auth/login')
     }
     else if (token && pageTypes === 'auth') {
       router.push('/')
     }
-    else if (isProtectedPage && userData?.role) {
-      if (!userData?.role.filter(item => roles.includes(item)).length) {
-        router.push('/')
+    else if (isProtectedPage) {
+      if (!isLoading && userData?.role) {
+        if (!userData?.role.filter(item => roles.includes(item)).length) {
+          router.push('/')
+        }
+        else {
+          setLoading(false)
+        }
       }
     }
     else {
-      timeout = setTimeout(() => {
-        setLoading(false)
-      }, 500)
+      setLoading(false)
     }
-
-    return () => {
-      clearTimeout(timeout)
-    }
-
   }, [router.pathname, userData?.role])
 
 

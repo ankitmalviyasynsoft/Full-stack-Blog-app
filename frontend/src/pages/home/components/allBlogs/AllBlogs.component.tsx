@@ -50,15 +50,30 @@ export default function AllBlogs(props: AllBlogProps) {
         ))}
 
 
-        {isLoading && <Loader minHeight={300} />}
-        {isError && <AlertBox variant='error'>Error loading data</AlertBox>}
-        {hasLoad && <InfiniteLoader onLoadMore={onLoadMore} />}
-
-
         {/* Infinite Loader */}
         {!initialData.posts.length &&
           <Grid item xs={12}>
             <AlertBox variant='info'>No Record Found</AlertBox>
+          </Grid>
+        }
+
+
+        {isLoading &&
+          <Grid item xs={12}>
+            <Loader minHeight={300} />
+          </Grid>
+        }
+        {
+          isError &&
+          <Grid item xs={12}>
+            <AlertBox variant='error'>Error loading data</AlertBox>
+          </Grid>
+        }
+
+        {
+          hasLoad &&
+          <Grid item xs={12}>
+            <InfiniteLoader onLoadMore={onLoadMore} />
           </Grid>
         }
 
