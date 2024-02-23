@@ -1,7 +1,7 @@
 import path from 'path';
 import multer from 'multer';
 import express from 'express';
-import { createPost, getAllPosts, getPostById, updatePost } from '../../controllers/posts/postController.js';
+import { createPost, getAllPosts, getPostById, updatePost, updateViewCountPost } from '../../controllers/posts/postController.js';
 
 
 const router = express.Router();
@@ -26,6 +26,7 @@ router.post('/create', upload.single('image'), createPost);
 router.get('/getAllPost', getAllPosts);
 router.get('/getPostById/:id', getPostById);
 router.put('/update/:id', updatePost);
+router.post('/views/:id', updateViewCountPost);
 
 
 

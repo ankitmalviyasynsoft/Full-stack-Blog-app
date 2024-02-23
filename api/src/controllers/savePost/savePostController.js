@@ -1,19 +1,12 @@
 
-import Post from '../../models/posts/Post.js';
+import SavePost from '../../models/savePost/savePost.js';
 
 
 // create post 
-export const createPost = async (req, res) => {
+export const savePostByUser = async (req, res) => {
   try {
-    const { title, content, profileURL, categories, userId } = req.body;
 
-    // Create a new post
-    const newPost = new Post({ title, content, profileURL, categories, userId });
-
-    // Save the post to the database
-    await newPost.save();
-
-    res.status(201).json({ message: 'Post created successfully', post: newPost });
+    res.status(201).json({ message: 'Post created successfully' });
   } catch (error) {
     console.error('Error in creating post:', error);
     res.status(500).json({ message: 'Internal server error' });

@@ -5,6 +5,7 @@ const postSchema = new mongoose.Schema({
   content: { type: String, required: true },
   profileURL: { type: String, required: true },
   categories: { type: Array, required: true },
+  postViewCount: { type: Array, required: true },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
