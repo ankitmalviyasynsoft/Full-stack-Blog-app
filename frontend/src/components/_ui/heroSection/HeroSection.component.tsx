@@ -5,6 +5,7 @@ import { useGetBannerIsTrueQuery } from '@/redux/api/banners.api';
 import AlertBox from '../alerts/AlertBox.components';
 import Loader from '../Loader/Loader.components';
 import Image from 'next/image';
+import moment from 'moment';
 
 
 
@@ -47,7 +48,7 @@ export default function HeroSection() {
 
                 <Stack>
                   <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>Published on</Typography>
-                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>{data?.createdAt}</Typography>
+                  <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>{moment(data?.createdAt).format('LL')}</Typography>
                 </Stack>
 
 

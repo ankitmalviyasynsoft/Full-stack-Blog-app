@@ -6,6 +6,7 @@ import { FormData, schema } from './resetPassword.config'
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Page } from '@/types/Page.type'
+import UnderConstruction from '@/components/_ui/underConstruction/UnderConstruction.component'
 
 
 
@@ -21,6 +22,8 @@ const ResetPassword: Page = () => {
   const onSubmit = (data: FormData) => {
     console.log(data)
   }
+
+  if(process.env.UND_CON || true) return <UnderConstruction/>
 
   return (
     <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink} isHeadingCenter={true}>
