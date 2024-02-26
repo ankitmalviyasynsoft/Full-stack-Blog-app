@@ -11,6 +11,7 @@ import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
 import { useCreateBlogPostMutation } from '@/redux/api/blogPost.api'
 import { useReduxSelector } from '@/hooks/redux.hook'
 import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
+import { LoadingButton } from '@mui/lab';
 
 
 
@@ -18,8 +19,8 @@ export default function BlogForm(props: BlogFormProps) {
   const { mode, data } = props
   const [getAllCategories, { data: categories, isError, isLoading }] = useLazyGetAllCategoriesQuery()
   const { profile } = useReduxSelector(state => state.user)
-  const [createBlogPost] = useCreateBlogPostMutation()
-  const [uploadFile] = useUploadFileMutation()
+  const [createBlogPost, { isLoading: createPostLoading }] = useCreateBlogPostMutation()
+  const [uploadFile, { isLoading: imageLoading }] = useUploadFileMutation()
 
   const { control, handleSubmit, setValue, watch, reset, trigger, formState: { errors } } = useForm<FormSchemaType>({
     resolver: yupResolver(formSchema),
@@ -126,7 +127,7 @@ export default function BlogForm(props: BlogFormProps) {
         </Stack>
 
         <Stack direction='row' justifyContent='end'>
-          <Button variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</Button>
+          <LoadingButton loading={imageLoading || createPostLoading} variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</LoadingButton>
         </Stack>
       </Stack>
     </Stack>

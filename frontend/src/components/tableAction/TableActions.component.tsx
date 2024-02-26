@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 
 
-export default function TableActions({ data, editUrl }: { data: any, editUrl: string }) {
+export default function TableActions({ data, editUrl, deleteCallBack }: { data: any, editUrl: string, deleteCallBack?: any }) {
   const [showMenu, setShowMenu] = useState(false)
   // const [showCancelInvestmentPoup, setShowCancelInvestmentPoup] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -19,13 +19,9 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
   }
 
 
-  const handleDeleteRecord = () => {
-    // if (canTradeCancel) {
-    //   setShowMenu(false)
-    //   setShowCancelInvestmentPoup(true)
-    // }
-
-    console.log('hello delete', data)
+  const handleDeleteRecord = async () => {
+    await deleteCallBack(data)
+    setShowMenu(false)
   }
 
 
@@ -40,7 +36,7 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
 
       {/* === Dropdown Menu === */}
       <Menu anchorEl={anchorEl} open={showMenu} onClose={handleOpen(false)}>
-        <MenuItem onClick={handleOpen(false)} component={Link} href={editUrl}>
+        <MenuItem onClick={() => handleOpen(false)} component={Link} href={editUrl}>
           <ListItemIcon sx={style.menuIcon}><MdEdit /></ListItemIcon>
           <ListItemText sx={style.menuText} disableTypography>Edit</ListItemText>
         </MenuItem>

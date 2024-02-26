@@ -1,4 +1,5 @@
 import TableActions from '@/components/tableAction/TableActions.component'
+import { useDeleteBlogPostMutation } from '@/redux/api/blogPost.api'
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import moment from 'moment'
@@ -6,6 +7,13 @@ import moment from 'moment'
 
 
 export const useColumns = () => {
+
+  const [deleteBlogPost, { isLoading: isDeleting }] = useDeleteBlogPostMutation()
+
+  const handleRemoveRow = (data: any) => {
+    console.log('hello delete ', data)
+    deleteBlogPost(data._id)
+  }
 
 
   const columns: GridColDef<any>[] = [
@@ -22,7 +30,7 @@ export const useColumns = () => {
       )
     },
 
-    { field: 'action', headerName: 'Action', width: 70, sortable: false, renderCell: (params) => <TableActions data={params.row} editUrl={`/blog/edit/${params.row.id}`} /> },
+    { field: 'action', headerName: 'Action', width: 70, sortable: false, renderCell: (params) => <TableActions data={params.row} editUrl={`/blog/edit/${params.row.id}`} deleteCallBack={handleRemoveRow} /> },
   ]
 
 

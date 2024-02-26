@@ -10,15 +10,26 @@ export const extendedApi = api.injectEndpoints({
         method: 'POST',
         body: data
       }),
-      invalidatesTags: (result, error) => error ? [] : ['postblog'],
+      invalidatesTags: (result, error, id) => ['postblog'],
     }),
 
 
     getAllBlogsData: builder.query<ApiBlogPostResponseDTO, { page: number, perPage: number }>({
       query: (data) => `/post/getAllPost?page=${data.page}&perPage=${data.perPage}`,
+      providesTags: (result, error, id) => ['postblog'],
       transformResponse: (res: any) => res,
     }),
 
+    deleteBlogPost: builder.mutation<{ success: boolean; id: number }, number>({
+      query(id) {
+        return {
+          url: `post/deleteById/${id}`,
+          method: 'DELETE',
+        }
+      },
+      // Invalidates all queries that subscribe to this Post `id` only.
+      invalidatesTags: (result, error, id) => ['postblog'],
+    }),
   })
 })
 
@@ -26,5 +37,6 @@ export const extendedApi = api.injectEndpoints({
 export const {
   useCreateBlogPostMutation,
   useLazyGetAllBlogsDataQuery,
+  useDeleteBlogPostMutation,
 } = extendedApi
 
