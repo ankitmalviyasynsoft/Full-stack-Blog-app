@@ -1,5 +1,5 @@
 import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
-import { Container, Grid, Stack, Typography } from '@mui/material'
+import { Grid, Stack, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 import { useLazyGetRecentPostDataQuery } from '@/redux/api/blogPost.api'

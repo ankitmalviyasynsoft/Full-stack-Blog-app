@@ -55,7 +55,7 @@ export const useAuthentication = (props: LayoutProps) => {
 
 
   return {
-    isLoading: loading,
+    isLoading: isProtectedPage && loading,
     isError,
   }
 }

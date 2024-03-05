@@ -25,9 +25,9 @@ export const getStatusColor = (status: string): string => {
 
 
 export const convertHtmlToText = (html: string) => {
-  var tempDivElement = document.createElement("div")
+  var tempDivElement = document?.createElement("div")
   tempDivElement.innerHTML = html
-  return tempDivElement.textContent || tempDivElement.innerText || ""
+  return tempDivElement?.textContent || tempDivElement?.innerText || ""
 }
 
 

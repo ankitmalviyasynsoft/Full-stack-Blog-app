@@ -7,12 +7,14 @@ import { convertHtmlToText } from '@/utils';
 import moment from 'moment';
 import Image from 'next/image';
 import ImageNotFound from '../../imageNotFound/ImageNotFound.component';
+import Loader from '../../Loader/Loader.components';
 
 
 
 export default function BlogCard(props: BlogCardProps) {
   const { style, data } = props
   const router = useRouter()
+
 
   return (
     <Card>
@@ -33,9 +35,9 @@ export default function BlogCard(props: BlogCardProps) {
           </Stack>
 
           <Stack>
-            <Typography variant='body1' className='line-3'>
-              {convertHtmlToText(data?.content as string)}
-            </Typography>
+            {data?.content &&
+              <Typography variant='body1' className='line-3'>{convertHtmlToText(data?.content as string)}</Typography>
+            }
           </Stack>
 
           <Stack direction='row' gap={1} flexWrap='wrap'>

@@ -36,6 +36,8 @@ export default function AllBlogs(props: AllBlogProps) {
     }
   };
 
+  if (!postsData?.length) return <Loader minHeight={300} />
+
 
   return (
     <Stack className='section-padding-bottom' >
@@ -43,7 +45,7 @@ export default function AllBlogs(props: AllBlogProps) {
       <Grid container spacing={4}>
 
 
-        {postsData && postsData.map((item: any, index: number) => (
+        {Boolean(postsData?.length) && postsData.map((item: any, index: number) => (
           <Grid item xs={12} sm={12} md={4} key={index}>
             <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} />
           </Grid>

@@ -23,10 +23,9 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
         getSimilarPostsByCategoryTitle({ categoryTitles, page: 1, limit: 20 })
     }, [])
 
+
     return (
         <>
-
-
             <Container>
                 <Head>
                     <title>{metaTags.title}</title>

@@ -28,7 +28,7 @@ export default function HeroSection() {
         <Stack position='relative' >
 
           <Box height={{ xs: 200, sm: 350, md: 500 }} width={1} borderRadius={3} overflow='hidden'>
-            <Image src={data?.bannerImageUrl} alt='image' width={1500} height={1500} priority quality={100} />
+            <Image src={data?.bannerImageUrl} alt='image' width={1500} height={1500} priority quality={100} style={{ objectFit: 'cover' }} />
           </Box>
 
 
