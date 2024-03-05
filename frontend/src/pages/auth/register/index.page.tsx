@@ -36,7 +36,7 @@ function Register() {
     await authRegister(payload);
   };
 
-  if (process.env.UND_CON || true) return <UnderConstruction />;
+  // if (process.env.UND_CON || true) return <UnderConstruction />;
 
   return (
     <AuthLayout heading={heading} subTitle={subTitle} sideImage={imageLink}>

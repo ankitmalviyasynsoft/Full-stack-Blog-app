@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { stylePageSection, uniqueArrayElement } from '@/utils'
 import { BlogFormProps } from './BlogForm.type'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormSchemaType, formSchema } from './BlogForm.config'
 import { Autocomplete, Box, Button, FormHelperText, Grid, InputLabel, Stack, TextField } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import ImageUpload from '@/components/_ui/imageUpload/ImageUpload.component'
 import TextEditor from '@/components/textEditor/TextEditor.component'
 import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
 import { useCreateBlogPostMutation } from '@/redux/api/blogPost.api'
 import { useReduxSelector } from '@/hooks/redux.hook'
 import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
-import { LoadingButton } from '@mui/lab';
 
 
 
 export default function BlogForm(props: BlogFormProps) {
   const { mode, data } = props
+  const [loading, setLoading] = useState(false)
   const [getAllCategories, { data: categories, isError, isLoading }] = useLazyGetAllCategoriesQuery()
   const { profile } = useReduxSelector(state => state.user)
-  const [createBlogPost, { isLoading: createPostLoading }] = useCreateBlogPostMutation()
-  const [uploadFile, { isLoading: imageLoading }] = useUploadFileMutation()
+  const [createBlogPost] = useCreateBlogPostMutation()
+  const [uploadFile] = useUploadFileMutation()
 
   const { control, handleSubmit, setValue, watch, reset, trigger, formState: { errors } } = useForm<FormSchemaType>({
     resolver: yupResolver(formSchema),
@@ -40,6 +41,7 @@ export default function BlogForm(props: BlogFormProps) {
 
   const onSubmit = async (data: FormSchemaType) => {
     try {
+      setLoading(true)
       const formData = new FormData()
       formData.append('image', data.image)
       await uploadFile(formData as any).unwrap()
@@ -58,6 +60,8 @@ export default function BlogForm(props: BlogFormProps) {
         })
         .catch((err: any) => {
           console.log(err)
+        }).finally(() => {
+          setLoading(false)
         })
     }
     catch (error) { console.error(error) }
@@ -127,7 +131,7 @@ export default function BlogForm(props: BlogFormProps) {
         </Stack>
 
         <Stack direction='row' justifyContent='end'>
-          <LoadingButton loading={imageLoading || createPostLoading} variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</LoadingButton>
+          <LoadingButton loading={loading} variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</LoadingButton>
         </Stack>
       </Stack>
     </Stack>

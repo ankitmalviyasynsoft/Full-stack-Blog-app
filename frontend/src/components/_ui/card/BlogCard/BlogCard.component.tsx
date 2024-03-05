@@ -18,8 +18,8 @@ export default function BlogCard(props: BlogCardProps) {
     <Card>
       <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
 
-        <Stack className='cursor-pointer' onClick={() => console.log('sad')}>
-          <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} >
+        <Stack className='cursor-pointer' >
+          <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} onClick={() => router.push(`/blog/detail/${data?._id}`)}>
             {data?.profileURL ? <Image src={data?.profileURL || ''} alt='post' width={500} height={500} style={{ objectFit: 'cover' }} /> : <ImageNotFound />}
           </Box>
         </Stack>
@@ -45,6 +45,6 @@ export default function BlogCard(props: BlogCardProps) {
           </Stack>
         </Stack>
       </Stack>
-    </Card>
+    </Card >
   )
 }

@@ -22,7 +22,7 @@ export default function Layout(props: LayoutProps) {
     <>
       <Head>
         <title>{title ? `${title} | Blog` : 'Blog - App'}</title>
-      </Head>
+      </Head >
 
       {/* Header */}
       {header !== false && <Header />}
@@ -34,7 +34,6 @@ export default function Layout(props: LayoutProps) {
         </Box>
       </ErrorBoundary>
       {footer !== false && <Footer />}
-
     </>
   )
 }

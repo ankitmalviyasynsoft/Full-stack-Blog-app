@@ -1,53 +1,45 @@
 import React from 'react'
 import { PageFooterProps } from './footer.type'
 import { Box, Container, Divider, Stack, Typography } from '@mui/material'
-import { FaInstagram, FaFacebook, FaXTwitter, FaGithub } from "react-icons/fa6";
+import { FaInstagram, FaFacebook, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 
 
 export default function Footer(props: PageFooterProps) {
-
+  const router = useRouter()
 
   return (
-    <Box bgcolor='primary'>
+    <Box bgcolor='primary' >
       <Container>
-        <Stack direction={{ xs: 'column', sm: 'row' }} gap={6} flexWrap='wrap'>
+        <Stack direction={{ xs: 'column', sm: 'row' }} py={2} gap={6} flexWrap='wrap' justifyContent='space-between' alignItems={{ xs: 'start', md: 'center' }}>
 
           <Stack maxWidth={{ xs: 1, md: 300 }}>
-            <Box height={100} width={150}>
+            <Box height={100} width={150} onClick={() => router.push('/')}>
               <Image src='/images/logo-svg/logo-no-background.svg' alt='footer image' width={100} height={100} />
             </Box>
 
-            <Typography variant='body2' fontWeight={400}>Design amazing digital experiences that create more happy in the world.</Typography>
+            <Typography variant='body2' fontWeight={400}>E-Hack: Your Cybersecurity Learning Hub. Read, Learn, Hack, Repeat.</Typography>
           </Stack>
 
-          <Stack direction={{ xs: 'column', sm: 'row' }} flex={1} gap={6} justifyContent='space-between'>
-            {
-              footerData.map((item, index) => (
-                <Stack spacing={1} key={index}>
-                  <Typography variant='body4'>{item.heading}</Typography>
-                  {item.subTitle.map((item, index) => (
-                    <Typography key={index} variant='body2' fontWeight={600}>{item.title}</Typography>
-                  ))}
-                </Stack>
-              ))
-            }
+          <Stack gap={2}>
+            <Typography variant='h4'>Follow Us</Typography>
+            <Stack direction='row' spacing={4} fontSize={24}>
+              <FaInstagram />
+              <FaFacebook />
+              <FaXTwitter />
+              <FaYoutube />
+            </Stack>
           </Stack>
         </Stack>
       </Container>
 
-      <Divider sx={{ my: 4 }} />
+      <Divider />
 
-      <Container>
-        <Stack px={{ xs: 1, md: 4 }} my={3} spacing={3} direction={{ xs: 'column', sm: 'row' }} justifyContent='space-between' alignItems='center'>
-          <Typography>© 2077 Untitled UI. All rights reserved.</Typography>
-          <Stack direction='row' spacing={4} fontSize={24}>
-            <FaInstagram />
-            <FaFacebook />
-            <FaXTwitter />
-            <FaGithub />
-          </Stack>
+      <Container >
+        <Stack className='center' p={2}>
+          <Typography>©2024 E-Hack. All rights reserved.</Typography>
         </Stack>
       </Container>
     </Box>
@@ -55,151 +47,3 @@ export default function Footer(props: PageFooterProps) {
   )
 }
 
-
-let footerData = [
-  {
-    heading: 'product',
-    subTitle: [
-      {
-        title: 'Overview',
-        link: ''
-      },
-      {
-        title: 'Features',
-        link: ''
-      },
-      {
-        title: 'Solutions',
-        link: ''
-      },
-      {
-        title: 'Tutorials',
-        link: ''
-      },
-      {
-        title: 'Pricing',
-        link: ''
-      },
-      {
-        title: 'Releases',
-        link: ''
-      },
-    ]
-  },
-  {
-    heading: 'Resources',
-    subTitle: [
-      {
-        title: 'Blog',
-        link: ''
-      },
-      {
-        title: 'Newsletter',
-        link: ''
-      },
-      {
-        title: 'Events',
-        link: ''
-      },
-      {
-        title: 'Help centre',
-        link: ''
-      },
-      {
-        title: 'Tutorials',
-        link: ''
-      },
-      {
-        title: 'Support',
-        link: ''
-      },
-    ]
-  },
-  {
-    heading: 'Company',
-    subTitle: [
-      {
-        title: 'About us',
-        link: ''
-      },
-      {
-        title: 'Careers',
-        link: ''
-      },
-      {
-        title: 'Press',
-        link: ''
-      },
-      {
-        title: 'News',
-        link: ''
-      },
-      {
-        title: 'Media kit',
-        link: ''
-      },
-      {
-        title: 'Contact',
-        link: ''
-      },
-    ]
-  },
-  {
-    heading: 'Social',
-    subTitle: [
-      {
-        title: 'Twitter',
-        link: ''
-      },
-      {
-        title: 'LinkedIn',
-        link: ''
-      },
-      {
-        title: 'Facebook',
-        link: ''
-      },
-      {
-        title: 'GitHub',
-        link: ''
-      },
-      {
-        title: 'AngelList',
-        link: ''
-      },
-      {
-        title: 'Dribbble',
-        link: ''
-      },
-    ]
-  },
-  {
-    heading: 'Legal',
-    subTitle: [
-      {
-        title: 'Terms',
-        link: ''
-      },
-      {
-        title: 'Privacy',
-        link: ''
-      },
-      {
-        title: 'Cookies',
-        link: ''
-      },
-      {
-        title: 'Licenses',
-        link: ''
-      },
-      {
-        title: 'Settings',
-        link: ''
-      },
-      {
-        title: 'Contact',
-        link: ''
-      },
-    ]
-  },
-]

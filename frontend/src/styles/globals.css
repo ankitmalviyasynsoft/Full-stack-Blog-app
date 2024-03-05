@@ -72,6 +72,18 @@ video {
   max-width: 100%;
 }
 
+/* .blog-description {
+  word-break: break-all;
+} */
+
+.blog-description pre {
+  background-color: black;
+  color: var(--text-white);
+  padding: 1rem;
+  overflow-x: scroll;
+  border-radius: 10px;
+}
+
 
 /* Utility Classes
 ======================== */

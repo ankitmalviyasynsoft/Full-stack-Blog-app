@@ -28,14 +28,13 @@ export default function HeroSection() {
         <Stack position='relative' >
 
           <Box height={{ xs: 200, sm: 350, md: 500 }} width={1} borderRadius={3} overflow='hidden'>
-            <Image src={data?.bannerImageUrl} alt='image' width={500} height={500} priority objectFit='cover'
-              sizes="(min-width: 808px) 50vw, 100vw" style={{ objectFit: 'cover' }} quality={100} />
+            <Image src={data?.bannerImageUrl} alt='image' width={1500} height={1500} priority quality={100} />
           </Box>
 
 
           {/* == blur section == */}
           <Box className={isSmallScreenUp ? 'blurred-content' : ''} position={{ xs: 'relative', md: 'absolute' }} bottom={0} width={1} color={isSmallScreenUp ? 'var(--text-white)}' : ''} >
-            <Stack width={1} p={{ md: 4 }} mt={{ xs: 2, md: 0 }} spacing={2}>
+            {/* <Stack width={1} p={{ md: 4 }} mt={{ xs: 2, md: 0 }} spacing={2}>
               <Typography variant='h4' fontWeight={600}>{data?.title}</Typography>
               <Typography variant='subtitle' >{data?.content}</Typography>
 
@@ -50,11 +49,9 @@ export default function HeroSection() {
                   <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>Published on</Typography>
                   <Typography variant='body4' color={isSmallScreenUp ? 'var(--text-white)' : ''}>{moment(data?.createdAt).format('LL')}</Typography>
                 </Stack>
-
-
               </Stack>
 
-            </Stack>
+            </Stack> */}
           </Box>
 
         </Stack>
