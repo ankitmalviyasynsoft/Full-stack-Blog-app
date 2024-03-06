@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Card, Chip, Stack, Typography } from '@mui/material'
 import { BlogCardProps } from './BlogCard.type'
 import { MdArrowOutward } from "react-icons/md";
@@ -7,13 +7,18 @@ import { convertHtmlToText } from '@/utils';
 import moment from 'moment';
 import Image from 'next/image';
 import ImageNotFound from '../../imageNotFound/ImageNotFound.component';
-import Loader from '../../Loader/Loader.components';
 
 
 
 export default function BlogCard(props: BlogCardProps) {
   const { style, data } = props
   const router = useRouter()
+  const [content, setContent] = useState('')
+
+  useEffect(() => {
+    let content = convertHtmlToText(data?.content as string)
+    setContent(content)
+  }, [])
 
 
   return (
@@ -35,9 +40,7 @@ export default function BlogCard(props: BlogCardProps) {
           </Stack>
 
           <Stack>
-            {data?.content &&
-              <Typography variant='body1' className='line-3'>{convertHtmlToText(data?.content as string)}</Typography>
-            }
+            <Typography variant='body1' className='line-3'>{content}</Typography>
           </Stack>
 
           <Stack direction='row' gap={1} flexWrap='wrap'>

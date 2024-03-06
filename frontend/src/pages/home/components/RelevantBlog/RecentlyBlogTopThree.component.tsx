@@ -1,5 +1,5 @@
 import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
-import { Grid, Stack, Typography } from '@mui/material'
+import { Container, Grid, Stack, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 import { useLazyGetRecentPostDataQuery } from '@/redux/api/blogPost.api'
@@ -39,8 +39,8 @@ export default function RecentlyBlogTopThree() {
 
             <Grid item xs={12} sm={12} md={6}>
               <Stack spacing={4}>
-                {data[0] && <BlogCard style={rowStyle} data={data[1]} />}
-                {data[0] && <BlogCard style={rowStyle} data={data[2]} />}
+                {data[1] && <BlogCard style={rowStyle} data={data[1]} />}
+                {data[2] && <BlogCard style={rowStyle} data={data[2]} />}
               </Stack>
             </Grid>
           </>

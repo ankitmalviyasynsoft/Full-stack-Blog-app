@@ -18,7 +18,6 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
 
     useEffect(() => {
         console.log(data?.categories?.map((item: CategoryDTO) => { return item.title }))
-
         let categoryTitles = data?.categories?.map((item: CategoryDTO) => item.title)
         getSimilarPostsByCategoryTitle({ categoryTitles, page: 1, limit: 20 })
     }, [])
@@ -26,25 +25,25 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
 
     return (
         <>
+            <Head>
+                <title>{metaTags.title}</title>
+                <meta name="description" content={metaTags.description} key="desc" />
+
+                {/* Twitter Meta Tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={metaTags.title} />
+                <meta name="twitter:description" content={metaTags.description} />
+                <meta name="twitter:image" content={metaTags.image} />
+
+                {/* Open Graph Meta Tags */}
+                <meta property="og:locale" content="en_US" />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="E-hack" />
+                <meta property="og:title" content={metaTags.title} />
+                <meta property="og:description" content={metaTags.description} />
+                <meta property="og:image" content={metaTags.image} />
+            </Head>
             <Container>
-                <Head>
-                    <title>{metaTags.title}</title>
-                    <meta name="description" content={metaTags.description} key="desc" />
-
-                    {/* Twitter Meta Tags */}
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:title" content={metaTags.title} />
-                    <meta name="twitter:description" content={metaTags.description} />
-                    <meta name="twitter:image" content={metaTags.image} />
-
-                    {/* Open Graph Meta Tags */}
-                    <meta property="og:locale" content="en_US" />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:site_name" content="E-hack" />
-                    <meta property="og:title" content={metaTags.title} />
-                    <meta property="og:description" content={metaTags.description} />
-                    <meta property="og:image" content={metaTags.image} />
-                </Head>
                 <Stack my={stylePageSection} alignItems='center' justifyContent='center'>
                     <Stack width={1} maxWidth={{ md: 800 }} >
                         {/* == Heading == */}
@@ -60,8 +59,8 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                             </Stack>
                         </Stack>
 
-                        <Box height={{ xs: 1, md: 600 }} width={1} className='section-padding'>
-                            <Image src={data?.profileURL} alt='blog detail' quality={100} width={1400} height={1400} style={{ objectFit: 'cover' }} />
+                        <Box height={1} width={1} className='section-padding'>
+                            <Image src={data?.profileURL} alt='blog detail' width={1400} height={1400} style={{ objectFit: 'contain' }} quality={100} />
                         </Box>
 
 
@@ -99,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const blogDetail: any = await response.json();
     const metaTags = {
         title: blogDetail?.data?.title,
-        description: blogDetail?.data.title, // You might want to update this with the actual description
+        description: blogDetail?.data?.title, // You might want to update this with the actual description
         image: blogDetail?.data?.profileURL,
     };
 
