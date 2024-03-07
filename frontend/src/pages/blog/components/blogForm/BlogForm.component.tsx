@@ -9,16 +9,19 @@ import { LoadingButton } from '@mui/lab'
 import ImageUpload from '@/components/_ui/imageUpload/ImageUpload.component'
 import TextEditor from '@/components/textEditor/TextEditor.component'
 import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
-import { useCreateBlogPostMutation } from '@/redux/api/blogPost.api'
+import { useCreateBlogPostMutation, useUpdateBlogPostMutation } from '@/redux/api/blogPost.api'
 import { useReduxSelector } from '@/hooks/redux.hook'
 import { useUploadFileMutation } from '@/redux/api/uploadFile.api'
+import { useRouter } from 'next/router'
 
 
 
 export default function BlogForm(props: BlogFormProps) {
-  const { mode, data } = props
+  const { mode, data: defaultData } = props
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [getAllCategories, { data: categories, isError, isLoading }] = useLazyGetAllCategoriesQuery()
+  const [updateBlogPost] = useUpdateBlogPostMutation()
   const { profile } = useReduxSelector(state => state.user)
   const [createBlogPost] = useCreateBlogPostMutation()
   const [uploadFile] = useUploadFileMutation()
@@ -26,10 +29,10 @@ export default function BlogForm(props: BlogFormProps) {
   const { control, handleSubmit, setValue, watch, reset, trigger, formState: { errors } } = useForm<FormSchemaType>({
     resolver: yupResolver(formSchema),
     defaultValues: {
-      title: '',
-      content: '',
-      image: undefined,
-      category: [],
+      title: defaultData?.title || '',
+      content: defaultData?.content || '',
+      image: defaultData?.profileURL || undefined,
+      category: defaultData?.categories || [],
     }
   })
 
@@ -43,26 +46,31 @@ export default function BlogForm(props: BlogFormProps) {
     try {
       setLoading(true)
       const formData = new FormData()
-      formData.append('image', data.image)
-      await uploadFile(formData as any).unwrap()
-        .then((res: any) => {
-          if (!!res?.imageUrl) {
-            const FormData = {
-              _id: profile._id,
-              title: data.title,
-              content: data.content,
-              categories: data.category || [],
-              userId: profile._id,
-              profileURL: res.imageUrl
-            }
-            createBlogPost(FormData).unwrap()
-          }
-        })
-        .catch((err: any) => {
-          console.log(err)
-        }).finally(() => {
-          setLoading(false)
-        })
+
+      const finalData = {
+        title: data.title,
+        content: data.content,
+        categories: data.category || [],
+        userId: profile._id,
+        profileURL: typeof data.image === 'object' ? '' : data.image
+      }
+
+      if (typeof data.image === 'object') {
+        formData.append('image', data.image)
+        let res = await uploadFile(formData as any).unwrap()
+        console.log(res.imageUrl)
+        finalData.profileURL = res.imageUrl
+      }
+
+      if (mode === 'add') {
+        createBlogPost(finalData).unwrap()
+        setLoading(false)
+      }
+      else {
+        updateBlogPost({ id: defaultData?._id as string, ...finalData })
+        setLoading(false)
+        router.push(`/blog`)
+      }
     }
     catch (error) { console.error(error) }
     reset()
@@ -76,7 +84,7 @@ export default function BlogForm(props: BlogFormProps) {
           {/* === Thumbnail Upload === */}
           <Grid item xs={12}>
             <ImageUpload
-              defaultImage={watch('image') || data?.image}
+              defaultImage={watch('image') || defaultData?.image}
               helperText={errors.image?.message}
               onChange={(file) => {
                 setValue('image', file)

@@ -72,9 +72,9 @@ video {
   max-width: 100%;
 }
 
-/* .blog-description {
+.blog-description {
   word-break: break-all;
-} */
+}
 
 .blog-description pre {
   background-color: black;
@@ -121,6 +121,7 @@ video {
 
 
 
+/* ========flex classes============ */
 .center {
   display: flex;
   justify-content: center;
@@ -167,7 +168,7 @@ video {
 }
 
 
-/* === heading section === */
+/* === heading section  === */
 .heading-padding {
   padding-top: var(--heading-spacing);
   padding-bottom: var(--heading-spacing);
@@ -214,9 +215,7 @@ video {
 /* === blur css===*/
 .blurred-content {
   backdrop-filter: blur(3px);
-  /* Adjust the blur intensity as needed */
   background-color: rgba(0, 0, 0, 0.3);
-  /* Adjust the background color and transparency as needed */
   border-radius: 0px 0px 20px 20px;
 }
 

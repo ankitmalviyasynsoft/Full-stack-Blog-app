@@ -1,6 +1,6 @@
 import { Container, Stack } from '@mui/material'
 import { Page } from '@/types/Page.type'
-import CategoryForm from '../components/CategoryForm.component'
+import CategoryForm from '../components/categoryForm/CategoryForm.component'
 import PageHeader from '@/components/_ui/pageHeader/PageHeader.components'
 
 

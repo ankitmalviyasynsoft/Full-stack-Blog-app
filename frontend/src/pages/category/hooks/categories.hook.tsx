@@ -1,4 +1,4 @@
-import TableActions from '@/components/tableAction/TableActions.component'
+import TableActions from '@/pages/category/components/tableAction/TableActions.component'
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
 import moment from 'moment'

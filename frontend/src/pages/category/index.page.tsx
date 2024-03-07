@@ -13,7 +13,7 @@ const Categories: Page = () => {
   const router = useRouter()
   const { columns } = useColumns()
   const paginationModel = { page: Number(router.query.page || 1) - 1, pageSize: 5 }
-  const [getAllCategories, { data, isSuccess, isError, isFetching, isUninitialized }] = useLazyGetAllCategoriesQuery()
+  const [getAllCategories, { data, isFetching, isUninitialized }] = useLazyGetAllCategoriesQuery()
 
   console.log(data)
 
@@ -24,11 +24,6 @@ const Categories: Page = () => {
   useEffect(() => {
     getAllCategories({ page: (paginationModel.page + 1), perPage: paginationModel.pageSize })
   }, [paginationModel.page])
-
-
-  const handleDblClick = (row: any) => {
-    router.push(`/`)
-  }
 
 
   return (

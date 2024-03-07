@@ -5,7 +5,7 @@ import { api } from './api.config'
 
 export const extendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    createBlogPost: builder.mutation<BlogPostDTO, BlogPostDTO>({
+    createBlogPost: builder.mutation<BlogPostDTO, any>({
       query: (data) => ({
         url: '/post/create',
         method: 'POST',
@@ -17,6 +17,7 @@ export const extendedApi = api.injectEndpoints({
     getAllBlogsData: builder.query<ApiBlogPostResponseDTO, { page: number, perPage: number }>({
       query: (data) => `/post/getAllPost?page=${data.page}&perPage=${data.perPage}`,
       transformResponse: (res: any) => res,
+      providesTags: ['postblog']
     }),
 
     getRecentPostData: builder.query<any, any>({
@@ -29,15 +30,34 @@ export const extendedApi = api.injectEndpoints({
       transformResponse: (res: any) => res,
     }),
 
-    getBlogDataById: builder.query<ApiBlogPostResponseDTO, { id?: string }>({
+    getBlogDataById: builder.query<any, { id: string }>({
       query: (data) => `/post/getPostById/${data.id}`,
-      transformResponse: (res: any) => res,
+      transformResponse: (res: any) => res.data,
     }),
 
     getSimilarPostsByCategoryTitle: builder.query<any, { categoryTitles?: String[], page: number, limit: number }>({
       query: (data) => `/post/getSimilarPostsByCategoryTitle?categoryTitles=${data.categoryTitles}&page=${data.page}&limit=${data.limit}`,
       transformResponse: (res: any) => res,
     }),
+
+    deletePostById: builder.mutation<any, { id: number }>({
+      query: (data) => ({
+        url: `/post/deletePostById/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['postblog']
+    }),
+
+    updateBlogPost: builder.mutation<any, { id: string, title: string, content: string, profileURL: string, categories: any }>({
+      query: (data) => ({
+        url: `/post/update/${data.id}`,
+        method: 'PUT',
+        body: data
+
+      }),
+      invalidatesTags: ['postblog']
+    }),
+
 
   })
 })
@@ -49,6 +69,8 @@ export const {
   useLazyGetRecentPostDataQuery,
   useLazySearchByTitleAndContentQuery,
   useLazyGetSimilarPostsByCategoryTitleQuery,
-  useGetBlogDataByIdQuery,
+  useLazyGetBlogDataByIdQuery,
+  useDeletePostByIdMutation,
+  useUpdateBlogPostMutation,
 } = extendedApi
 

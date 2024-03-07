@@ -26,11 +26,11 @@ let theme = createTheme({
     mode: 'light',
     divider: 'rgba(0, 0, 0, 0.1)',
     text: { primary: '#101828', secondary: '#344054', disabled: '#667085' },
-    primary: { main: '#208B3A' },
+    primary: { main: '#208B3A', contrastText: '#fff' },
     secondary: { main: '#2f662d' },
     // error: { main: '#EA4335', light: '#F65548' },
     // background: { default: '#111', paper: '#000', light: '#282828' },
-    // white: { main: '#fff', light: alpha('#fff', 0.5), dark: alpha('#fff', 0.8), contrastText: '#222' },
+    white: { main: '#fff', light: alpha('#fff', 0.5), dark: alpha('#fff', 0.8), contrastText: '#222' },
   },
   shape: {
     borderRadius: 8

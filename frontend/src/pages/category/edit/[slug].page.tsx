@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { CircularProgress, Container, Stack } from '@mui/material'
 import { useLazyGetCategoryByIdQuery } from '@/redux/api/category.api'
-import CategoryForm from '../components/CategoryForm.component'
+import CategoryForm from '../components/categoryForm/CategoryForm.component'
 import PageHeader from '@/components/_ui/pageHeader/PageHeader.components'
 
 
