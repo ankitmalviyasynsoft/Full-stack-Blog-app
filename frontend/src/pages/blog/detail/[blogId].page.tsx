@@ -88,7 +88,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
 
                             <Stack direction={{ md: 'row' }} alignItems='center' justifyContent='space-between' gap={2}>
                                 <Stack direction='row' gap={2}>
-                                    {data?.categories?.map((item: CategoryDTO) => <Chip key={item.title} label={item.title} size="medium" variant="outlined" color='info' />)}
+                                    {data?.categories?.map((item: CategoryDTO, index: number) => <Chip key={index} label={item.title} size="medium" variant="outlined" color='info' />)}
                                 </Stack>
                                 <Typography variant='body3'>Published {moment(data?.createdAt).format('DD MMM YYYY')}</Typography>
                             </Stack>
@@ -105,7 +105,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                                 <MenuItem onClick={handleShareClose}>
                                     <Stack gap={2}>
                                         {shareSocialMedia.map((item, index) => (
-                                            <MenuItem>
+                                            <MenuItem key={index}>
                                                 <Stack component={Link} key={index} target='_blank' href={item.link + data._id} direction='row' alignItems='center' justifyContent='center' gap={2}>
                                                     <Typography alignSelf='start'>{item.icon}</Typography>
                                                     <Typography variant='body1'>{item.title}</Typography>
