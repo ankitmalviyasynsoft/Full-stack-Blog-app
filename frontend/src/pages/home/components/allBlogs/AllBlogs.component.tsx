@@ -18,7 +18,7 @@ export default function AllBlogs(props: AllBlogProps) {
   const [postsData, setPostsData] = useState<any>(initialData.posts);
 
   // Fetch initial data using RTK Query on the client
-  const [getAllBlogsData, { isFetching, isError, isLoading, isSuccess, }] = useLazyGetAllBlogsDataQuery();
+  const [getAllBlogsData, { isFetching, isError, isLoading, isSuccess }] = useLazyGetAllBlogsDataQuery();
 
 
   const onLoadMore = async () => {
@@ -58,11 +58,16 @@ export default function AllBlogs(props: AllBlogProps) {
         }
 
 
-        {isLoading &&
+        {isLoading || isFetching &&
           <Grid item xs={12}>
-            <Loader minHeight={300} />
+            <Stack justifyContent='center' alignItems='center'>
+
+              <Loader minHeight={100} />
+            </Stack>
           </Grid>
         }
+
+
         {
           isError &&
           <Grid item xs={12}>

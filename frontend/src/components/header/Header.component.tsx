@@ -39,8 +39,8 @@ export default function Header() {
     <Container>
       <Stack direction="row" justifyContent="space-between" alignItems="center" py={2} height={80} gap={1}>
         <Stack flex={1}>
-          <Box width={100} onClick={() => router.push("/")} className="cursor-pointer">
-            <Image src={config.logo} alt="Logo" height={80} width={80} />
+          <Box width={130} onClick={() => router.push("/")} className="cursor-pointer">
+            <Image src={config.logo} alt="Logo" height={100} width={100} />
           </Box>
         </Stack>
 

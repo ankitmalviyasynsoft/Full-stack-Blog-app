@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Chip, CircularProgress, Grid, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Chip, CircularProgress, Grid, Skeleton, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 import { useGetBannerIsTrueQuery } from '@/redux/api/banners.api';
 import AlertBox from '../alerts/AlertBox.components';
@@ -16,7 +16,7 @@ export default function HeroSection() {
   const isSmallScreenUp = useMediaQuery(theme.breakpoints.up('md'))
 
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Skeleton sx={{ height: { xs: 200, sm: 350, md: 500 } }} variant="rectangular" />;
 
   if (isError) return <AlertBox variant='error'>Something went wrong</AlertBox>;
 

@@ -1,4 +1,4 @@
-import logoImage from '@/../public/images/logo-svg/logo-no-background.svg'
+import logoImage from '@/../public/images/logo-svg/headerLogo.svg'
 import Image from 'next/image'
 
 

@@ -8,12 +8,13 @@ const nextConfig = {
   basePath: config.basePath,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.ts', 'api.js'],
   images: {
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     remotePatterns: [
       {
         hostname: 'res.cloudinary.com',
       },
     ],
+    // domains: ['unsplash.com', 'images.unsplash.com', 'res.cloudinary.com', 'images.pexels.com'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1366, 1480, 1920, 2048, 3840],
   },
   async redirects() {
     return [

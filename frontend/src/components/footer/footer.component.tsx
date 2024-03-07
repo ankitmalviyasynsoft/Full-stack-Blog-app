@@ -16,8 +16,8 @@ export default function Footer(props: PageFooterProps) {
         <Stack direction={{ xs: 'column', sm: 'row' }} py={2} gap={6} flexWrap='wrap' justifyContent='space-between' alignItems={{ xs: 'start', md: 'center' }}>
 
           <Stack maxWidth={{ xs: 1, md: 300 }}>
-            <Box height={100} width={150} onClick={() => router.push('/')}>
-              <Image src='/images/logo-svg/logo-no-background.svg' alt='footer image' width={100} height={100} />
+            <Box height={180} width={250} onClick={() => router.push('/')}>
+              <Image src='/images/logo-svg/logoFooter.svg' alt='footer image' width={100} height={100} />
             </Box>
 
             <Typography variant='body2' fontWeight={400}>E-Hack: Your Cybersecurity Learning Hub. Read, Learn, Hack, Repeat.</Typography>
