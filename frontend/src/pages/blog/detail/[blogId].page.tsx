@@ -94,7 +94,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                             </Stack>
                         </Stack>
 
-                        {/* <Stack alignItems='end' justifyContent='center' >
+                        <Stack alignItems='end' justifyContent='center' >
                             <Box bgcolor='primary.dark' borderRadius='100%'>
                                 <IconButton onClick={handleShare}><FaShare size='1.6rem' color='white' /></IconButton>
                             </Box>
@@ -115,7 +115,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                                     </Stack>
                                 </MenuItem>
                             </Menu>
-                        </Stack> */}
+                        </Stack>
 
                         <Box height={1} width={1} >
                             <Image src={data?.profileURL} alt='blog detail' width={1400} height={1400} style={{ objectFit: 'contain' }} quality={100} />
@@ -181,22 +181,21 @@ let shareSocialMedia = [
         icon: <RiTwitterXLine color='#1DA1F2' size='1.5rem' />,
         title: 'Share on twitter',
         link: `https://twitter.com/intent/tweet?url=${config.domainUrl}/blog/detail/`
-
     },
     {
         icon: <FaInstagram color='#ee2a7b' size='1.5rem' />,
         title: 'Share on instagram',
-        link: ''
+        link: `https://twitter.com/intent/tweet?url=${config.domainUrl}/blog/detail/`
     },
     {
         icon: <FaLinkedinIn color='#0077b5' size='1.5rem' />,
         title: 'Share on linkedin',
-        link: ''
+        link: `https://platform.linkedin.com/data/share?mini=true&url=${config.domainUrl}/blog/detail/`
     },
     {
         icon: <FaFacebook color='#316FF6' size='1.5rem' />,
         title: 'Share on facebook',
-        link: ''
+        link: `https://www.facebook.com/sharer/sharer.php?u=${config.domainUrl}/blog/detail/`
     },
     {
         icon: <MdWhatsapp color='#25d366' size='1.5rem' />,
