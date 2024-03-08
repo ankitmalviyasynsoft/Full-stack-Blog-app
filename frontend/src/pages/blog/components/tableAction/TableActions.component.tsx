@@ -52,15 +52,6 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
           <ListItemText sx={style.menuText} disableTypography>Remove</ListItemText>
         </MenuItem>
       </Menu>
-
-
-      {/* === Delete Popup === */}
-      {/* <CancelInvestmentPopup
-        open={showCancelInvestmentPoup}
-        setOpen={setShowCancelInvestmentPoup}
-        data={data}
-      /> */}
-
     </Stack>
   )
 }

@@ -35,18 +35,18 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
 
 
     const handleShare = (event: React.MouseEvent<HTMLButtonElement>) => {
-        if (isMobileDevice) {
-            navigator.share({
-                title: 'Web Share API Example',
-                text: 'Check out this cool example!',
-                url: 'https://example.com'
-            })
-                .then(() => console.log('Successfully shared'))
-                .catch((error) => console.error('Error sharing:', error));
-        }
-        else {
-            setShareMenuE1(event.currentTarget);
-        }
+        // if (isMobileDevice) {
+        //     navigator.share({
+        //         title: 'Web Share API Example',
+        //         text: 'Check out this cool example!',
+        //         url: 'https://example.com'
+        //     })
+        //         .then(() => console.log('Successfully shared'))
+        //         .catch((error) => console.error('Error sharing:', error));
+        // }
+        // else {
+        setShareMenuE1(event.currentTarget);
+        // }
     };
 
 
@@ -94,7 +94,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                             </Stack>
                         </Stack>
 
-                        <Stack alignItems='end' justifyContent='center' >
+                        {/* <Stack alignItems='end' justifyContent='center' >
                             <Box bgcolor='primary.dark' borderRadius='100%'>
                                 <IconButton onClick={handleShare}><FaShare size='1.6rem' color='white' /></IconButton>
                             </Box>
@@ -115,7 +115,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                                     </Stack>
                                 </MenuItem>
                             </Menu>
-                        </Stack>
+                        </Stack> */}
 
                         <Box height={1} width={1} >
                             <Image src={data?.profileURL} alt='blog detail' width={1400} height={1400} style={{ objectFit: 'contain' }} quality={100} />

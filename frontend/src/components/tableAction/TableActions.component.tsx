@@ -3,16 +3,15 @@ import { style } from './TableActions.style'
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem, Stack } from '@mui/material'
 import { MdMoreHoriz, MdEdit, MdClose } from 'react-icons/md'
 import Link from 'next/link'
-import { useDeletePostByIdMutation } from '@/redux/api/blogPost.api'
 
 
 
 export default function TableActions({ data, editUrl }: { data: any, editUrl: string }) {
   const [showMenu, setShowMenu] = useState(false)
-
   // const [showCancelInvestmentPoup, setShowCancelInvestmentPoup] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   // const canTradeCancel = (['CREATED', 'FUNDED'] as any).includes(data.orderStatus)
+
 
   const handleOpen = (value: boolean) => (event: React.MouseEvent<HTMLElement>) => {
     setShowMenu(value)

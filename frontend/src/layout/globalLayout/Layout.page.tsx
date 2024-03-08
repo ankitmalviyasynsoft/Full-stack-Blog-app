@@ -21,7 +21,7 @@ export default function Layout(props: LayoutProps) {
   return (
     <>
       <Head>
-        <title>{title ? `${title} | Blog` : 'Blog - App'}</title>
+        <title>{title ? `${title} | EHack Blog` : 'EHack Blog - App'}</title>
       </Head>
 
       {/* Header */}

@@ -7,7 +7,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FormSchemaType, formSchema } from './CategoryForm.config'
 import { useCreateCategoryMutation, useUpdateCategoryMutation } from '@/redux/api/category.api'
 import { useRouter } from 'next/router'
-import { LoadingButton } from '@mui/lab'
 
 
 
@@ -15,8 +14,8 @@ const CategoryForm = (props: CategoryFormProps) => {
   const { mode, data } = props
   const router = useRouter()
 
-  const [createCategory, { isLoading: createLoading }] = useCreateCategoryMutation()
-  const [updateCategory, { isLoading: updateLoading }] = useUpdateCategoryMutation()
+  const [createCategory] = useCreateCategoryMutation()
+  const [updateCategory] = useUpdateCategoryMutation()
   const { control, handleSubmit, setValue, watch, reset, trigger, formState: { errors } } = useForm<FormSchemaType>({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -35,7 +34,6 @@ const CategoryForm = (props: CategoryFormProps) => {
       }
     }
     catch (error) { console.error(error) }
-    reset()
   }
 
 
@@ -58,7 +56,7 @@ const CategoryForm = (props: CategoryFormProps) => {
         </Stack>
 
         <Stack direction='row' justifyContent='end'>
-          <LoadingButton loading={updateLoading || createLoading} variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</LoadingButton>
+          <Button variant='contained' type='submit' sx={{ minWidth: '20%' }}>Save</Button>
         </Stack>
       </Stack>
     </Stack>
