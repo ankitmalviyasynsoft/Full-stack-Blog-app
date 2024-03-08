@@ -1,6 +1,6 @@
 {
   "basePath": "",
-  "apiBaseUrl": "https://e-hack-blogs-uobz.vercel.app/api/v1",
+  "apiBaseUrl": "http://localhost:3011/api/v1",
   "logo": "/images/logo-svg/headerLogo.png",
   "domainUrl": "https://www.ehack.co.in"
 }

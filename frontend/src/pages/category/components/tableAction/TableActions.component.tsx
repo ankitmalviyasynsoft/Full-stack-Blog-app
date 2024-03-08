@@ -4,12 +4,13 @@ import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem, Stack } from '@
 import { MdMoreHoriz, MdEdit, MdClose } from 'react-icons/md'
 import Link from 'next/link'
 import { useDeletePostByIdMutation } from '@/redux/api/blogPost.api'
+import { useDeleteCategoryMutation } from '@/redux/api/category.api'
 
 
 
 export default function TableActions({ data, editUrl }: { data: any, editUrl: string }) {
   const [showMenu, setShowMenu] = useState(false)
-
+  const [deleteCategory] = useDeleteCategoryMutation()
   // const [showCancelInvestmentPoup, setShowCancelInvestmentPoup] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   // const canTradeCancel = (['CREATED', 'FUNDED'] as any).includes(data.orderStatus)
@@ -25,13 +26,13 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
     //   setShowMenu(false)
     //   setShowCancelInvestmentPoup(true)
     // }
-
-    console.log('hello delete', data)
+    console.log('hello delete', data._id)
+    deleteCategory({ id: data._id })
   }
 
 
   return (
-    <Stack className='center' width={1}>
+    <>
 
       {/* === More Button === */}
       <IconButton sx={style.moreButton} onClick={handleOpen(true)}>
@@ -59,6 +60,6 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
         data={data}
       /> */}
 
-    </Stack>
+    </>
   )
 }

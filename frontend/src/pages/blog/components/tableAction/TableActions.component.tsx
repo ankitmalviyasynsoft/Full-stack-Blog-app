@@ -26,15 +26,12 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
     //   setShowMenu(false)
     //   setShowCancelInvestmentPoup(true)
     // }
-
-    console.log('hello delete', data)
     deletePostById({ id: data.id })
   }
 
 
   return (
-    <Stack className='center' width={1}>
-
+    <>
       {/* === More Button === */}
       <IconButton sx={style.moreButton} onClick={handleOpen(true)}>
         <MdMoreHoriz />
@@ -52,6 +49,6 @@ export default function TableActions({ data, editUrl }: { data: any, editUrl: st
           <ListItemText sx={style.menuText} disableTypography>Remove</ListItemText>
         </MenuItem>
       </Menu>
-    </Stack>
+    </>
   )
 }

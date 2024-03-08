@@ -28,12 +28,11 @@ export default function ProfileMenu() {
           menuItems.map((item, index) => (
             item.role?.includes(roles[0]) &&
             (
-              <MenuItem onClick={
-                (event) => {
-                  if (item.name === 'Logout') dispatch(handleLogout());
-                  else router.push(item.link);
-                  handleClose();
-                }
+              <MenuItem onClick={(event) => {
+                handleClose();
+                if (item.name === 'Logout') dispatch(handleLogout());
+                else router.push(item.link);
+              }
               }
                 key={index}>
                 <Stack direction='row' justifyContent='space-between' alignItems='center' p={.5} gap={2}>

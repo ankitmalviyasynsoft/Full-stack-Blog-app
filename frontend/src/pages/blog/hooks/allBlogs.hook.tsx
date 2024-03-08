@@ -22,7 +22,13 @@ export const useColumns = () => {
       )
     },
 
-    { field: 'action', headerName: 'Action', width: 70, sortable: false, renderCell: (params) => <TableActions data={params.row} editUrl={`/blog/edit/${params.row.id}`} /> },
+    {
+      field: 'action', headerName: 'Action', width: 70, sortable: false, renderCell: (params) => (
+        <Stack>
+          <TableActions data={params.row} editUrl={`/blog/edit/${params.row.id}`} />
+        </Stack>
+      )
+    },
   ]
 
 
