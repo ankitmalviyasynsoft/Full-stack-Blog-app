@@ -4,10 +4,12 @@ import { BlogCardProps } from './BlogCard.type'
 import { MdArrowOutward } from "react-icons/md";
 import { useRouter } from 'next/router';
 import { convertHtmlToText } from '@/utils';
+import { styled } from './BlogCard.style'
 import moment from 'moment';
 import Image from 'next/image';
 import ImageNotFound from '../../imageNotFound/ImageNotFound.component';
-
+import Link from 'next/link';
+import ChipCard from '../chip/ChipCard.component';
 
 
 export default function BlogCard(props: BlogCardProps) {
@@ -26,9 +28,10 @@ export default function BlogCard(props: BlogCardProps) {
       <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
 
         <Stack className='cursor-pointer' >
-          <Box height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} onClick={() => router.push(`/blog/detail/${data?._id}`)}>
-            {data?.profileURL ? <Image src={data?.profileURL || ''} alt='post' width={500} height={500} style={{ objectFit: 'cover' }} /> : <ImageNotFound />}
-          </Box>
+          {/* height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} */}
+          <Stack sx={styled.thumbnailBox} height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} onClick={() => router.push(`/blog/detail/${data?._id}`)}>
+            {data?.profileURL ? <Image src={data?.profileURL || ''} alt='post' width={500} height={500} /> : <ImageNotFound />}
+          </Stack>
         </Stack>
 
         <Stack spacing={1}>
@@ -45,7 +48,7 @@ export default function BlogCard(props: BlogCardProps) {
 
           <Stack direction='row' gap={1} flexWrap='wrap'>
             {data?.categories?.length && data?.categories.map((item) =>
-              <Chip key={item._id} label={item.title} size="medium" variant="outlined" color='info' />
+              <ChipCard categoryData={item} key={item._id} />
             )}
           </Stack>
         </Stack>

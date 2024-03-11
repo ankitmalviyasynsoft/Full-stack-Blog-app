@@ -65,6 +65,17 @@ export const getRecentPost = async (req, res) => {
 
 
 // Get a single post by ID
+export const getPostViewCount = async (req, res) => {
+  try {
+    const posts = await Post.find().sort('-postViewCount').exec();
+    res.json(posts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Get a single post by ID
 export const getPostById = async (req, res) => {
   try {
     const postId = req.params.id; // Assuming the post ID is passed as a route parameter
@@ -188,7 +199,7 @@ export const searchPostByTitleAndContent = async (req, res) => {
 // Get Similar Posts By Category Title  Function 
 export const getSimilarPostsByCategoryTitle = async (req, res) => {
   const { categoryTitles } = req.query;
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 6 } = req.query;
 
   try {
     const categoryTitleArray = categoryTitles.split(',');
@@ -234,6 +245,9 @@ export const getSimilarPostsByCategoryTitle = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
+
 
 
 

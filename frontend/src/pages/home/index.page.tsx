@@ -58,5 +58,6 @@ export const getServerSideProps = async () => {
 page.layoutProps = {
   title: 'Home',
   pageTypes: 'public',
-  isProtectedPage: false
+  isProtectedPage: false,
+  footer: false
 }

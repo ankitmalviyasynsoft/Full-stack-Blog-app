@@ -24,7 +24,7 @@ export default function AllBlogs(props: AllBlogProps) {
   const onLoadMore = async () => {
     if (!hasLoad) return
     const nextPage = page + 1;
-    let paylod = { page: nextPage, perPage: 3 }
+    let paylod = { page: nextPage, perPage: 6 }
     const newData = await getAllBlogsData(paylod);
 
     if (newData.data?.posts?.length) {
@@ -62,7 +62,7 @@ export default function AllBlogs(props: AllBlogProps) {
           <Grid item xs={12}>
             <Stack justifyContent='center' alignItems='center'>
 
-              <Loader minHeight={100} />
+              <Loader minHeight={300} />
             </Stack>
           </Grid>
         }

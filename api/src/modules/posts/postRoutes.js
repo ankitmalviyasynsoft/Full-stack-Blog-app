@@ -1,7 +1,7 @@
 import path from 'path';
 import multer from 'multer';
 import express from 'express';
-import { createPost, deletePostById, getAllPosts, getPostById, getRecentPost, getSimilarPostsByCategoryTitle, searchPostByTitleAndContent, updatePost, updateViewCountPost } from '../../controllers/posts/postController.js';
+import { createPost, deletePostById, getAllPosts, getPostById, getPostViewCount, getRecentPost, getSimilarPostsByCategoryTitle, searchPostByTitleAndContent, updatePost, updateViewCountPost } from '../../controllers/posts/postController.js';
 
 
 const router = express.Router();
@@ -29,6 +29,7 @@ router.get('/getPostById/:id', getPostById);
 router.put('/update/:id', updatePost);
 router.delete('/deletePostById/:id', deletePostById);
 router.post('/views/:id', updateViewCountPost);
+router.get('/getViewCount', getPostViewCount);
 router.get('/searchByTitleAndContent', searchPostByTitleAndContent);
 router.get('/getSimilarPostsByCategoryTitle', getSimilarPostsByCategoryTitle);
 

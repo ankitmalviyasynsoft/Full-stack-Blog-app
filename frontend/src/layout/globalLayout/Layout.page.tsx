@@ -29,7 +29,7 @@ export default function Layout(props: LayoutProps) {
 
       {/* Error boundary, if any component give an error, so it will show this component*/}
       <ErrorBoundary>
-        <Box className='animate__animated animate__fadeIn animate__faster' >
+        <Box className='animate__animated animate__fadeIn animate__faster' minHeight={600}>
           {children}
         </Box>
       </ErrorBoundary>
