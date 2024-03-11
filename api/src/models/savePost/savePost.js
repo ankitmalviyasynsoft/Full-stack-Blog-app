@@ -1,16 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
 
 
-
 const savePostSchema = new mongoose.Schema({
-  userId: [{
+  userId: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  }],
-  postId: [{
+  },
+  postId: {
     type: Schema.Types.ObjectId,
-    ref: "SavePost"
-  }],
+    ref: "Post"
+  },
 }, { timestamps: true })
 
 const SavePost = mongoose.model('SavePost', savePostSchema);
