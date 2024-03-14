@@ -2,11 +2,12 @@ import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import InfiniteLoader from '@/components/_ui/infiniteLoader/InfiniteLoader.component';
 import { useReduxDispatch } from '@/hooks/redux.hook';
 import { useLazyGetAllBlogsDataQuery } from '@/redux/api/blogPost.api';
-import { Grid, Stack, Typography } from '@mui/material'
+import { Grid, Skeleton, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { AllBlogProps } from './AllBlogs.type';
 import AlertBox from '@/components/_ui/alerts/AlertBox.components';
 import Loader from '@/components/_ui/Loader/Loader.components';
+import BlogCardSkeleton from '@/components/_ui/card/skeleton/BlogCardSkeleton.component';
 
 
 
@@ -44,7 +45,7 @@ export default function AllBlogs(props: AllBlogProps) {
 
 
         {postsData && postsData.map((item: any, index: number) => (
-          <Grid item xs={12} sm={12} md={4} key={index}>
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} />
           </Grid>
         ))}
@@ -59,12 +60,11 @@ export default function AllBlogs(props: AllBlogProps) {
 
 
         {isLoading || isFetching &&
-          <Grid item xs={12}>
-            <Stack justifyContent='center' alignItems='center'>
-
-              <Loader minHeight={300} />
-            </Stack>
-          </Grid>
+          Array.from({ length: 3 }).map((_, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4}>
+              <BlogCardSkeleton direction='column' />
+            </Grid>
+          ))
         }
 
 
@@ -83,7 +83,7 @@ export default function AllBlogs(props: AllBlogProps) {
         }
 
       </Grid>
-    </Stack>
+    </Stack >
   )
 }
 

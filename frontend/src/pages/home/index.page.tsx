@@ -23,11 +23,7 @@ export default function page(props: IHomeProps) {
         <HeroSection />
         <RecentlyBlogTopThree />
         {
-          allBlogPostResult !== null ?
-            <>
-              <AllBlogs initialData={allBlogPostResult} />
-            </>
-            : <AlertBox variant='error'>Something went wrong</AlertBox>
+          allBlogPostResult !== null ? <AllBlogs initialData={allBlogPostResult} /> : <AlertBox variant='error'>Something went wrong</AlertBox>
         }
       </Stack>
     </Container>
