@@ -48,7 +48,7 @@ export const getAllPosts = async (req, res) => {
 // Get all posts with pagination
 export const getRecentPost = async (req, res) => {
   try {
-    const numberOfRecentPosts = 3; // You can adjust this value based on your needs
+    const numberOfRecentPosts = 6; // You can adjust this value based on your needs
 
     const recentPosts = await Post.find()
       .sort({ createdAt: -1 }) // Sort posts by createdAt date in descending order

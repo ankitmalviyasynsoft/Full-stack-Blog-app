@@ -138,7 +138,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
 
                         {similarPostData && similarPostData.map((item: any, index: number) => (
                             <Grid item xs={12} sm={12} md={4} key={index}>
-                                <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} />
+                                <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} isCategory isContent />
                             </Grid>
                         ))}
                     </Grid>

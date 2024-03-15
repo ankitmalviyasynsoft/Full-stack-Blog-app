@@ -13,7 +13,7 @@ import ChipCard from '../chip/ChipCard.component';
 
 
 export default function BlogCard(props: BlogCardProps) {
-  const { style, data } = props
+  const { style, data, isContent, isCategory } = props
   const router = useRouter()
   const [content, setContent] = useState('')
 
@@ -25,11 +25,11 @@ export default function BlogCard(props: BlogCardProps) {
 
   return (
     <Card>
-      <Stack spacing={1} direction={{ xs: 'column', md: style.direction }}>
+      <Stack spacing={1} direction={{ xs: 'column', sm: style.direction, md: style.direction }}>
 
         <Stack className='cursor-pointer' >
           {/* height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} */}
-          <Stack sx={styled.thumbnailBox} height={{ xs: 248, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} onClick={() => router.push(`/blog/detail/${data?._id}`)}>
+          <Stack sx={styled.thumbnailBox} height={{ xs: 248, sm: style.imageHeight, md: style.imageHeight || 1 }} width={{ xs: 1, md: style.imageWidth || 1 }} onClick={() => router.push(`/blog/detail/${data?._id}`)}>
             {data?.profileURL ? <Image src={data?.profileURL || ''} alt='post' width={500} height={500} /> : <ImageNotFound />}
           </Stack>
         </Stack>
@@ -42,15 +42,17 @@ export default function BlogCard(props: BlogCardProps) {
             <Box fontSize={24}><MdArrowOutward /></Box>
           </Stack>
 
-          <Stack>
-            <Typography variant='body1' className='line-3'>{content}</Typography>
-          </Stack>
+          {
+            isContent && <Stack >
+              <Typography variant='body1' className='line-3'>{content}</Typography>
+            </Stack>
+          }
 
-          <Stack direction='row' gap={1} flexWrap='wrap'>
+          {isCategory && <Stack direction='row' gap={1} flexWrap='wrap'>
             {data?.categories?.length && data?.categories.map((item) =>
               <ChipCard categoryData={item} key={item._id} />
             )}
-          </Stack>
+          </Stack>}
         </Stack>
       </Stack>
     </Card >

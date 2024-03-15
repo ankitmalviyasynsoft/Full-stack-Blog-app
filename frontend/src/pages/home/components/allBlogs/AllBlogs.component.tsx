@@ -39,14 +39,14 @@ export default function AllBlogs(props: AllBlogProps) {
 
 
   return (
-    <Stack className='section-padding-bottom' >
+    <Stack className='section-padding' >
       <Typography variant='h4' className='heading-padding-bottom' fontWeight={600}>All Blogs</Typography>
       <Grid container spacing={4}>
 
 
         {postsData && postsData.map((item: any, index: number) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} />
+            <BlogCard style={{ direction: 'column', imageHeight: 248 }} data={item} isCategory isContent />
           </Grid>
         ))}
 

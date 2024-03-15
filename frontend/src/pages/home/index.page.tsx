@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mui/material'
+import { Container, Stack, Typography } from '@mui/material'
 import { stylePageSection } from '@/utils'
 import { ApiBlogPostResponseDTO } from '@/dtos/BlogPost.dto'
 import config from '@/config/config.json'
@@ -6,6 +6,10 @@ import AllBlogs from './components/allBlogs/AllBlogs.component'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
 import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
+import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
+import { useEffect } from 'react'
+import { CategoryDTO } from '@/dtos/Category.dto'
+import Link from 'next/link'
 
 
 interface IHomeProps {
@@ -15,18 +19,67 @@ interface IHomeProps {
 
 export default function page(props: IHomeProps) {
   const { allBlogPostResult } = props
+  const [getAllCategories, { data, isFetching, isError }] = useLazyGetAllCategoriesQuery()
+
+  useEffect(() => {
+    getAllCategories({ page: 1, perPage: 20 })
+  }, [])
+
+
 
   return (
-    <Container>
+    <>
+      <Container>
+        <Stack my={stylePageSection}>
+          <HeroSection />
+          <RecentlyBlogTopThree />
+        </Stack>
+      </Container>
 
-      <Stack my={stylePageSection}>
-        <HeroSection />
-        <RecentlyBlogTopThree />
-        {
-          allBlogPostResult !== null ? <AllBlogs initialData={allBlogPostResult} /> : <AlertBox variant='error'>Something went wrong</AlertBox>
-        }
-      </Stack>
-    </Container>
+
+      {/* == Category == */}
+      <Stack p={4} bgcolor='secondary.dark'>
+        <Container>
+          <Stack gap={3}>
+            <Typography variant='h4' color='white.main' textAlign='center' >All Top Categories</Typography>
+            <Stack direction='row' gap={3} flexWrap='wrap' justifyContent='center' alignItems='center'>
+              {data?.data && data?.data.map((item: CategoryDTO) => (
+                <Stack
+                  component={Link}
+                  href={`/category/search-blog/${item.title}`}
+                  sx={{
+                    p: 1,
+                    cursor: 'pointer',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 1,
+                    bgcolor: 'transparent',
+                    color: 'white.main',
+                    transition: 'background-color 0.5s ease',
+                    boxShadow: '0px 0px 1px 1px rgba(243, 243, 243, 0.5)',
+                    '&:hover': {
+                      bgcolor: 'white.main',
+                      color: 'text.primary',
+                      boxShadow: '0px 0px 10px 0px rgba(32, 32, 32, 0.5)',
+                    },
+                  }}>
+
+                  <Typography>{item.title}</Typography>
+                </Stack>
+              ))}
+            </Stack>
+          </Stack>
+        </Container>
+      </Stack >
+
+
+      {/* == All Blogs == */}
+      <Container>
+        <Stack my={stylePageSection}>
+          {allBlogPostResult !== null ? <AllBlogs initialData={allBlogPostResult} /> : <AlertBox variant='error'>Something went wrong</AlertBox>}
+        </Stack>
+      </Container >
+    </>
   )
 }
 

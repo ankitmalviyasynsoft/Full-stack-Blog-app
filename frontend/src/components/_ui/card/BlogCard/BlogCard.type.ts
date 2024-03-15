@@ -17,5 +17,7 @@ export type BlogCardProps = {
     title?: string
     createdAt?: string
     categories: CategoryDTO[]
-  }
+  },
+  isContent?: boolean
+  isCategory?: boolean
 }

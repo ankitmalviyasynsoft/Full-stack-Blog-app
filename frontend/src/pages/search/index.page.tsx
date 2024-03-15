@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { Controller, useForm } from 'react-hook-form'
 import Loader from '@/components/_ui/Loader/Loader.components'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
+import BlogCardSkeleton from '@/components/_ui/card/skeleton/BlogCardSkeleton.component'
 
 
 type RowStyleType = {
@@ -68,13 +69,19 @@ const Search: Page = () => {
         <Stack spacing={4}>
           {searchData && searchData.map((item: any, index: number) => (
             <Stack key={index}>
-              <BlogCard style={rowStyle} data={item} />
+              <BlogCard style={rowStyle} data={item} isCategory isContent />
             </Stack>
           ))}
         </Stack>
 
 
-        {isLoading || isFetching && <Loader />}
+        {isLoading || isFetching &&
+          <Stack gap={1}>
+            <BlogCardSkeleton direction='row' />
+            <BlogCardSkeleton direction='row' />
+            <BlogCardSkeleton direction='row' />
+          </Stack>
+        }
         {isError && <AlertBox variant='error'>Error loading data</AlertBox>}
         {router.isReady && !searchData?.length && !isLoading && !isFetching && <AlertBox variant='info'>Not Found</AlertBox>}
 
