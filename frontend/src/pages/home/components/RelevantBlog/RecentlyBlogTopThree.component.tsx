@@ -33,7 +33,7 @@ export default function RecentlyBlogTopThree() {
 
         {/* == Latest posts == */}
         <Grid item xs={12} sm={12} md={6} lg={8}>
-          <Typography variant='h3' mb={3}>Latest posts</Typography>
+          <Typography variant='h2' className='heading-padding-bottom'>Latest posts</Typography>
 
           {/* == Data Fetching == */}
           <Grid container spacing={4}>
@@ -67,7 +67,7 @@ export default function RecentlyBlogTopThree() {
 
         {/* == Most popular posts == */}
         <Grid item xs={12} sm={12} md={6} lg={4}>
-          <Typography variant='h3' mb={3}>Most popular posts</Typography>
+          <Typography variant='h2' className='heading-padding-bottom'>Most popular posts</Typography>
           <Stack gap={3} >
             {viewsCountDataIsSuccess && viewsCountData?.length &&
               viewsCountData.map((item: BlogPostDTO, index: number) =>

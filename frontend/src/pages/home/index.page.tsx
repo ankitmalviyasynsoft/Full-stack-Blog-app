@@ -41,7 +41,7 @@ export default function Page(props: IHomeProps) {
       <Stack p={4} bgcolor='secondary.dark'>
         <Container>
           <Stack gap={3}>
-            <Typography variant='h4' color='white.main' textAlign='center' >All Top Categories</Typography>
+            <Typography variant='h2' color='white.main' textAlign='center' className='heading-padding-bottom'>All Top Categories</Typography>
             <Stack direction='row' gap={3} flexWrap='wrap' justifyContent='center' alignItems='center'>
               {data?.data && data?.data.map((item: CategoryDTO, index: number) => (
                 <Stack

@@ -82,7 +82,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                 <meta property='og:url' content={`${config.domainUrl}/blog/detail/${metaTags.id}`} />
             </Head>
 
-            <Container>
+            <Container className=''>
                 <Stack my={stylePageSection} alignItems='center' justifyContent='center'>
                     <Stack width={1} maxWidth={{ md: 800 }} gap={3}>
                         {/* == Heading == */}
@@ -134,7 +134,7 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
                 <Divider sx={{ my: 4 }} />
 
                 <Stack alignItems='center' justifyContent='center'>
-                    <Typography variant='h4' className='heading-padding-bottom' alignSelf='start' fontWeight={600}>You might also like </Typography>
+                    <Typography variant='h2' className='heading-padding-bottom' alignSelf='start'>You might also like </Typography>
                     <Grid container spacing={4}>
 
                         {similarPostData && similarPostData.map((item: any, index: number) => (

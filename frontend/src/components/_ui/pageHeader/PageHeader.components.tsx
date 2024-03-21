@@ -9,7 +9,7 @@ export default function PageHeader(props: PageHeaderProps) {
 
   return (
     <Stack flexDirection='row' justifyContent='space-between' mb={5} alignItems='center'>
-      <Typography variant='h3'>{heading}</Typography>
+      <Typography variant='h2'>{heading}</Typography>
       {
         isButton &&
         <Box>

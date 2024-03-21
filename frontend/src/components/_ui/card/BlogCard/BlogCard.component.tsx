@@ -37,14 +37,16 @@ export default function BlogCard(props: BlogCardProps) {
         <Stack spacing={1}>
           <Typography variant='body3' fontWeight={600}>• {moment(data?.createdAt).format('DD MMM YYYY')}</Typography>
 
-          <Stack direction='row' justifyContent='space-between' className='cursor-pointer' onClick={() => router.push(`/blog/detail/${data?._id}`)}>
-            <Typography variant='h6' fontWeight={600} className='line-1'>{data?.title}</Typography>
-            <Box fontSize={24}><MdArrowOutward /></Box>
+          <Stack width={1} direction='row' justifyContent='space-between' className='cursor-pointer' onClick={() => router.push(`/blog/detail/${data?._id}`)}>
+            <Typography variant='h3' className='line-1'>{data?.title}</Typography>
+            <Stack>
+              <MdArrowOutward size='1rem' />
+            </Stack>
           </Stack>
 
           {
             isContent && <Stack >
-              <Typography variant='body1' className='line-3'>{content}</Typography>
+              <Typography variant='body1' className='line-2'>{content}</Typography>
             </Stack>
           }
 

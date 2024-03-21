@@ -40,7 +40,7 @@ export default function AllBlogs(props: AllBlogProps) {
 
   return (
     <Stack className='section-padding' >
-      <Typography variant='h4' className='heading-padding-bottom' fontWeight={600}>All Blogs</Typography>
+      <Typography variant='h2' className='heading-padding-bottom'>All Blogs</Typography>
       <Grid container spacing={4}>
 
 

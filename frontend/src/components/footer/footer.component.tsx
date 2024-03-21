@@ -24,7 +24,7 @@ export default function Footer(props: PageFooterProps) {
           </Stack>
 
           <Stack gap={2}>
-            <Typography variant='h4'>Follow Us</Typography>
+            <Typography variant='h2'>Follow Us</Typography>
             <Stack direction='row' spacing={4} fontSize={24}>
               <FaInstagram />
               <FaFacebook />

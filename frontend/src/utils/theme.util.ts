@@ -8,9 +8,9 @@ import type { } from '@mui/x-data-grid/themeAugmentation'
 let theme = createTheme({
   typography: {
     fontFamily: 'var(--font-family)',
-    h1: { fontSize: '3rem' },
-    h2: { fontSize: '2.25rem' },
-    h3: { fontSize: '2rem' },
+    h1: { fontSize: '2rem', fontWeight: 700 },
+    h2: { fontSize: '1.5rem', fontWeight: 700 },
+    h3: { fontSize: '1rem', fontWeight: 700 },
     h4: { fontSize: '1.75rem' },
     h5: { fontSize: '1.50rem', fontWeight: 400 },
     h6: { fontSize: '1.38rem' },

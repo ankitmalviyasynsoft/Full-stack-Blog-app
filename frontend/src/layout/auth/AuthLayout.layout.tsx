@@ -19,7 +19,7 @@ export default function AuthLayout({ children, sideImage = '', heading = '', sub
 
             {/* Page Heading */}
             <Stack gap={1}>
-              <Typography variant='h3' textAlign={isHeadingCenter ? 'center' : 'left'}>{heading}</Typography>
+              <Typography variant='h2' textAlign={isHeadingCenter ? 'center' : 'left'}>{heading}</Typography>
               <Typography variant='body2' textAlign={isHeadingCenter ? 'center' : 'left'}>{subTitle}</Typography>
             </Stack>
 
