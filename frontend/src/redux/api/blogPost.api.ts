@@ -40,6 +40,11 @@ export const extendedApi = api.injectEndpoints({
       transformResponse: (res: any) => res,
     }),
 
+    getViewsCount: builder.query<any, any>({
+      query: () => `/post/getViewCount`,
+      transformResponse: (res: any) => res,
+    }),
+
     deletePostById: builder.mutation<any, { id: number }>({
       query: (data) => ({
         url: `/post/deletePostById/${data.id}`,
@@ -58,6 +63,15 @@ export const extendedApi = api.injectEndpoints({
       invalidatesTags: ['postblog']
     }),
 
+    updateBlogPostViewCount: builder.mutation<any, { id: string }>({
+      query: (data) => ({
+        url: `/post/views/${data.id}`,
+        method: 'POST',
+        headers: {
+          hideToast: 'true'
+        }
+      }),
+    }),
 
   })
 })
@@ -72,5 +86,7 @@ export const {
   useLazyGetBlogDataByIdQuery,
   useDeletePostByIdMutation,
   useUpdateBlogPostMutation,
+  useUpdateBlogPostViewCountMutation,
+  useLazyGetViewsCountQuery,
 } = extendedApi
 

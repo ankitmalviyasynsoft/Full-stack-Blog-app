@@ -21,6 +21,7 @@ export const rtkQueryLogger: Middleware = (api: MiddlewareAPI) => (next) => (act
 
   if (isFulfilled(action)) {
     const method = action.meta.baseQueryMeta.request.method
+    console.log(action.meta.baseQueryMeta.request.headers.get('hideToast') === 'true')
     const hideToast = action.meta.baseQueryMeta.request.headers.get('hideToast') === 'true'
     if (!hideToast && (method === 'POST' || method === 'PUT') && action.payload?.message) {
       toast.success(<div dangerouslySetInnerHTML={{ __html: action.payload.message }} />)

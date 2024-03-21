@@ -2,7 +2,7 @@ import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import { Container, Grid, Stack, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
-import { useLazyGetRecentPostDataQuery } from '@/redux/api/blogPost.api'
+import { useLazyGetRecentPostDataQuery, useLazyGetViewsCountQuery } from '@/redux/api/blogPost.api'
 import BlogCardSkeleton from '@/components/_ui/card/skeleton/BlogCardSkeleton.component'
 import { BlogPostDTO } from '@/dtos/BlogPost.dto'
 
@@ -18,9 +18,12 @@ type RowStyleType = {
 export default function RecentlyBlogTopThree() {
   let rowStyle: RowStyleType = { direction: 'row', imageHeight: 200, imageWidth: 200 }
   const [getRecentPostData, { data, isLoading, isFetching, isSuccess, isError }] = useLazyGetRecentPostDataQuery()
+  const [getViewsCount, { data: viewsCountData, isLoading: viewsCountIsLoading,
+    isFetching: viewsCountIsFetching, isError: viewsCountIsError, isSuccess: viewsCountDataIsSuccess }] = useLazyGetViewsCountQuery()
 
   useEffect(() => {
     getRecentPostData('')
+    getViewsCount('')
   }, [])
 
 
@@ -50,6 +53,14 @@ export default function RecentlyBlogTopThree() {
               )}
 
             {isError && <Grid item xs={12}><AlertBox variant='info'>Something Went Wrong</AlertBox></Grid>}
+
+
+            {/* == No Record Found == */}
+            {
+              !isLoading && !isFetching && !data?.length && <Grid item xs={12}>
+                <AlertBox variant='info'>No Record Found</AlertBox>
+              </Grid>
+            }
           </Grid>
         </Grid>
 
@@ -58,32 +69,36 @@ export default function RecentlyBlogTopThree() {
         <Grid item xs={12} sm={12} md={6} lg={4}>
           <Typography variant='h3' mb={3}>Most popular posts</Typography>
           <Stack gap={3} >
-            {isSuccess && data?.length &&
-              data.map((item: BlogPostDTO, index: number) =>
+            {viewsCountDataIsSuccess && viewsCountData?.length &&
+              viewsCountData.map((item: BlogPostDTO, index: number) =>
                 <BlogCard key={index} style={{ direction: 'row', imageHeight: 100 }} data={item} />
               )}
 
-            {isLoading && isFetching && <Stack gap={3}>
+            {viewsCountIsLoading && viewsCountIsFetching && <Stack gap={3}>
               <BlogCardSkeleton direction='row' />
               <BlogCardSkeleton direction='row' />
               <BlogCardSkeleton direction='row' />
             </Stack>
             }
 
-            {isError && <Grid item xs={12}>
+            {viewsCountIsError && <Grid item xs={12}>
               <AlertBox variant='info'>Something Went Wrong</AlertBox>
             </Grid>
             }
+
+
+            {/* == No Record Found == */}
+            {
+              !viewsCountIsLoading && !viewsCountIsFetching && !viewsCountData?.length && <Grid item xs={12}>
+                <AlertBox variant='info'>No Record Found</AlertBox>
+              </Grid>
+            }
           </Stack>
+
         </Grid>
 
 
-        {/* == No Record Found == */}
-        {
-          !isLoading && !isFetching && !data?.length && <Grid item xs={12}>
-            <AlertBox variant='info'>No Record Found</AlertBox>
-          </Grid>
-        }
+
 
 
       </Grid>

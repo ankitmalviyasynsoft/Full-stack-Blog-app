@@ -4,12 +4,12 @@ import { stylePageSection, theme } from '@/utils'
 import { GetServerSideProps } from 'next'
 import { style } from './blogDetail.style'
 import { CategoryDTO } from '@/dtos/Category.dto'
-import { useLazyGetSimilarPostsByCategoryTitleQuery } from '@/redux/api/blogPost.api'
+import { useLazyGetSimilarPostsByCategoryTitleQuery, useUpdateBlogPostViewCountMutation } from '@/redux/api/blogPost.api'
 import { RiTwitterXLine } from "react-icons/ri";
 import { MdWhatsapp } from "react-icons/md";
 import { BsThreadsFill } from "react-icons/bs";
 import { FaFacebook, FaLinkedinIn, FaInstagram, FaTelegram, FaShare } from "react-icons/fa";
-import { Box, Button, Chip, Container, Divider, Grid, IconButton, Menu, MenuItem, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import { Box, Container, Divider, Grid, IconButton, Menu, MenuItem, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import moment from 'moment'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -17,22 +17,25 @@ import config from '@/config/config.json'
 import BlogCard from '@/components/_ui/card/BlogCard/BlogCard.component'
 import Link from 'next/link'
 import ChipCard from '@/components/_ui/card/chip/ChipCard.component'
+import { useRouter } from 'next/router'
 
 
 
 const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
     const { data } = blogDetail
+    const router = useRouter()
     const isMobileDevice = useMediaQuery(((theme: Theme) => theme.breakpoints.down('sm')))
 
     const [shareMenuE1, setShareMenuE1] = React.useState<null | HTMLElement>(null);
     const open = Boolean(shareMenuE1);
 
     let [getSimilarPostsByCategoryTitle, { data: similarPostData }] = useLazyGetSimilarPostsByCategoryTitleQuery()
+    let [updateBlogPostViewCount] = useUpdateBlogPostViewCountMutation()
 
     useEffect(() => {
-        console.log(data?.categories?.map((item: CategoryDTO) => { return item.title }))
         let categoryTitles = data?.categories?.map((item: CategoryDTO) => item.title)
         getSimilarPostsByCategoryTitle({ categoryTitles, page: 1, limit: 6 })
+        updateBlogPostViewCount({ id: router.query.blogId as string })
     }, [])
 
 
@@ -55,8 +58,6 @@ const BlogDetail: Page = ({ blogDetail, metaTags }: any) => {
     const handleShareClose = () => {
         setShareMenuE1(null);
     };
-
-
 
 
     return (

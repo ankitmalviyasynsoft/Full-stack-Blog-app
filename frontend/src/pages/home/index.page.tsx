@@ -1,14 +1,14 @@
-import { Container, Stack, Typography } from '@mui/material'
+import { useEffect } from 'react'
 import { stylePageSection } from '@/utils'
+import { CategoryDTO } from '@/dtos/Category.dto'
+import { Container, Stack, Typography } from '@mui/material'
 import { ApiBlogPostResponseDTO } from '@/dtos/BlogPost.dto'
+import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
 import config from '@/config/config.json'
 import AllBlogs from './components/allBlogs/AllBlogs.component'
 import AlertBox from '@/components/_ui/alerts/AlertBox.components'
 import HeroSection from '@/components/_ui/heroSection/HeroSection.component'
 import RecentlyBlogTopThree from './components/RelevantBlog/RecentlyBlogTopThree.component'
-import { useLazyGetAllCategoriesQuery } from '@/redux/api/category.api'
-import { useEffect } from 'react'
-import { CategoryDTO } from '@/dtos/Category.dto'
 import Link from 'next/link'
 
 
@@ -17,7 +17,7 @@ interface IHomeProps {
 }
 
 
-export default function page(props: IHomeProps) {
+export default function Page(props: IHomeProps) {
   const { allBlogPostResult } = props
   const [getAllCategories, { data, isFetching, isError }] = useLazyGetAllCategoriesQuery()
 
@@ -43,8 +43,9 @@ export default function page(props: IHomeProps) {
           <Stack gap={3}>
             <Typography variant='h4' color='white.main' textAlign='center' >All Top Categories</Typography>
             <Stack direction='row' gap={3} flexWrap='wrap' justifyContent='center' alignItems='center'>
-              {data?.data && data?.data.map((item: CategoryDTO) => (
+              {data?.data && data?.data.map((item: CategoryDTO, index: number) => (
                 <Stack
+                  key={index}
                   component={Link}
                   href={`/category/search-blog/${item.title}`}
                   sx={{
@@ -104,7 +105,7 @@ export const getServerSideProps = async () => {
 };
 
 
-page.layoutProps = {
+Page.layoutProps = {
   title: 'Home',
   pageTypes: 'public',
   isProtectedPage: false,

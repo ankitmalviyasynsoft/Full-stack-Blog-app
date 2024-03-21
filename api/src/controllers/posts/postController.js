@@ -67,7 +67,8 @@ export const getRecentPost = async (req, res) => {
 // Get a single post by ID
 export const getPostViewCount = async (req, res) => {
   try {
-    const posts = await Post.find().sort('-postViewCount').exec();
+    const posts = await Post.find().limit(8).sort('-postViewCount').exec();
+    console.log(posts)
     res.json(posts);
   } catch (error) {
     console.error(error);
@@ -145,8 +146,6 @@ export const updatePost = async (req, res) => {
 export const updateViewCountPost = async (req, res) => {
   let postId = req.params.id
   try {
-
-    // Find the post by ID
     const post = await Post.findById(postId);
 
     if (!post) {

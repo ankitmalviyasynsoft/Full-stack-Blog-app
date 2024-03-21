@@ -9,22 +9,22 @@ export const signup = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
-    // Check if the email is already registered
-    const existingUser = await User.findOne({ email });
+    // // Check if the email is already registered
+    // const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email is already in use' });
-    }
+    // if (existingUser) {
+    //   return res.status(400).json({ message: 'Email is already in use' });
+    // }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // // Hash the password
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
-    const newUser = new User({ username, email, password: hashedPassword, role });
-    await newUser.save();
+    // // Create a new user
+    // const newUser = new User({ username, email, password: hashedPassword, role });
+    // await newUser.save();
 
-    const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '1d' });
-    res.status(201).json({ message: 'User registered successfully', token });
+    // const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '1d' });
+    res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
 
     console.error('Error in user registration:', error);
